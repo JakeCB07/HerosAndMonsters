@@ -35,11 +35,10 @@ public abstract class Hero extends DungeonCharacter
 
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
-  public Hero(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax,
+  public Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior,
 					 double chanceToBlock)
   {
-	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
+	super(name, hitPoints, attackSpeed, attackBehavior);
 	this.chanceToBlock = chanceToBlock;
 	readName();
   }
@@ -86,7 +85,7 @@ Returns: nothing
 This method calls: defend() or base version of method
 This method is called by: attack() from base class
 ---------------------------------------------------------*/
-public void subtractHitPoints(int hitPoints)
+public void gotHit(DungeonCharacter opponent)
 	{
 		if (defend())
 		{
@@ -94,7 +93,7 @@ public void subtractHitPoints(int hitPoints)
 		}
 		else
 		{
-			super.subtractHitPoints(hitPoints);
+			opponent.attackBehavior.attack(opponent, this);
 		}
 
 

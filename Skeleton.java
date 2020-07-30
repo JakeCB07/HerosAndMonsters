@@ -11,19 +11,24 @@
 
 public class Skeleton extends Monster
 {
+	
+	private static String name = "Sargath the Skeleton";
+	private static int hitPoints = 100;
+	private static int attackSpeed = 3;
+    private static double chanceToHeal = .3;
+    private static AttackBehavior attackBehavior = new RustyBlade();
+	private static int minHeal = 30;
+	private static int maxHeal = 50;
 
     public Skeleton()
 	{
-		super("Sargath the Skeleton", 100, 3, .8, .3, 30, 50, 30, 50);
+		super(name, hitPoints, attackSpeed, chanceToHeal, attackBehavior, minHeal, maxHeal);
 
     }//end constructor
 
 	public void attack(DungeonCharacter opponent)
 	{
-		System.out.println(name + " slices his rusty blade at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-
+		attackBehavior.attack(opponent, this);
 	}//end override of attack
 
 

@@ -11,10 +11,16 @@
 
 public class Thief extends Hero
 {
+	
+	private static String name = "Thief";
+	private static int hitPoints = 75;
+	private static int attackSpeed = 6;
+    private static AttackBehavior attackBehavior = new Shortbow();
+    private static double chanceToBlock = .5;
 
     public Thief()
 	{
-		super("Thief", 75, 6, .8, 20, 40, .5);
+		super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
 
 
 
@@ -72,4 +78,9 @@ public class Thief extends Hero
 		} while(numTurns > 0);
 
     }
+    
+	public void attack(DungeonCharacter opponent)
+	{
+		attackBehavior.attack(opponent, this);
+	}//end override of attack method
 }

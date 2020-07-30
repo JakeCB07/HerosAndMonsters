@@ -149,7 +149,7 @@ user has the option of quitting.
 
 			//monster's turn (provided it's still alive!)
 			if (theMonster.isAlive())
-			    theMonster.attack(theHero);
+			    theMonster.attackBehavior.attack(theHero, theMonster);
 
 			//let the player bail out if desired
 			System.out.print("\n-->q to quit, anything else to continue: ");

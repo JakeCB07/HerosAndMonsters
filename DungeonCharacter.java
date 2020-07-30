@@ -33,7 +33,7 @@
  * @version 1.0
  */
 
-public abstract class DungeonCharacter implements Comparable
+public abstract class DungeonCharacter
 {
 
 	protected String name;
@@ -41,6 +41,8 @@ public abstract class DungeonCharacter implements Comparable
 	protected int attackSpeed;
 	protected double chanceToHit;
 	protected int damageMin, damageMax;
+	protected AttackBehavior attackBehavior;
+	
 
 	public int compareTo(Object o)
 	{
@@ -50,16 +52,13 @@ public abstract class DungeonCharacter implements Comparable
 //-----------------------------------------------------------------
 //explicit constructor to initialize instance variables -- it is called
 // by derived classes
-	public DungeonCharacter(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax)
+	public DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior)
 	{
 
 		this.name = name;
 		this.hitPoints = hitPoints;
 		this.attackSpeed = attackSpeed;
-		this.chanceToHit = chanceToHit;
-		this.damageMin = damageMin;
-		this.damageMax = damageMax;
+		this.attackBehavior = attackBehavior;
 
 	}//end constructor
 
@@ -113,6 +112,7 @@ Returns: nothing
 This method calls: nothing
 This method is called by: overridden versions in Hero and Monster
 ---------------------------------------------------------*/
+	/*
 	public void subtractHitPoints(int hitPoints)
 	{
 		if (hitPoints <0)
@@ -134,7 +134,7 @@ This method is called by: overridden versions in Hero and Monster
 
 
 	}//end method
-
+	 */
 /*-------------------------------------------------------
 isAlive is used to see if a character is still alive by checking hit points
 
@@ -161,6 +161,7 @@ This method calls: Math.random(), subtractHitPoints()
 This method is called by: overridden versions of the method in monster and
 hero classes and externally
 ---------------------------------------------------------*/
+    /*
 	public void attack(DungeonCharacter opponent)
 	{
 		boolean canAttack;
@@ -187,7 +188,7 @@ hero classes and externally
 		}//end else
 
 	}//end attack method
-
+*/
 //-----------------------------------------------------------------
 
 

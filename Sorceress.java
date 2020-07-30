@@ -16,10 +16,16 @@ public class Sorceress extends Hero
 	public final int MIN_ADD = 25;
 	public final int MAX_ADD = 50;
 
+	private static String name = "Sorceress";
+	private static int hitPoints = 75;
+	private static int attackSpeed = 5;
+	private static AttackBehavior attackBehavior = new Firebolt();
+    private static double chanceToBlock = .3;
+	
 //-----------------------------------------------------------------
-    public Sorceress()
+    Sorceress()
 	{
-		super("Sorceress", 75, 5, .7, 25, 50, .3);
+		super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
 
 
     }//end constructor
@@ -41,9 +47,7 @@ public class Sorceress extends Hero
 //-----------------------------------------------------------------
 	public void attack(DungeonCharacter opponent)
 	{
-		System.out.println(name + " casts a spell of fireball at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
+		attackBehavior.attack(opponent, this);
 	}//end override of attack method
 
 //-----------------------------------------------------------------
@@ -76,5 +80,5 @@ public class Sorceress extends Hero
 		} while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
 
     }//end overridden method
-
+    
 }//end class

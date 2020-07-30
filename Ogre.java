@@ -12,19 +12,25 @@
 public class Ogre extends Monster
 {
 
+	
+	private static String name = "Oscar the Ogre";
+	private static int hitPoints = 200;
+	private static int attackSpeed = 2;
+    private static double chanceToHeal = .1;
+    private static AttackBehavior attackBehavior = new WoodenClub();
+	private static int minHeal = 30;
+	private static int maxHeal = 50;
+	
     public Ogre()
 	{
-		super("Oscar the Ogre", 200, 2, .6, .1, 30, 50, 30, 50);
+		super(name, hitPoints, attackSpeed, chanceToHeal, attackBehavior, minHeal, maxHeal);
 
 
     }//end constructor
 
 	public void attack(DungeonCharacter opponent)
 	{
-		System.out.println(name + " slowly swings a club toward's " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-
+		attackBehavior.attack(opponent, this);
 	}//end override of attack
 
 
