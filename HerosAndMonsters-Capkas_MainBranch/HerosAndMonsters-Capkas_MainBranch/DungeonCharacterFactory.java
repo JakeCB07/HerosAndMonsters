@@ -1,22 +1,20 @@
 public abstract class CharacterFactory
 {
 
-    public static Monster createMonster(Monster theMonster, double chanceToHeal, AttackBehavior attackBehavior,
+    
+    public static Monster createMonster(String name, int hitPoints, int attackSpeed, double chanceToHeal, AttackBehavior attackBehavior,
 		 int minHeal, int maxHeal)
     {
-	theMonster = createMonster(theMonster, chanceToHeal, attackBehavior, minHeal, maxHeal);
+	Monster theMonster = createMonster(name, hitPoints, attackSpeed, chanceToHeal, attackBehavior, minHeal, maxHeal);
 		return theMonster;
     }
     
-    public static Hero createHero(Hero theHero, double chanceToBlock)
+    public static Hero createHero(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock)
     {
 	
-	theHero = createHero(theHero, chanceToBlock);
-	
+	Hero theHero = createHero(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
 	
 	return theHero;
     }
     
-}
-
 }
