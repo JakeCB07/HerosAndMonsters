@@ -1,11 +1,10 @@
 
 
-public abstract class MonsterFactory implements CharacterFactory<Monster>
+public abstract class MonsterFactory extends CharacterFactory
     {
     
 
 
-	@Override
 	public Monster create(String name)
 	{
 
