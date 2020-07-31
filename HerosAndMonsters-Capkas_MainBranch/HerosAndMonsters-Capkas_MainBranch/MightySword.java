@@ -1,5 +1,5 @@
 
-public class MightySword implements AttackBehavior
+public class MightySword extends Attack
 {
     private static String attack = "swings thier Mighty Sword at";
     private static double chanceToHit = .8;
@@ -12,10 +12,11 @@ public class MightySword implements AttackBehavior
     }
 
     @Override
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
     {
 	// TODO Auto-generated method stub
 
     }
+
 
 }

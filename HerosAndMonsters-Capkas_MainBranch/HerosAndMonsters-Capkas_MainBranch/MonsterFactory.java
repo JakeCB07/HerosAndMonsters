@@ -36,7 +36,29 @@ public abstract class MonsterFactory extends CharacterFactory
 
 	
 	
+
+	
+	
 	
 	        
     
 }
+    
+
+    /*public static Ogre createOgre(name, hitPoints, attackSpeed, attackBehavior, int chanceToHeal, int minHeal, int maxHeal)
+{
+    
+    
+		return  new Ogre(name, hitPoints, attackSpeed, attackBehavior, int chanceToHeal, int minHeal, int maxHeal);
+}
+
+public static Skeleton createSkeleton(, int chanceToHeal, int minHeal, int maxHeal)
+{
+		return new Skeleton(name, hitPoints, attackSpeed, attackBehavior, int chanceToHeal, int minHeal, int maxHeal);
+}
+
+public static Gremlin createGremlin(, int chanceToHeal, int minHeal, int maxHeal)
+{
+		return new Gremlin(name, hitPoints, attackSpeed, attackBehavior, int chanceToHeal, int minHeal, int maxHeal);
+}
+    */

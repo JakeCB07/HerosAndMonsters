@@ -12,7 +12,7 @@
 
 
 
-public class Thief implements DungeonCharacter.Hero
+public class Thief implements DungeonCharacterInterface.Hero
 {
     private static String name = "Thief";
 	private static int hitPoints = 75;
@@ -35,29 +35,24 @@ public class Thief implements DungeonCharacter.Hero
   	 }//end constructor
 
     
-    @Override
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-    {
-	attackBehavior.attack(opponent, (DungeonCharacter) this);
-	
-    }
+
    
-    public void specialAttack(DungeonCharacter opponent)
+    public void specialAttack(DungeonCharacterInterface opponent)
     {
-	specialAttack = new CrushingBlow();
+	specialAttack = new SneakAttack(); //TODO wreite sneakAttack
 	
-	specialAttack.attack(opponent, (DungeonCharacter) this);
+	specialAttack.attack(opponent, (DungeonCharacterInterface) this);
     }
     
     
     	
-      public String getName()
+      public static String getName()
       {
           return name;
       }
 
   
-    public AttackBehavior getAttackBehavior()
+    public static  AttackBehavior getAttackBehavior()
     {
 	
 	return attackBehavior;
@@ -70,30 +65,34 @@ public class Thief implements DungeonCharacter.Hero
     }
 
    
-    public double getChanceToBlock()
+    public static double getChanceToBlock()
     {
 	return chanceToBlock;
     }
 
 
-    public int getHitPoints()
+    public static int getHitPoints()
     {
 	return hitPoints;
     }
 
   
-    public int getAttackSpeed()
+    public static int getAttackSpeed()
     {
 	return attackSpeed;
     }
 
 
-  
+
+    public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
+    {
+	attackBehavior.attack(opponent, (DungeonCharacterInterface) this);
+	
+    }
 
 
    
 
-    
 
     	
 }//end Hero class

@@ -10,8 +10,12 @@
  */
 
 
-public abstract class Monster extends DungeonCharacter
-{	protected abstract String getName();
+public abstract class Monster implements DungeonCharacterInterface
+{	public String getName()
+{
+    // TODO Auto-generated method stub
+    return null;
+}
 	private double chanceToHeal;
 	private int minHeal, maxHeal;
 	protected abstract double getChanceToHeal();
@@ -21,23 +25,14 @@ public abstract class Monster extends DungeonCharacter
 	 protected abstract int getMaxHeal();
 	 protected abstract void addHitPoints(int healPoints);
 //-----------------------------------------------------------------
- public Monster createMonster(Monster theMonster, double chanceToHeal, int minHeal, int maxHeal, int healPoints)
-  {
-	
-	this.chanceToHeal = getChanceToHeal();
-	this.minHeal = getMinHeal();
-	this.maxHeal = getMaxHeal();
-	this.addHitPoints(getHealPoints());
-	return theMonster;
-	
-
-  }//end monster constructor
-
 
   
   
-  Monster(Monster theMonster, double chanceToHeal, int minHeal, int maxHeal)
+  Monster(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToHeal, int minHeal, int maxHeal, int healPoints)
  {
+     name = getName();
+     hitPoints= getHitPoints();
+     
      this.chanceToHeal = getChanceToHeal();
      this.addHitPoints(getHealPoints());
      this.minHeal = getMinHeal();
@@ -46,12 +41,6 @@ public abstract class Monster extends DungeonCharacter
  }
 
 
-
-  public void attack(DungeonCharacter opponent)
-  {
-	opponent.getAttackBehavior().attack(opponent, (DungeonCharacter) this);
-
-  }// end override of attack
 
 
 //-----------------------------------------------------------------
@@ -76,7 +65,7 @@ public abstract class Monster extends DungeonCharacter
 
 
 //-----------------------------------------------------------------
- public void subtractHitPoints(DungeonCharacter opponent)
+ public void subtractHitPoints(DungeonCharacterInterface opponent)
  {
 		opponent.getAttackBehavior().attack(opponent,  this);
 		heal();

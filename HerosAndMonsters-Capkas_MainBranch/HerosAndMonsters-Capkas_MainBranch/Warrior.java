@@ -12,8 +12,11 @@
 
 
 
-public class Warrior implements DungeonCharacter.Hero
+public class Warrior implements DungeonCharacterInterface.Hero
 {
+    HeroFactory heroFactory;
+    
+    
     private static  String name = "Warrior";
     private  static int hitPoints = 125;
     private  static int attackSpeed = 4;
@@ -22,37 +25,45 @@ public class Warrior implements DungeonCharacter.Hero
     private static  double chanceToBlock = .2;
 
     
+    Warrior createWarrior(String name, double chanceToBlock, AttackBehavior specialAttack)
+   	{
+		Warrior.name= getName();
+           	Warrior.chanceToBlock = getChanceToBlock();
+           	Warrior.specialAttack = getSpecialAttack();
+   		
+           	return new Warrior();
+     	 }//end constructor
     
-    Warrior(Hero theHero, double chanceToBlock, AttackBehavior specialAttack)
-	{
-        	chanceToBlock = getChanceToBlock();
-        	specialAttack = getSpecialAttack();
-  	 }//end constructor
+    Warrior(){
+	createWarrior(name, chanceToBlock, specialAttack);
+    }
+    
+  
 
     
     @Override
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
     {
-	attackBehavior.attack(opponent, (DungeonCharacter) this);
+	attackBehavior.attack(opponent, (DungeonCharacterInterface) this);
 	
     }
    
-    public void specialAttack(DungeonCharacter opponent)
+    public void specialAttack(DungeonCharacterInterface opponent)
     {
 	specialAttack = new CrushingBlow();
 	
-	specialAttack.attack(opponent, (DungeonCharacter) this);
+	specialAttack.attack(opponent, (DungeonCharacterInterface) this);
     }
     
     
     	
-      public String getName()
+      public static String getName()
       {
           return name;
       }
 
   
-    public AttackBehavior getAttackBehavior()
+    public static AttackBehavior getAttackBehavior()
     {
 	
 	return attackBehavior;
@@ -65,28 +76,24 @@ public class Warrior implements DungeonCharacter.Hero
     }
 
    
-    public double getChanceToBlock()
+    public static double getChanceToBlock()
     {
 	return chanceToBlock;
     }
 
 
-    public int getHitPoints()
+    public static int getHitPoints()
     {
 	return hitPoints;
     }
 
   
-    public int getAttackSpeed()
+    public static int getAttackSpeed()
     {
 	return attackSpeed;
+
+
     }
-
-
-  
-
-
-   
 
     
 

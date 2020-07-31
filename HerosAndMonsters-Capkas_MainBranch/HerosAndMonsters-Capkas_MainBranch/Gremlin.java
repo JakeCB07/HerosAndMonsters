@@ -9,7 +9,7 @@
  * @version 1.0
  */
 
-class Gremlin implements DungeonCharacter.Monster
+class Gremlin implements DungeonCharacterInterface.Monster
 {
     
     	private static String name = "Gnarltooth the Gremlin";
@@ -82,10 +82,13 @@ class Gremlin implements DungeonCharacter.Monster
 
 
     @Override
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
     {
-	attackBehavior.attack(opponent, (DungeonCharacter) this);
+	attackBehavior.attack(opponent, (DungeonCharacterInterface) this);
 	
     }
+
+
+    
 
 }//end class Gremlin

@@ -6,7 +6,7 @@
  * @version 1.0
  */
 
-class Ogre implements DungeonCharacter.Monster
+class Ogre implements DungeonCharacterInterface.Monster
 {
     private static String name = "Oscar the Ogre";
     private static int hitPoints = 200;
@@ -78,9 +78,9 @@ class Ogre implements DungeonCharacter.Monster
 
 
     @Override
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
     {
-	attackBehavior.attack(opponent, (DungeonCharacter) this);
+	attackBehavior.attack(opponent, (DungeonCharacterInterface) this);
 	
     }
 

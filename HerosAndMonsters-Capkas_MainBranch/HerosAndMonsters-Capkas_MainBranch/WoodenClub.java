@@ -1,5 +1,5 @@
 
-public class WoodenClub implements AttackBehavior
+public class WoodenClub extends Attack
 {
 
     public WoodenClub() 
@@ -11,7 +11,7 @@ public class WoodenClub implements AttackBehavior
 
 
     @Override
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
     {
 	// TODO Auto-generated method stub
 

@@ -9,7 +9,7 @@
  * @version 1.0
  */
 
-class Skeleton implements DungeonCharacter.Monster
+class Skeleton implements DungeonCharacterInterface.Monster
 {
     private static String name = "Sargath the Skeleton";
 	private static int hitPoints = 100;
@@ -79,9 +79,9 @@ private static AttackBehavior attackBehavior = new RustyBlade();
 
 
 	    @Override
-	    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+	    public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
 	    {
-		attackBehavior.attack(opponent, (DungeonCharacter) this);
+		attackBehavior.attack(opponent, (DungeonCharacterInterface) this);
 		
 	    }
 

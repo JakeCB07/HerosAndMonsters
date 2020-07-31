@@ -1,148 +1,71 @@
-import java.util.Scanner;
 
-/**
- * Title: Hero.java
- *
- * Description: Abstract base class for a hierarchy of heroes.  It is derived
- *  from DungeonCharacter.  A Hero has battle choices: regular attack and a
- *  special skill which is defined by the classes derived from Hero.
- *
- *  class variables (all are directly accessible from derived classes):
- *    chanceToBlock -- a hero has a chance to block an opponents attack
- *    numTurns -- if a hero is faster than opponent, their is a possibility
- *                for more than one attack per round of battle
- *
- *  class methods (all are public):
- *    public Hero(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax,
-					 double chanceToBlock)
-	  public void readName()
-	  public boolean defend()
-	  public void subtractHitPoints(int hitPoints)
-	  public void battleChoices(DungeonCharacter opponent)
-
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-
-public abstract class Hero implements DungeonCharacter
+public abstract class Hero implements DungeonCharacterInterface
 {
-     
-   private double chanceToBlock;
 
-   protected abstract double getChanceToBlock();
-  
+    	public abstract String getName();
+
+	private double chanceToHeal;
+	private int minHeal, maxHeal;
+	protected abstract double getChanceToHeal();
+	protected abstract int getHealPoints();
+	 protected abstract String readName();  //in case we end up needing it
+	 protected abstract int getMinHeal();
+	 protected abstract int getMaxHeal();
+	 protected abstract void addHitPoints(int healPoints);
 //-----------------------------------------------------------------
-//calls base constructor and gets name of hero from user
-  public Hero createHero(Hero theHero,
-		double chanceToHeal, AttackBehavior attackBehavior, double chanceToBlock)
-  {
-            
-	this.chanceToBlock = getChanceToBlock();
+
+  
+  
+  Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToHeal, int minHeal, int maxHeal, int healPoints)
+ {
+     name = getName();
+     hitPoints= getHitPoints();
+     
+     this.chanceToHeal = getChanceToHeal();
+     this.addHitPoints(getHealPoints());
+     this.minHeal = getMinHeal();
+     this.maxHeal = getMaxHeal();
 	
-		
-	return theHero;
-  }
+ }
 
 
 
-/*-------------------------------------------------------
-readName obtains a name for the hero from the user
 
-Receives: nothing
-Returns: nothing
-
-This method calls: nothing
-This method is called by: hero constructor
----------------------------------------------------------*/
-  public void readName()
+//-----------------------------------------------------------------
+  public void heal()
   {
-      Scanner kb = new Scanner(System.in);
+	boolean canHeal;
+	int healPoints;
 
-		System.out.print("Enter character name: ");
-		String name = kb.nextLine();
-		
-  }//end readName method
+	canHeal = (Math.random() <= chanceToHeal) && (getHealPoints() > 0);
 
-/*-------------------------------------------------------
-defend determines if hero blocks attack
-
-Receives: nothing
-Returns: true if attack is blocked, false otherwise
-
-This method calls: Math.random()
-This method is called by: subtractHitPoints()
----------------------------------------------------------*/
-  public boolean defend()
-  {
-		return Math.random() <= chanceToBlock;
-
-  }//end defend method
-
-/*-------------------------------------------------------
-subtractHitPoints checks to see if hero blocked attack, if so a message
-is displayed, otherwise base version of this method is invoked to
-perform the subtraction operation.  This method overrides the method
-inherited from DungeonCharacter promoting polymorphic behavior
-
-Receives: hit points to subtract
-Returns: nothing
-
-This method calls: defend() or base version of method
-This method is called by: attack() from base class
----------------------------------------------------------*/
-
-  
-  public void gotHit(DungeonCharacter opponent)
+	if (canHeal)
 	{
-		if (defend())
-		{
-			System.out.println(getName() + " BLOCKED the attack!");
-		}
-		else
-		    
-		    opponent.getAttackBehavior().attack(opponent, this);
-	}
-  
-  /*
-  public void subtractHitPoints(int hitPoints)
-	{
-		if (defend())
-		{
-			System.out.println(name + " BLOCKED the attack!");
-		}
-		else
-		{
-			super.subtractHitPoints(hitPoints);
-		}
+		healPoints = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
+		addHitPoints(healPoints);
+		System.out.println(getName() + " healed itself for " + getHealPoints() + " points.\n"
+							+ "Total hit points remaining are: " + getHealPoints());
+		System.out.println();
+	}//end can heal
 
 
-	}//end method
-*/
-/*-------------------------------------------------------
-battleChoices will be overridden in derived classes.  It computes the
-number of turns a hero will get per round based on the opponent that is
-being fought.  The number of turns is reported to the user.  This stuff might
-go better in another method that is invoked from this one...
+  }//end heal method
 
-Receives: opponent
-Returns: nothing
 
-This method calls: getAttackSpeed()
-This method is called by: external sources
----------------------------------------------------------*/
-	public void battleChoices(DungeonCharacter opponent)
-	{
-	    int numTurns = this.getAttackSpeed()/opponent.getAttackSpeed();
+//-----------------------------------------------------------------
+ public void subtractHitPoints(DungeonCharacterInterface opponent)
+ {
+		opponent.getAttackBehavior().attack(opponent,  this);
+		heal();
 
-		if (numTurns == 0)
-			numTurns++;
+ }//end method
 
-		System.out.println("Number of turns this round is: " + numTurns);
-
-	}//end battleChoices
+ public void setName(String name)
+ {
+     name = readName();
+ }
+   
 
 }//end Hero class
+
+

@@ -11,7 +11,7 @@
 
 
 
-public class Sorceress implements DungeonCharacter.Hero
+public class Sorceress implements DungeonCharacterInterface.Hero
 {
    
     
@@ -23,41 +23,36 @@ public class Sorceress implements DungeonCharacter.Hero
 	private static int attackSpeed = 5;
 	private static AttackBehavior attackBehavior = new Firebolt();
 	
-	
+	private static double chanceToBlock = .3;
+	    
+
 	private static AttackBehavior specialAttack = new CrushingBlow();
 	//TODO CHANGE THIS SPECIAL ATTACK IF SORCERESS HAS ONE OTHERWISE SET NULL
 	
-	public Sorceress(Hero theHero, double chanceToBlock, AttackBehavior specialAttack)
+	public Sorceress(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock, AttackBehavior specialAttack)
 	{
         	chanceToBlock = getChanceToBlock();
         	specialAttack = getSpecialAttack();
   	 }//end constructor
 	
-	private static double chanceToBlock = .3;
-    
-@Override
-public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-{
-	attackBehavior.attack(opponent, (DungeonCharacter) this);
 	
-}
 
-public void specialAttack(DungeonCharacter opponent)
+public void specialAttack(DungeonCharacterInterface opponent)
 {
-	specialAttack = new CrushingBlow();
+	specialAttack = new CrushingBlow(); 
 	
-	specialAttack.attack(opponent, (DungeonCharacter) this);
+	specialAttack.attack(opponent, (DungeonCharacterInterface) this);
 }
 
 
 	
-  public String getName()
+  public static String getName()
   {
       return name;
   }
 
 
-public AttackBehavior getAttackBehavior()
+public static AttackBehavior getAttackBehavior()
 {
 	
 	return attackBehavior;
@@ -70,22 +65,33 @@ public AttackBehavior getSpecialAttack()
 }
 
 
-public double getChanceToBlock()
+public static double getChanceToBlock()
 {
 	return chanceToBlock;
 }
 
 
-public int getHitPoints()
+public static int getHitPoints()
 {
 	return hitPoints;
 }
 
 
-public int getAttackSpeed()
+public static int getAttackSpeed()
 {
 	return attackSpeed;
 }
+
+
+
+@Override
+public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker)
+{
+    attackBehavior.attack(opponent, (DungeonCharacterInterface) this);
+}
+
+
+
 
 
 

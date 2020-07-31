@@ -13,7 +13,7 @@ public abstract class Attack implements AttackBehavior {
 	}
 
 	@Override
-	public void attack(DungeonCharacter opponent, DungeonCharacter attacker) {
+	public void attack(DungeonCharacterInterface opponent, DungeonCharacterInterface attacker) {
 		boolean canAttack;
 		int damage;
 
@@ -38,7 +38,7 @@ public abstract class Attack implements AttackBehavior {
 		}//end else
 	}
 
-	public void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
+	public void subtractHitPoints(DungeonCharacterInterface opponent, int damageRecieved)
 	{
 		if (opponent.getHitPoints() <0)
 			System.out.println("Hitpoint amount must be positive.");
