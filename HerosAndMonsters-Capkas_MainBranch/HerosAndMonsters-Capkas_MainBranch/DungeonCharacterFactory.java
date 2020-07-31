@@ -1,8 +1,6 @@
-public class DungeonCharacterFactory
+public abstract class CharacterFactory
 {
 
-    
-    
     public static Monster createMonster(Monster theMonster, double chanceToHeal, AttackBehavior attackBehavior,
 		 int minHeal, int maxHeal)
     {
@@ -19,4 +17,6 @@ public class DungeonCharacterFactory
 	return theHero;
     }
     
+}
+
 }
