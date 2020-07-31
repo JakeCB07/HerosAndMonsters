@@ -26,7 +26,7 @@
  * @param <AttackBehavior>
  */
 
-interface DungeonCharacter
+interface DungeonCharacterInterface
 {
 
     abstract String getName();
@@ -41,7 +41,7 @@ interface DungeonCharacter
 
     abstract void subtactHitPoints(DungeonCharacter opponent); // TODO these two may be the same
 
-    interface Monster
+    interface MonsterInterface
     {
 	abstract void attack(DungeonCharacter opponent, DungeonCharacter attacker);
 
@@ -49,7 +49,7 @@ interface DungeonCharacter
 
     }
 
-    interface Hero
+    interface HeroInterface
     {
 	void attack(DungeonCharacter opponent, DungeonCharacter attacker);
 
