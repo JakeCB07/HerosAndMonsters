@@ -10,8 +10,8 @@
  */
 
 
-public abstract class Monster implements DungeonCharacter
-{
+public abstract class Monster extends DungeonCharacter
+{	protected abstract String getName();
 	private double chanceToHeal;
 	private int minHeal, maxHeal;
 	protected abstract double getChanceToHeal();
@@ -39,7 +39,7 @@ public abstract class Monster implements DungeonCharacter
   Monster(Monster theMonster, double chanceToHeal, int minHeal, int maxHeal)
  {
      this.chanceToHeal = getChanceToHeal();
-     this.addHitPoints(getHitPoints());
+     this.addHitPoints(getHealPoints());
      this.minHeal = getMinHeal();
      this.maxHeal = getMaxHeal();
 	
@@ -60,7 +60,7 @@ public abstract class Monster implements DungeonCharacter
 	boolean canHeal;
 	int healPoints;
 
-	canHeal = (Math.random() <= chanceToHeal) && (getHitPoints() > 0);
+	canHeal = (Math.random() <= chanceToHeal) && (getHealPoints() > 0);
 
 	if (canHeal)
 	{
