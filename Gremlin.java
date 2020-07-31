@@ -1,30 +1,11 @@
 
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-public class Gremlin extends Monster
-{
-
-    public Gremlin()
+public class Gremlin extends Monster {
+	public Gremlin(String name, AttackBehavior attack)
 	{
-		super("Gnarltooth the Gremlin", 70, 5, .8, .4, 15, 30, 20, 40);
+		super(name, 70, 5, .8, .4, 15, 30, 20, 40, attack);
 
-    }//end constructor
+    }
 
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(name + " jabs his kris at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
+	
 
-	}//end override of attack
-
-
-}//end class Gremlin
+}
