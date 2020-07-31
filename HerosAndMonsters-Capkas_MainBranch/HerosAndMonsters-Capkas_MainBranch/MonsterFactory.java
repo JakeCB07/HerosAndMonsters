@@ -1,5 +1,4 @@
-
-    public abstract class MonsterFactory extends DungeonCharacterFactory
+    public class MonsterFactory 
     {
     
         public static Ogre createOgre(Monster theMonster, int chanceToHeal, int minHeal, int maxHeal)
