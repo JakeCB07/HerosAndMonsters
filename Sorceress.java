@@ -13,13 +13,14 @@
 
 public class Sorceress extends Hero
 {
-	public final int MIN_ADD = 25;
-	public final int MAX_ADD = 50;
+	private int minHeal = 25;
+	private int maxHeal = 50;
 
 	private static String name = "Sorceress";
 	private static int hitPoints = 75;
 	private static int attackSpeed = 5;
 	private static AttackBehavior attackBehavior = new Firebolt();
+	private HealBehavior healSelf = new Heal();
     private static double chanceToBlock = .3;
 	
 //-----------------------------------------------------------------
@@ -33,15 +34,7 @@ public class Sorceress extends Hero
 //-----------------------------------------------------------------
 	public void increaseHitPoints()
     {
-	    int hPoints;
-
-		hPoints = (int)(Math.random() * (MAX_ADD - MIN_ADD + 1)) + MIN_ADD;
-		addHitPoints(hPoints);
-		System.out.println(name + " added [" + hPoints + "] points.\n"
-							+ "Total hit points remaining are: "
-							+ hitPoints);
-		 System.out.println();
-
+		healSelf.heal(this, minHeal, maxHeal);
     }//end increaseHitPoints method
 
 //-----------------------------------------------------------------
