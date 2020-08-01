@@ -1,0 +1,21 @@
+Mark's Refactors: 
+1. Getters and setters -> subclass levels (required by interfaces), changed visibility as I went but not throughout encapsulation (I think Jacob did this)
+2. refactored Dungeon Character to abstract factory (abstract character factory -> hero/Monster factory)
+	2.5. refactored instead back to simple factory (a separate hero factory and a monster factory) for refactor assignment might change back for final
+3.Hero/Monster interfaces    **DungeonCharacterInterface isn't necessary so can be removed since we are building things at the hero/monster level
+4. Scanners instead of keyboards
+
+
+OUTSTANDING: 
+integration
+unused code
+adjust comments
+naming of fields and methods
+
+IF we want to add additional things/refactors/finalAdditions:
+enums for subclasses
+combine parameters into objects (if we do this I think should I revert back to abstract factory -> i already have this code written, i just reverted it back to pre-combination since we did factories differently -> might do for final but not for refactor)
+Decorator pattern
+Singleton -> limit the character to only holding one weapon at a time (or something -> probably not necessary though)
+Template method -> 
+
