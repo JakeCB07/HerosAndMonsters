@@ -1,14 +1,4 @@
 
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
 public class Thief extends Hero
 {
 	
@@ -21,9 +11,6 @@ public class Thief extends Hero
     public Thief()
 	{
 		super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
-
-
-
     }//end constructor
 
 	public void surpriseAttack(DungeonCharacter opponent)
@@ -47,19 +34,17 @@ public class Thief extends Hero
 
 	}//end surpriseAttack method
 
-
     public void battleChoices(DungeonCharacter opponent)
 	{
 		super.battleChoices(opponent);
 		int choice;
-
 
 		do
 		{
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Surprise Attack");
 		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+		    choice = playerInput.nextInt();
 
 		    switch (choice)
 		    {

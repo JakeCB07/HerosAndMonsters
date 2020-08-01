@@ -1,16 +1,4 @@
 
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-
-
 public class Sorceress extends Hero
 {
 	private int minHeal = 25;
@@ -54,7 +42,7 @@ public class Sorceress extends Hero
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Increase Hit Points");
 		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+		    choice = playerInput.nextInt();
 
 		    switch (choice)
 		    {

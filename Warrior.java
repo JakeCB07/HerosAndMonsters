@@ -1,17 +1,4 @@
 
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-
-
-
 public class Warrior extends Hero
 {
 	
@@ -55,7 +42,7 @@ public class Warrior extends Hero
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Crushing Blow on Opponent");
 		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+		    choice = playerInput.nextInt();
 
 		    switch (choice)
 		    {

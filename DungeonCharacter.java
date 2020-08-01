@@ -39,15 +39,7 @@ public abstract class DungeonCharacter
 	protected String name;
 	protected int hitPoints;
 	protected int attackSpeed;
-	protected double chanceToHit;
-	protected int damageMin, damageMax;
 	protected AttackBehavior attackBehavior;
-	
-
-	public int compareTo(Object o)
-	{
-		return 1;
-	}
 
 //-----------------------------------------------------------------
 //explicit constructor to initialize instance variables -- it is called
@@ -83,4 +75,6 @@ public abstract class DungeonCharacter
 	{
 	  return (hitPoints > 0);
 	}//end isAlive method
+    
+    
 }//end class Character
