@@ -1,12 +1,12 @@
 
 public class Warrior extends Hero {
 	
-	  public Warrior(String name, AttackBehavior attack)
+	  public Warrior()
 		{
 
 		  
 		  
-			super(name, 125, 4, .8, 35, 60, 5, .2, attack);
+			super("Warrior", 125, 4, .8, 35, 60, 5, .2, new MightySword());
 
 
 	    }

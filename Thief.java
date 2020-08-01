@@ -1,8 +1,8 @@
 
 public class Thief extends Hero {
-	 public Thief(String name, AttackBehavior attack)
+	 public Thief()
 		{
-			super(name, 75, 6, .8, 20, 40, 5, .5, attack);
+			super("Thief", 75, 6, .8, 20, 40, 5, .5, new Shortbow());
 
 
 

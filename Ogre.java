@@ -1,8 +1,8 @@
 
 public class Ogre extends Monster {
-	public Ogre(String name, AttackBehavior attack)
+	public Ogre()
 	{
-		super(name, 200, 2, .6, .1, 30, 50, 30, 50, attack);
+		super("Ogre", 200, 2, .6, .1, 30, 50, 30, 50, new WoodenClub());
 
 
     }

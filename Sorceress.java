@@ -4,9 +4,9 @@ public class Sorceress extends Hero {
 	public final int MAX_ADD = 50;
 
 
-    public Sorceress(String name, AttackBehavior attack)
+    public Sorceress()
 	{
-		super("Sorceress", 75, 5, .7, 25, 50, 25, .3, attack);
+		super("Sorceress", 75, 5, .7, 25, 50, 25, .3, new Firebolt());
 
 
     }

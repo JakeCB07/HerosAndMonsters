@@ -29,14 +29,14 @@ public class Attack  implements AttackBehavior {
 
 
 			System.out.println();
-		}//end if can attack
+		}
 		else
 		{
 
 			System.out.println(attacker.getName() + "'s attack on " + opponent.getName() +
 								" failed!");
 			System.out.println();
-		}//end else
+		}
 	}
 	
 	public void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)

@@ -26,21 +26,16 @@ public class Dungeon {
 
 			switch(choice)
 			{
-				case 1: return new Warrior("warrior dude ", new RustyBlade());
+				case 1: return DungeonFactory.makeWarrior();
 
-				case 2: return new Sorceress("Sorceress dude", new Firebolt());
+				case 2: return DungeonFactory.makeSorceress();
 
-				case 3: return new Thief("thief dude ", new Shortbow());
+				case 3: return DungeonFactory.makeThief();
 
 				default: System.out.println("invalid choice, returning Thief");
-					     return new Thief("thief dude ", new Shortbow());
-			}//end switch
-		}//end chooseHero method
-
-	/*-------------------------------------------------------------------
-	generateMonster randomly selects a Monster and returns it.  It utilizes
-	a polymorphic reference (Monster) to accomplish this task.
-	---------------------------------------------------------------------*/
+					     return new Thief();
+			}
+		}
 		public static Monster generateMonster()
 		{
 			int choice;
@@ -49,14 +44,14 @@ public class Dungeon {
 
 			switch(choice)
 			{
-				case 1: return new Ogre("Ogre dude", new WoodenClub());
+				case 1: return DungeonFactory.makeOgre();
 
-				case 2: return new Gremlin("Gremlin dude ", new Kris());
+				case 2: return DungeonFactory.makeGremlin();
 
-				case 3: return new Skeleton("Skeleton dude", new RustyBlade());
+				case 3: return  DungeonFactory.makeSkeleton();
 
 				default: System.out.println("invalid choice, returning Skeleton");
-					     return new Skeleton("Another skeleton dude ", new RustyBlade());
+					     return DungeonFactory.makeSkeleton();
 			}
 		}
 		public static boolean playAgain()
