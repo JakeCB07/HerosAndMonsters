@@ -1,0 +1,52 @@
+Choose a hero:
+1. Warrior
+2. Sorceress
+3. Thief
+1
+Warrior battles Gremlin
+---------------------------------------------
+Number of turns this round is: 5
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 2
+Warrior failed to land a crushing blow
+
+Number of turns remaining is: 4
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior's attack on Gremlin failed!
+
+Number of turns remaining is: 3
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior's attack on Gremlin failed!
+
+Number of turns remaining is: 2
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 2
+Warrior failed to land a crushing blow
+
+Number of turns remaining is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Gremlin hit  for <37> points damage.
+Gremlin now has 33 hit points remaining.
+
+
+Gremlin jabs thier Kris at Warrior
+Warrior hit  for <29> points damage.
+Warrior now has 96 hit points remaining.
+
+Warrior hit  for <29> points damage.
+Warrior now has 96 hit points remaining.
+
+
+
+-->q to quit, anything else to continue: q
+Quitters never win ;-)
+Play again (y/n)?
+n
