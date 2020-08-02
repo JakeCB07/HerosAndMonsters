@@ -17,8 +17,8 @@ public class Hero extends DungeonCharacter {
 	{
 	    numTurns = getAttackSpeed()/opponent.getAttackSpeed();
 
-		if (numTurns == 0)
-			numTurns++;
+		if (getNumTurns() < 0)
+			setTurns(1);
 
 		System.out.println("Number of turns this round is: " + getNumTurns());
 

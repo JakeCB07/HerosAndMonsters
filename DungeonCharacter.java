@@ -91,11 +91,12 @@ setAttackBehavior(attack);
 		this.numTurns=numTurns;
 	}
 	public int getNumTurns() {
+	
 		return numTurns;
 	}
 	public void addHitPoints(int hitPoints)
 	{
-		if (hitPoints <=0)
+		if (hitPoints <0)
 			System.out.println("Hitpoint amount must be positive.");
 		else
 		{

@@ -6,7 +6,7 @@ public class Sorceress extends Hero {
 
     public Sorceress()
 	{
-		super("Sorceress", 75, 5, .7, 25, 50, 25, .3, new Firebolt());
+		super("Sorceress", 75, 5, .7, 25, 50, 1, .3, new Firebolt());
 
 
     }
@@ -36,7 +36,7 @@ public class Sorceress extends Hero {
 
 		    switch (choice)
 		    {
-			    case 1: attack(opponent);
+			    case 1: getAttackBehavior().attack(opponent, this);
 			        break;
 			    case 2: increaseHitPoints();
 			        break;

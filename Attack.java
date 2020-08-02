@@ -7,6 +7,7 @@ public class Attack  implements AttackBehavior {
 	protected double chanceToHit;
 	
 	Attack(String attack, int minDamage, int maxDamage, double chanceToHit){
+		
 		this.attack = attack;
 		this.minDamage = minDamage;
 		this.maxDamage = maxDamage;
@@ -48,16 +49,10 @@ public class Attack  implements AttackBehavior {
 			opponent.subtractHitPoints(damageRecieved);
 			if (opponent.getHitPoints() < 0)
 				opponent.setHitPoints(0);
-			System.out.println(opponent.getName() + " hit " +
-								" for <" + damageRecieved + "> points damage.");
-			System.out.println(opponent.getName() + " now has " +
-								opponent.getHitPoints() + " hit points remaining.");
-			System.out.println();
+			
 		}
 
-		if (opponent.getHitPoints() == 0)
-			System.out.println(opponent.getName() + " has been killed :-(");
-
+		
 
 	}
 

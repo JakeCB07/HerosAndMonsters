@@ -2,7 +2,7 @@
 public class Thief extends Hero {
 	 public Thief()
 		{
-			super("Thief", 75, 6, .8, 20, 40, 5, .5, new Shortbow());
+			super("Thief", 75, 6, .8, 20, 40, 1, .5, new Shortbow());
 
 
 
@@ -45,7 +45,7 @@ public class Thief extends Hero {
 
 			    switch (choice)
 			    {
-				    case 1: attack(opponent);
+				    case 1: getAttackBehavior().attack(opponent, this);
 				        break;
 				    case 2: surpriseAttack(opponent);
 				        break;

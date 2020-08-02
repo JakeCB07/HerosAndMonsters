@@ -55,19 +55,16 @@ private static Scanner kb = new Scanner(System.in);
 		System.out.println("---------------------------------------------");
 
 
-		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q')
-		{
+		
+		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q'){
 
 			theHero.battleChoices(theMonster);
-
+              
 
 			if (theMonster.isAlive())
 			    theMonster.getAttackBehavior().attack(theHero, theMonster);
 
-
-			System.out.print("\n-->q to quit, anything else to continue: ");
-			pause = kb.next().charAt(0);
-			pause = Character.toLowerCase(pause);
+		
 
 		}
 

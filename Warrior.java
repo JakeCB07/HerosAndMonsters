@@ -6,7 +6,7 @@ public class Warrior extends Hero {
 
 		  
 		  
-			super("Warrior", 125, 4, .8, 35, 60, 5, .2, new MightySword());
+			super("Warrior", 125, 4, .8, 35, 60, 1, .2, new MightySword());
 
 
 	    }
@@ -49,7 +49,7 @@ public class Warrior extends Hero {
 
 			    switch (choice)
 			    {
-				    case 1: attack(opponent);
+				    case 1: getAttackBehavior().attack(opponent, this );
 				        break;
 				    case 2: crushingBlow(opponent);
 				        break;
