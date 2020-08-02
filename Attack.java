@@ -39,7 +39,7 @@ public abstract class Attack implements AttackBehavior {
 		}//end else
 	}
 	
-	public void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
+	private void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
 	{
 		if (opponent.hitPoints <0)
 			System.out.println("Hitpoint amount must be positive.");
@@ -51,7 +51,7 @@ public abstract class Attack implements AttackBehavior {
 			System.out.println(opponent.getName() + " hit " +
 								" for <" + damageRecieved + "> points damage.");
 			System.out.println(opponent.getName() + " now has " +
-								opponent.getHitPoints() + " hit points remaining.");
+								opponent.hitPoints + " hit points remaining.");
 			System.out.println();
 		}//end else if
 

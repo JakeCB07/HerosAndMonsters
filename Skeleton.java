@@ -10,7 +10,7 @@ public class Skeleton extends Monster
 	private static int minHeal = 30;
 	private static int maxHeal = 50;
 
-    public Skeleton()
+    Skeleton()
 	{
 		super(name, hitPoints, attackSpeed, chanceToHeal, attackBehavior, minHeal, maxHeal);
 
