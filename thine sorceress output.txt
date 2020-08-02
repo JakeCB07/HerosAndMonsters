@@ -1,0 +1,108 @@
+Choose a hero:
+1. Warrior
+2. Sorceress
+3. Thief
+2
+Sorceress battles Skeleton
+---------------------------------------------
+Number of turns this round is: 2
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [27] points.
+Total hit points remaining are: 102
+
+Number of turns remaining is: 1
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [35] points.
+Total hit points remaining are: 137
+
+Skeleton slices thier Rusty Blade at Sorceress
+Sorceress hit  for <50> points damage.
+Sorceress now has 87 hit points remaining.
+
+Sorceress hit  for <50> points damage.
+Sorceress now has 87 hit points remaining.
+
+
+
+-->q to quit, anything else to continue: i
+Number of turns this round is: 0
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [28] points.
+Total hit points remaining are: 115
+
+Number of turns remaining is: 2
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [41] points.
+Total hit points remaining are: 156
+
+Number of turns remaining is: 1
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [36] points.
+Total hit points remaining are: 192
+
+Skeleton slices thier Rusty Blade at Sorceress
+Sorceress hit  for <43> points damage.
+Sorceress now has 149 hit points remaining.
+
+Sorceress hit  for <43> points damage.
+Sorceress now has 149 hit points remaining.
+
+
+
+-->q to quit, anything else to continue: y
+Number of turns this round is: 0
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Skeleton hit  for <29> points damage.
+Skeleton now has 71 hit points remaining.
+
+
+Number of turns remaining is: 2
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Sorceress's attack on Skeleton failed!
+
+Number of turns remaining is: 1
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Skeleton hit  for <38> points damage.
+Skeleton now has 33 hit points remaining.
+
+
+Skeleton slices thier Rusty Blade at Sorceress
+Sorceress hit  for <48> points damage.
+Sorceress now has 101 hit points remaining.
+
+Sorceress hit  for <48> points damage.
+Sorceress now has 101 hit points remaining.
+
+
+
+-->q to quit, anything else to continue: a
+
+
+Number of turns this round is: 0
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Skeleton hit  for <34> points damage.
+Skeleton now has 0 hit points remaining.
+
+Skeleton has been killed :-(
+
+Number of turns remaining is: 2
+
+-->q to quit, anything else to continue: 
