@@ -1,0 +1,236 @@
+Choose a hero:
+1. Warrior
+2. Sorceress
+3. Thief
+2
+Sorceress battles Ogre
+---------------------------------------------
+Number of turns this round is: 25
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [35] points.
+Total hit points remaining are: 110
+
+Number of turns remaining is: 24
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [32] points.
+Total hit points remaining are: 142
+
+Number of turns remaining is: 23
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [27] points.
+Total hit points remaining are: 169
+
+Number of turns remaining is: 22
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [28] points.
+Total hit points remaining are: 197
+
+Number of turns remaining is: 21
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [28] points.
+Total hit points remaining are: 225
+
+Number of turns remaining is: 20
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [45] points.
+Total hit points remaining are: 270
+
+Number of turns remaining is: 19
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [28] points.
+Total hit points remaining are: 298
+
+Number of turns remaining is: 18
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [33] points.
+Total hit points remaining are: 331
+
+Number of turns remaining is: 17
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [40] points.
+Total hit points remaining are: 371
+
+Number of turns remaining is: 16
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [28] points.
+Total hit points remaining are: 399
+
+Number of turns remaining is: 15
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [40] points.
+Total hit points remaining are: 439
+
+Number of turns remaining is: 14
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [45] points.
+Total hit points remaining are: 484
+
+Number of turns remaining is: 13
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [41] points.
+Total hit points remaining are: 525
+
+Number of turns remaining is: 12
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [33] points.
+Total hit points remaining are: 558
+
+Number of turns remaining is: 11
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [48] points.
+Total hit points remaining are: 606
+
+Number of turns remaining is: 10
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 21
+invalid choice!
+Number of turns remaining is: 9
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Ogre hit  for <29> points damage.
+Ogre now has 171 hit points remaining.
+
+
+Number of turns remaining is: 8
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Ogre hit  for <34> points damage.
+Ogre now has 137 hit points remaining.
+
+
+Number of turns remaining is: 7
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Ogre hit  for <45> points damage.
+Ogre now has 92 hit points remaining.
+
+
+Number of turns remaining is: 6
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Sorceress's attack on Ogre failed!
+
+Number of turns remaining is: 5
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Sorceress's attack on Ogre failed!
+
+Number of turns remaining is: 4
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Ogre hit  for <42> points damage.
+Ogre now has 50 hit points remaining.
+
+
+Number of turns remaining is: 3
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Ogre hit  for <46> points damage.
+Ogre now has 4 hit points remaining.
+
+
+Number of turns remaining is: 2
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Ogre hit  for <25> points damage.
+Ogre now has 0 hit points remaining.
+
+Ogre has been killed :-(
+
+Number of turns remaining is: 1
+
+-->q to quit, anything else to continue: w
+Sorceress was victorious!
+Play again (y/n)?
+y
+Choose a hero:
+1. Warrior
+2. Sorceress
+3. Thief
+3
+Thief battles Ogre
+---------------------------------------------
+Number of turns this round is: 5
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 1
+Thief's attack on Ogre failed!
+
+Number of turns remaining is: 4
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 2
+Ogre hit  for <38> points damage.
+Ogre now has 162 hit points remaining.
+
+
+Number of turns remaining is: 3
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 1
+Thief's attack on Ogre failed!
+
+Number of turns remaining is: 2
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 2
+Ogre hit  for <29> points damage.
+Ogre now has 133 hit points remaining.
+
+
+Number of turns remaining is: 1
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 3
+invalid choice!
+Ogre slowly swings a Club at Thief
+Thief hit  for <44> points damage.
+Thief now has 31 hit points remaining.
+
+Thief hit  for <44> points damage.
+Thief now has 31 hit points remaining.
+
+
+
+-->q to quit, anything else to continue: q
+Quitters never win ;-)
+Play again (y/n)?
