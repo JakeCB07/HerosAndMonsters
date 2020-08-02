@@ -4,9 +4,9 @@ public class Skeleton extends Monster {
 		{
 			super("Skeleton", 100, 3, .8, .3, 30, 50, 30, 50, new RustyBlade());
 
-	    }//end constructor
+	    }
 
 	
-		}//end override of attack
+		}
 
 
