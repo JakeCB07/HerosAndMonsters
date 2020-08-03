@@ -1,75 +1,123 @@
+import java.util.Scanner;
 
+class Thief extends Hero implements iDungeonCharacter.iHero  {
 
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
+	private static String name = "Thief";
+	private static int hitPoints = 75;
+	private static int attackSpeed = 6;
+	private static AttackBehavior attack = new Shortbow();
+	private static AttackBehavior specialAttack = new SurpriseAttack();
+	private static double chanceToBlock = .5;
 
-public class Thief extends Hero
-{
+	
+	
+	  Thief(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock,
+		    AttackBehavior specialAttack)
+	    {
+	      super(name, attackSpeed, attackSpeed, specialAttack, chanceToBlock);
+	  	  name= getName();
+		  hitPoints = getHitPoints();
+		  attack = getAttackBehavior();
+		chanceToBlock = getChanceToBlock();
+		specialAttack = getSpecialAttack();
+		chanceToBlock = getChanceToBlock();
+		specialAttack = getSpecialAttack();
+	    }// end constructor
 
-    public Thief()
-	{
-		super("Thief", 75, 6, .8, 20, 40, .5);
-
-
-
-    }//end constructor
-
-	public void surpriseAttack(DungeonCharacter opponent)
-	{
+	
+	private void SurpriseAttack(DungeonCharacter opponent) {
 		double surprise = Math.random();
-		if (surprise <= .4)
-		{
-			System.out.println("Surprise attack was successful!\n" +
-								name + " gets an additional turn.");
-			numTurns++;
-			attack(opponent);
-		}//end surprise
-		else if (surprise >= .9)
-		{
-			System.out.println("Uh oh! " + opponent.getName() + " saw you and" +
-								" blocked your attack!");
-		}
-		else
-		    attack(opponent);
-
-
-	}//end surpriseAttack method
-
-
-    public void battleChoices(DungeonCharacter opponent)
+		
+		if (surprise <= .4) {
+			System.out.println("Surprise attack was successful!\n" + getName() + " gets an additional turn.");
+			addTurn();
+			getAttackBehavior().attack(opponent, opponent); //TODO both are set as opponenet currently 
+		} 
+		else if (surprise >= .9) {
+			System.out.println("Uh oh! " + opponent.getName() + " saw you and" + " blocked your attack!");
+		} else
+			attack(opponent, opponent);
+		
+	}
+	 public int getTurns()
+	    {
+		
+		return numTurns;
+	    }
+	
+	public void addTurn()
 	{
-		super.battleChoices(opponent);
+	     numTurns = numTurns++;
+	}
+
+	
+
+	public void battleChoices(DungeonCharacter opponent) {
+		battleChoices(opponent);
 		int choice;
 
+		Scanner keyBoard = new Scanner(System.in);
+		
+		do {
+			System.out.println("1. Attack Opponent");
+			System.out.println("2. Surprise Attack");
+			System.out.print("Choose an option: ");
+			choice = keyBoard.nextInt();
 
-		do
-		{
-		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Surprise Attack");
-		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+			switch (choice) {
+			case 1:
+				attack(opponent, this);
+				break;
+			case 2:
+				SurpriseAttack(opponent);
+				break;
+			default:
+				System.out.println("invalid choice!");
+			}
 
-		    switch (choice)
-		    {
-			    case 1: attack(opponent);
-			        break;
-			    case 2: surpriseAttack(opponent);
-			        break;
-			    default:
-			        System.out.println("invalid choice!");
-		    }//end switch
+			killTurn();
+			if (getTurns() > 0)
+				System.out.println("Number of turns remaining is: " + getTurns());
 
-			numTurns--;
-			if (numTurns > 0)
-			    System.out.println("Number of turns remaining is: " + numTurns);
+		} while (getTurns() > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
 
-		} while(numTurns > 0);
+	}
 
-    }
-}
+		    
+	    public AttackBehavior getSpecialAttack()
+	    {
+		return specialAttack;
+	    }
+	    
+	
+	    @Override
+	    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+	    {
+		 getAttackBehavior().attack(opponent,  this);
+		
+	    }
+
+	    @Override
+	    public static String getName()
+	    {
+		
+		return name;
+	    }
+
+
+	 
+	    public void subtactHitPoints(DungeonCharacter opponent)
+	    {
+		return;
+		
+	    }
+
+
+	    protected int subtractHitPoints()
+	    {
+		
+		return getHitPoints();
+	    }
+
+
+	}

@@ -1,80 +1,136 @@
 
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-
-
-public class Sorceress extends Hero
+public class Sorceress extends Hero implements iDungeonCharacter.iHero
 {
-	public final int MIN_ADD = 25;
-	public final int MAX_ADD = 50;
+    
+    
+    private int minHeal = 25;
+    private int maxHeal = 50;
+
+    private static String name = "Sorceress";
+    private static int hitPoints = 75;
+    private static int attackSpeed = 5;
+    private static AttackBehavior attack= new Firebolt();
+      private static HealBehavior healSelf = new Heal();
+    private static AttackBehavior specialAttack = (AttackBehavior) healSelf;
+    private static double chanceToBlock = .3;
 
 //-----------------------------------------------------------------
-    public Sorceress()
-	{
-		super("Sorceress", 75, 5, .7, 25, 50, .3);
+  
+   
+    Sorceress(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock)
+    {	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+	  name= getName();
+	  hitPoints = getHitPoints();
+	  attackBehavior = getAttackBehavior();
+	chanceToBlock = getChanceToBlock();
+	specialAttack = getSpecialAttack();
+    }// end constructor
 
-
-    }//end constructor
-
-//-----------------------------------------------------------------
-	public void increaseHitPoints()
+   
+    // -----------------------------------------------------------------
+    private void increaseHitPoints()
     {
-	    int hPoints;
-
-		hPoints = (int)(Math.random() * (MAX_ADD - MIN_ADD + 1)) + MIN_ADD;
-		addHitPoints(hPoints);
-		System.out.println(name + " added [" + hPoints + "] points.\n"
-							+ "Total hit points remaining are: "
-							+ hitPoints);
-		 System.out.println();
-
-    }//end increaseHitPoints method
+	healSelf.heal(this, minHeal, maxHeal);
+    }
 
 //-----------------------------------------------------------------
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(name + " casts a spell of fireball at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-	}//end override of attack method
+  
+    private void attack(DungeonCharacter opponent)
+    {
+	getAttackBehavior().attack(opponent,  this);
+    }
 
 //-----------------------------------------------------------------
-    public void battleChoices(DungeonCharacter opponent)
+    protected void battleChoices(DungeonCharacter opponent)
+    {
+	battleChoices(opponent);
+	int choice;
+
+	do
 	{
-		super.battleChoices(opponent);
-		int choice;
+	    System.out.println("1. Attack Opponent");
+	    System.out.println("2. Increase Hit Points");
+	    System.out.print("Choose an option: ");
+	    choice = playerInput.nextInt();
 
-		do
-		{
-		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Increase Hit Points");
-		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+	    switch (choice)
+	    {
+	    case 1:
+		attack(opponent);
+		break;
+	    case 2:
+		increaseHitPoints();
+		break;
+	    default:
+		System.out.println("invalid choice!");
+	    }// end switch
 
-		    switch (choice)
-		    {
-			    case 1: attack(opponent);
-			        break;
-			    case 2: increaseHitPoints();
-			        break;
-			    default:
-			        System.out.println("invalid choice!");
-		    }//end switch
+	    killTurn();
+	    if (getTurns() > 0)
+		System.out.println("Number of turns remaining is: " + getTurns());
 
-			numTurns--;
-		    if (numTurns > 0)
-			    System.out.println("Number of turns remaining is: " + numTurns);
+	} while (getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
-		} while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
+    }// end overridden method
 
-    }//end overridden method
+   
 
-}//end class
+   public int getTurns()
+    {
+	
+	return numTurns;
+    }
+
+  public AttackBehavior getAttackBehavior()
+  {
+  	
+  	return attack;
+  }
+
+
+  public AttackBehavior getSpecialAttack()
+  {
+  	return (AttackBehavior) healSelf;
+  }
+
+@Override
+public String getName()
+{
+      return name;
+}
+
+
+
+public int getAttackSpeed()
+{
+    return attackSpeed;
+
+}
+
+
+public void subtactHitPoints(DungeonCharacter opponent)
+{
+	return;
+	
+}
+
+
+
+protected int subtractHitPoints()
+{
+	
+	return getHitPoints();
+}
+
+
+@Override
+public int getHitPoints()
+{
+    return hitPoints;
+}
+
+
+
+
+
+}// end class

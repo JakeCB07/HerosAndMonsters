@@ -1,30 +1,61 @@
 
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-public class Skeleton extends Monster
+public class Skeleton extends Monster implements iDungeonCharacter.iMonster
 {
+	
+	private static String name = "Sargath the Skeleton";
+	private static int hitPoints = 100;
+	private static int attackSpeed = 3;
+    private static double chanceToHeal = .3;
+    private static AttackBehavior attackBehavior = new RustyBlade();
+	private static int minHeal = 30;
+	private static int maxHeal = 50;
 
-    public Skeleton()
+    Skeleton()
 	{
-		super("Sargath the Skeleton", 100, 3, .8, .3, 30, 50, 30, 50);
+		super(name, hitPoints, attackSpeed, chanceToHeal, attackBehavior, minHeal, maxHeal);
 
     }//end constructor
 
 	public void attack(DungeonCharacter opponent)
 	{
-		System.out.println(name + " slices his rusty blade at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-
+		getAttackBehavior().attack(opponent, this);
 	}//end override of attack
+
+	
+	
+	@Override
+	public boolean isAlive()
+	{
+	  if(getHitPoints() > 0 )
+	    return true;
+	  
+	return false;
+	}
+
+	@Override
+	  public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+	  {
+	      getAttackBehavior().attack(opponent,  this);
+	  }
+
+	@Override
+	public double getChanceToHeal()
+	{
+	    return chanceToHeal;
+	}
+
+	@Override
+	public String getName()
+	{
+	    return name;
+	}
+
+	@Override
+	public void subtactHitPoints(DungeonCharacter opponent)
+	{
+	    opponent.setHitPoints(hitPoints);
+		    
+	}
 
 
 }//end class Skeleton

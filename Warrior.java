@@ -1,85 +1,125 @@
 
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-
-
-
-public class Warrior extends Hero
+public class Warrior extends Hero implements iDungeonCharacter.iHero
 {
 
-    public Warrior()
-	{
+    private static String name = "Warrior";
+    private static int hitPoints = 125;
+    private static int attackSpeed = 4;
+    private static AttackBehavior attackBehavior = new MightySword();
+    private AttackBehavior specialAttack = new CrushingBlow();
+    private static double chanceToBlock = .2;
 
-		super("Warrior", 125, 4, .8, 35, 60, .2);
+    // ----------------------------------------------------------------
+    Warrior(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock)
+    {
+	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+	name = getName();
+	hitPoints = getHitPoints();
+	attack = getAttackBehavior();
+	chanceToBlock = getChanceToBlock();
+	specialAttack = getSpecialAttack();
+    }
 
+    private void crushingBlow(DungeonCharacter opponent)
+    {
+	getSpecialAttack().attack(opponent, this);
+    }// end crushingBlow method
 
-    }//end constructor
-
-
-	public void crushingBlow(DungeonCharacter opponent)
-	{
-		if (Math.random() <= .4)
-		{
-			int blowPoints = (int)(Math.random() * 76) + 100;
-			System.out.println(name + " lands a CRUSHING BLOW for " + blowPoints
-								+ " damage!");
-			opponent.subtractHitPoints(blowPoints);
-		}//end blow succeeded
-		else
-		{
-			System.out.println(name + " failed to land a crushing blow");
-			System.out.println();
-		}//blow failed
-
-	}//end crushingBlow method
-
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(name + " swings a mighty sword at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-	}//end override of attack method
-
-
-
+    private void attack(DungeonCharacter opponent)
+    {
+	getSpecialAttack().attack(opponent, this);
+    }// end override of attack method
 
     public void battleChoices(DungeonCharacter opponent)
+    {
+	int choice;
+
+	battleChoices(opponent);
+
+	do
 	{
-		int choice;
+	    System.out.println("1. Attack Opponent");
+	    System.out.println("2. Crushing Blow on Opponent");
+	    System.out.print("Choose an option: ");
+	    choice = DungeonCharacter.getKeyBoard().nextInt();
 
-		super.battleChoices(opponent);
+	    switch (choice)
+	    {
+	    case 1:
+		attack(opponent);
+		break;
+	    case 2:
+		crushingBlow(opponent);
+		break;
+	    default:
+		System.out.println("invalid choice!");
+	    }// end switch
 
-		do
-		{
-		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Crushing Blow on Opponent");
-		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+	    killTurn();
+	    if (getTurns() > 0)
+		System.out.println("Number of turns remaining is: " + getTurns());
 
-		    switch (choice)
-		    {
-			    case 1: attack(opponent);
-			        break;
-			    case 2: crushingBlow(opponent);
-			        break;
-			    default:
-			        System.out.println("invalid choice!");
-		    }//end switch
+	} while (getTurns() > 0 && hitPoints > 0 && opponent.hitPoints > 0);
 
-			numTurns--;
-			if (numTurns > 0)
-			    System.out.println("Number of turns remaining is: " + numTurns);
+    }// end battleChoices method
 
-		} while(numTurns > 0);
+    public int getTurns()
+    {
 
-    }//end battleChoices method
+	return numTurns;
+    }
 
-}//end Hero class
+    public String getName()
+    {
+	return name;
+    }
+
+    public AttackBehavior getAttackBehavior()
+    {
+
+	return attackBehavior;
+    }
+
+    public AttackBehavior getSpecialAttack()
+    {
+	return specialAttack;
+    }
+
+    public double getChanceToBlock()
+    {
+	return chanceToBlock;
+    }
+
+    public int getAttackSpeed()
+    {
+	return attackSpeed;
+    }
+
+    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+	getAttackBehavior().attack(opponent, this);
+
+    }
+
+
+    @Override
+    public int getHitPoints()
+    {
+	return hitPoints;
+    }
+
+    @Override
+    public void subtactHitPoints(DungeonCharacter opponent)
+    {
+	return;
+	
+    }
+
+    @Override
+    protected int subtractHitPoints()
+    {
+	
+	return getHitPoints();
+    }
+
+}// end Hero class

@@ -1,0 +1,15 @@
+Jakes Refactors
+1. Stored the stats for the Sorcerer, Warrior, Theif, Skeleton, Ogre, and Gremlin
+   in order to eliminate some magic numbers as well as improve readability. 
+2. Employed the Strategy Pattern to encapsulate the attack behaviors of
+   Heros and Monsters to improve maintainability as well as extendability.
+   Also got rid of duplicate code.
+3. Employed the Strategy Pattern again to healing behaviors to improve maintainability
+   and extendability. This also improved readability and eliminated duplicate code.
+4. Deleted code that served no purpose. Main offender being the Comparable interface being 
+   implemented for no reason.
+5. Deleted extranious comments. If the code is intent revealing, theres no need for all
+   these comments.
+6. Added a GameManger to clean up the main method as well as encapsulate "game behaviors."
+7. Created a Hero and Monster factory that encapsulations DungeonCharacter creation.
+8. Updated the outdated Keyboard system to Scanner. 

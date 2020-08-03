@@ -1,30 +1,80 @@
-
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-public class Gremlin extends Monster
+class Gremlin implements iDungeonCharacter.iMonster
 {
+    
+    	private static String name = "Gnarltooth the Gremlin";
+	private static int hitPoints = 70;
+	private static int attackSpeed = 5; 
+	private static double chanceToHeal = .4;
+	private static AttackBehavior attackBehavior = new Kris();
+	private static int minHeal = 20;
+	private static int maxHeal = 40;
+    
+    
+    public Gremlin(Monster theMonster, double chanceToHeal, int minHeal, int maxHeal)
+    {
+	chanceToHeal = getChanceToHeal();
+	minHeal = getMinHeal();
+	maxHeal = getMaxHeal();
 
-    public Gremlin()
-	{
-		super("Gnarltooth the Gremlin", 70, 5, .8, .4, 15, 30, 20, 40);
+    }
 
-    }//end constructor
+    
+    public boolean isAlive()
+    {
+	if (getHitPoints() > 0)
+	    return true;
 
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(name + " jabs his kris at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
+	return false;
 
-	}//end override of attack
+    }
+
+    public static String getName()
+    {
+	return name;
+    }
+
+    public static int getHitPoints()
+    {
+	return hitPoints;
+    }
+
+    //TODO
+    public static void setHitPoints(int hitPoints)
+    {
+	Gremlin.hitPoints = hitPoints;
+    }
+
+    public static int getAttackSpeed()
+    {
+	return attackSpeed;
+    }
+
+       public double getChanceToHeal()
+    {
+	return chanceToHeal;
+    }
+
+    public static AttackBehavior getAttackBehavior()
+    {
+	return attackBehavior;
+    }
+
+    public static int getMinHeal()
+    {
+	return minHeal;
+    }
+
+    public static int getMaxHeal()
+    {
+	return maxHeal;
+    }
 
 
-}//end class Gremlin
+    @Override
+    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+	// TODO Auto-generated method stub
+	
+    }
+
+}
