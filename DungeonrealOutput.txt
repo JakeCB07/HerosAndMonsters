@@ -1,0 +1,163 @@
+Choose a hero:
+1. Warrior
+2. Sorceress
+3. Thief
+1
+Warrior battles Skeleton
+---------------------------------------------
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Skeleton
+Skeleton hit  for <52> points damage.
+Skeleton now has 48 hit points remaining.
+
+
+Skeleton slices thier Rusty Blade at Warrior
+Skeleton's attack on Warrior failed!
+
+Number of turns this round is: 0
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 2
+Warrior failed to land a crushing blow
+
+Skeleton slices thier Rusty Blade at Warrior
+Warrior hit  for <36> points damage.
+Warrior now has 89 hit points remaining.
+
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Skeleton
+Skeleton hit  for <38> points damage.
+Skeleton now has 10 hit points remaining.
+
+
+Skeleton slices thier Rusty Blade at Warrior
+Warrior hit  for <36> points damage.
+Warrior now has 53 hit points remaining.
+
+
+Number of turns this round is: 0
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 2
+Warrior lands a CRUSHING BLOW for 173 damage!
+Skeleton hit  for <173> points damage.
+Skeleton now has 0 hit points remaining.
+
+Skeleton has been killed :-(
+Warrior was victorious!
+Play again (y/n)?
+y
+Choose a hero:
+1. Warrior
+2. Sorceress
+3. Thief
+2
+Sorceress battles Skeleton
+---------------------------------------------
+Number of turns this round is: 1
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Sorceress shoots a firebolt at Skeleton
+Skeleton hit  for <34> points damage.
+Skeleton now has 66 hit points remaining.
+
+
+Skeleton slices thier Rusty Blade at Sorceress
+Sorceress hit  for <44> points damage.
+Sorceress now has 31 hit points remaining.
+
+
+Number of turns this round is: 0
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 2
+Sorceress added [37] points.
+Total hit points remaining are: 68
+
+Skeleton slices thier Rusty Blade at Sorceress
+Sorceress hit  for <50> points damage.
+Sorceress now has 18 hit points remaining.
+
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Sorceress shoots a firebolt at Skeleton
+Sorceress's attack on Skeleton failed!
+
+Skeleton slices thier Rusty Blade at Sorceress
+Skeleton's attack on Sorceress failed!
+
+Number of turns this round is: 0
+1. Attack Opponent
+2. Increase Hit Points
+Choose an option: 1
+Sorceress shoots a firebolt at Skeleton
+Skeleton hit  for <29> points damage.
+Skeleton now has 37 hit points remaining.
+
+
+Skeleton slices thier Rusty Blade at Sorceress
+Sorceress hit  for <33> points damage.
+Sorceress now has 0 hit points remaining.
+
+Sorceress has been killed :-(
+
+Sorceress was defeated :-(
+Play again (y/n)?
+y
+Choose a hero:
+1. Warrior
+2. Sorceress
+3. Thief
+3
+Thief battles Ogre
+---------------------------------------------
+Number of turns this round is: 1
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 2
+Thief's attack on Ogre failed!
+
+Ogre slowly swings a Club at Thief
+Thief hit  for <45> points damage.
+Thief now has 30 hit points remaining.
+
+
+Number of turns this round is: 0
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 2
+Ogre hit  for <31> points damage.
+Ogre now has 169 hit points remaining.
+
+
+Ogre slowly swings a Club at Thief
+Ogre's attack on Thief failed!
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Surprise Attack
+Choose an option: 2
+Ogre hit  for <28> points damage.
+Ogre now has 141 hit points remaining.
+
+
+Ogre slowly swings a Club at Thief
+Thief hit  for <44> points damage.
+Thief now has 0 hit points remaining.
+
+Thief has been killed :-(
+
+Thief was defeated :-(
+Play again (y/n)?
+n

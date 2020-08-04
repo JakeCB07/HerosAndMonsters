@@ -1,84 +1,96 @@
 import java.util.Scanner;
 
-public abstract class Hero extends DungeonCharacter implements iDungeonCharacter.iHero
+public abstract class Hero extends DungeonCharacter implements HeroInterface
 {
-	
-	protected static Scanner playerInput = new Scanner(System.in);
-	protected double chanceToBlock;
-	protected int numTurns;
-	
-	
-	Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attack, double chanceToBlock) {
-		super(name, hitPoints, attackSpeed, attack);
-		name = getName();
-		this.hitPoints = getHitPoints();
-		this.attackSpeed = getAttackSpeed();
-		this.attack = getAttackBehavior();
-		this.chanceToBlock = getChanceToBlock();
-		
-		readName();
-	}
 
-	public double getChanceToBlock()
+    protected Scanner playerInput = new Scanner(System.in);
+    protected double chanceToBlock;
+    protected int numTurns;
+
+    Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attack, double chanceToBlock)
+    {
+	super(name, hitPoints, attackSpeed, attack);
+	this.name = getName();
+	this.hitPoints = getHitPoints();
+	this.attackSpeed = getAttackSpeed();
+	attack = getAttackBehavior();
+	this.chanceToBlock = getChanceToBlock();
+	readName();
+    }
+
+    public void setName(String name)
+    {
+	name = readName();
+    }
+
+    public String readName()
+    {
+	System.out.println("Enter character name: ");
+	return name = playerInput.nextLine();
+    }
+
+    private boolean defend()
+    {
+	return Math.random() <= getChanceToBlock();
+    }
+
+    protected void gotHit(DungeonCharacter opponent)
+    {
+	if (defend())
 	{
-	 
-	    return chanceToBlock;
+	    System.out.println(getName() + " BLOCKED the attack!");
+	} else
+	{
+	    opponent.attack(opponent, this);
+	}
+    }
+
+    protected void battleChoices(DungeonCharacter opponent)
+    {
+	numTurns = getAttackSpeed() / opponent.getAttackSpeed();
+
+	if (numTurns == 0)
+	    numTurns++;
+
+	System.out.println("Number of turns this round is: " + numTurns);
+    }
+
+    protected void killTurn()
+    {
+	this.numTurns--;
+    }
+
+    protected void addTurn()
+    {
+	this.numTurns++;
+    }
+
+    protected int getTurns()
+    {
+	return this.numTurns;
+    }
+
+    public void subtractHitPoints(int damageReceived)
+    {
+	if (defend())
+	{
+	    System.out.println(getName() + " BLOCKED the attack!");
+	} else
+	{
+	    super.subtractHitPoints(damageReceived);
 	}
 
-	protected String readName() {
-		System.out.print("Enter character name: ");
-		 return name = playerInput.nextLine();
-	}
+    }// end method
 
-	private boolean defend() {
-		return Math.random() <= chanceToBlock;
-	}
+    protected double getChancetoBlock()
+    {
 
-	protected void gotHit(DungeonCharacter opponent) {
-		if (defend()) {
-			System.out.println(name + " BLOCKED the attack!");
-		} else {
-			opponent.getAttackBehavior().attack(opponent, this);
-		}
-	}
+	return chanceToBlock;
+    }
 
-	protected void battleChoices(DungeonCharacter opponent) {
-		numTurns = getAttackSpeed() / opponent.getAttackSpeed();
-		
-		if (numTurns == 0)
-			numTurns++;
+    public String toString()
+    {
+	return "Name: " + getName() + "\n Hit Points: " + getHitPoints();
 
-		System.out.println("Number of turns this round is: " + getTurns());
-
-	}
-
-	
-
-	protected void killTurn() {
-		this.numTurns--;
-	}
-
-	public void addTurn() {
-		this.numTurns++;
-	}
-
-	protected int getTurns() {
-		return this.numTurns;
-		
-		
-	}
-
-	    public void setTurns(int numTurns)
-	    {
-		this.numTurns = numTurns;
-	    }
-
-	    public int getNumTurns()
-	    {
-
-		return numTurns;
-			
-		
-	    }   
-
+    }
 }// end Hero class

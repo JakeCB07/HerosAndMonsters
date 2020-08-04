@@ -1,40 +1,58 @@
 import java.util.Scanner;
 
 public class GameManager {
+private static Scanner kb = new Scanner(System.in);
 	
-	private static Scanner kb = new Scanner(System.in);
-	
-	public Hero chooseHero()
+
+    static Hero theHero;
+    static Monster theMonster;
+
+	static Hero chooseHero()
 	{
 		int choice;
-		Hero selectedHero;
+		
 
-		do {
+	
 			System.out.println("Choose a hero:\n" +
 					"1. Warrior\n" +
 					"2. Sorceress\n" +
 					"3. Thief");
 			choice = kb.nextInt();
-
-			selectedHero = HeroFactory.createHero(choice);
-			if(choice < 1 || choice > 3)
-				System.out.println("Invalid selection, please choice the number 1, 2 or 3.");
-		}while(choice < 1 || choice > 3);
+			
+			switch (choice)
+			{
+			
+			case 1: return theHero = HeroFactory.createWarrior();
+			
+			case 2: return theHero = HeroFactory.createSorceress();
+			
+			case 3: return theHero = HeroFactory.createThief();
+			
+				default: System.out.println("invalid choice, Error, returning Thief");
+					return HeroFactory.createThief();
 		
-		return selectedHero;
+			}
 	}
 
-	public Monster generateMonster()
+	static Monster generateMonster()
 	{
-		int choice = 0;
-		Monster selectedMonster;
-		do {
-			choice = (int)(Math.random() * 3) + 1;
+		int choice;
+	
+	
+		choice = (int)(Math.random() * 3) + 1;
 			
-			selectedMonster = MonsterFactory.createMonster(choice);
-		}while(choice < 1 || choice > 3);
-		
-		return selectedMonster;
+		  switch(choice)
+		        {
+		            case 1: return MonsterFactory.createOgre();
+
+		            case 2: return MonsterFactory.createGremlin();
+
+		            case 3: return MonsterFactory.createSkeleton();
+	
+		            default: System.out.println("Error: invalid choice");
+		            	return MonsterFactory.createSkeleton();
+		        
+			}
 	}
 
 	public boolean playAgain()
@@ -55,28 +73,25 @@ public class GameManager {
 							theMonster.getName());
 		System.out.println("---------------------------------------------");
 
-		//do battle
-		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q')
-		{
-		    //hero goes first
+
+		
+		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q'){
+
 			theHero.battleChoices(theMonster);
+              
 
-			//monster's turn (provided it's still alive!)
 			if (theMonster.isAlive())
-			    theMonster.attackBehavior.attack(theHero, theMonster);
+			    theMonster.getAttackBehavior().attack(theHero, theMonster);
 
-			//let the player bail out if desired
-			System.out.print("\n-->q to quit, anything else to continue: ");
-			pause = kb.next().charAt(0);
-			pause = Character.toLowerCase(pause);
+		
 
-		}//end battle loop
+		}
 
 		if (!theMonster.isAlive())
 		    System.out.println(theHero.getName() + " was victorious!");
 		else if (!theHero.isAlive())
 			System.out.println(theHero.getName() + " was defeated :-(");
-		else//both are alive so user quit the game
+		else
 			System.out.println("Quitters never win ;-)");
 
 	}

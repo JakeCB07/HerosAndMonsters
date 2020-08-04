@@ -1,4 +1,5 @@
 
-public interface AttackBehavior {
-	public void attack(DungeonCharacter opponent, DungeonCharacter attacker);
+public interface AttackBehavior
+{
+    public void attack(DungeonCharacter attacker, DungeonCharacter oppenent);
 }

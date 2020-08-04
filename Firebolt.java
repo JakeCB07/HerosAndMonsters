@@ -1,4 +1,3 @@
-
 public class Firebolt extends Attack{
 
 	private static String attack = "shoots a firebolt at";

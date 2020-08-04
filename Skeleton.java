@@ -1,61 +1,89 @@
 
-public class Skeleton extends Monster implements iDungeonCharacter.iMonster
+class Skeleton extends Monster implements MonsterInterface
 {
-	
-	private static String name = "Sargath the Skeleton";
-	private static int hitPoints = 100;
-	private static int attackSpeed = 3;
+
+    public String getName()
+    {
+	return name;
+    }
+
+    private static String name = "Sargath the Skeleton";
+    private static int hitPoints = 100;
+    private static int attackSpeed = 3;
     private static double chanceToHeal = .3;
     private static AttackBehavior attackBehavior = new RustyBlade();
-	private static int minHeal = 30;
-	private static int maxHeal = 50;
+    private static int minHeal = 30;
+    private static int maxHeal = 50;
 
-    Skeleton()
-	{
-		super(name, hitPoints, attackSpeed, chanceToHeal, attackBehavior, minHeal, maxHeal);
+    protected Skeleton()
+    {
 
-    }//end constructor
+	super(name, hitPoints, attackSpeed, attackBehavior, minHeal, maxHeal);
 
-	public void attack(DungeonCharacter opponent)
-	{
-		getAttackBehavior().attack(opponent, this);
-	}//end override of attack
+	name = getName();
+	hitPoints = getHitPoints();
+	attackBehavior = getAttackBehavior();
 
-	
-	
-	@Override
-	public boolean isAlive()
-	{
-	  if(getHitPoints() > 0 )
+	chanceToHeal = getChanceToHeal();
+	minHeal = getMinHeal();
+	maxHeal = getMaxHeal();
+
+    }
+
+    public boolean isAlive()
+    {
+	if (getHitPoints() > 0)
 	    return true;
-	  
+
 	return false;
-	}
 
-	@Override
-	  public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-	  {
-	      getAttackBehavior().attack(opponent,  this);
-	  }
+    }
 
-	@Override
-	public double getChanceToHeal()
-	{
-	    return chanceToHeal;
-	}
+    public int getHitPoints()
+    {
+	return hitPoints;
+    }
 
-	@Override
-	public String getName()
-	{
-	    return name;
-	}
+    public void setHitPoints(int hitPoints)
+    {
+	Skeleton.hitPoints = hitPoints;
+    }
 
-	@Override
-	public void subtactHitPoints(DungeonCharacter opponent)
-	{
-	    opponent.setHitPoints(hitPoints);
-		    
-	}
+    public int getAttackSpeed()
+    {
+	return attackSpeed;
+    }
 
+    public double getChanceToHeal()
+    {
+	return chanceToHeal;
+    }
 
-}//end class Skeleton
+    public AttackBehavior getAttackBehavior()
+    {
+	return attackBehavior;
+    }
+
+    public int getMinHeal()
+    {
+	return minHeal;
+    }
+
+    public int getMaxHeal()
+    {
+	return maxHeal;
+    }
+
+    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+	opponent.getAttackBehavior().attack(opponent, attacker);
+
+    }
+
+    protected String readName()
+    {
+
+	return getName();
+    }
+
+}

@@ -1,24 +1,34 @@
-class Gremlin implements iDungeonCharacter.iMonster
+
+public class Gremlin extends Monster implements HealBehavior, MonsterInterface
 {
-    
-    	private static String name = "Gnarltooth the Gremlin";
-	private static int hitPoints = 70;
-	private static int attackSpeed = 5; 
-	private static double chanceToHeal = .4;
-	private static AttackBehavior attackBehavior = new Kris();
-	private static int minHeal = 20;
-	private static int maxHeal = 40;
-    
-    
-    public Gremlin(Monster theMonster, double chanceToHeal, int minHeal, int maxHeal)
+
+    public String getName()
     {
+	return name;
+    }
+
+    private static String name = "Gnarltooth the Gremlin";
+    private static int hitPoints = 70;
+    private static int attackSpeed = 5;
+    private static double chanceToHeal = .4;
+    private static AttackBehavior attackBehavior = AttackFactory.KrisFactory();
+    private static int minHeal = 20;
+    private static int maxHeal = 40;
+
+    protected Gremlin()
+    {
+	super(name, hitPoints, attackSpeed, attackBehavior, minHeal, maxHeal);
+
+	name = getName();
+	hitPoints = getHitPoints();
+	attackBehavior = getAttackBehavior();
+
 	chanceToHeal = getChanceToHeal();
 	minHeal = getMinHeal();
 	maxHeal = getMaxHeal();
 
     }
 
-    
     public boolean isAlive()
     {
 	if (getHitPoints() > 0)
@@ -28,53 +38,52 @@ class Gremlin implements iDungeonCharacter.iMonster
 
     }
 
-    public static String getName()
+    public int getHitPoints()
     {
-	return name;
+	return Gremlin.hitPoints;
     }
 
-    public static int getHitPoints()
-    {
-	return hitPoints;
-    }
-
-    //TODO
-    public static void setHitPoints(int hitPoints)
+    public void setHitPoints(int hitPoints)
     {
 	Gremlin.hitPoints = hitPoints;
     }
 
-    public static int getAttackSpeed()
+    public int getAttackSpeed()
     {
-	return attackSpeed;
+	return Gremlin.attackSpeed;
     }
 
-       public double getChanceToHeal()
+    public double getChanceToHeal()
     {
-	return chanceToHeal;
+	return Gremlin.chanceToHeal;
     }
 
-    public static AttackBehavior getAttackBehavior()
+    public AttackBehavior getAttackBehavior()
     {
-	return attackBehavior;
+	return Gremlin.attackBehavior;
     }
 
-    public static int getMinHeal()
+    public int getMinHeal()
     {
-	return minHeal;
+	return Gremlin.minHeal;
     }
 
-    public static int getMaxHeal()
+    public int getMaxHeal()
     {
-	return maxHeal;
+	return Gremlin.maxHeal;
     }
 
-
-    @Override
     public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
     {
-	// TODO Auto-generated method stub
-	
+	getAttackBehavior().attack(opponent, this);
+
+    }
+
+    @Override
+    public void heal(DungeonCharacter character, int minHeal, int maxHeal)
+    {
+	character.addHitPoints(hitPoints);
+
     }
 
 }

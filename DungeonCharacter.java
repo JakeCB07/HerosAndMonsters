@@ -1,64 +1,53 @@
-import java.util.Scanner;
-
-
-public abstract class DungeonCharacter implements iDungeonCharacter
+public abstract class DungeonCharacter
 {
 
-    protected  String name;
+    protected String name;
     protected int hitPoints;
-    protected  int attackSpeed;
+    protected int attackSpeed;
     protected AttackBehavior attack;
-    protected int numTurns;
-    private static  Scanner Keyboard = new Scanner(System.in);
-    public int choice = getKeyBoard().nextInt();
 
-    DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior)
+    DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attack)
     {
 
-	name = getName();
-	hitPoints = getHitPoints();
-	attackSpeed = getAttackSpeed();;
-	attackBehavior = getAttackBehavior();
+	this.name = name;
+	this.hitPoints = hitPoints;
+	this.attackSpeed = getAttackSpeed();
+	this.attack = getAttackBehavior();
 
     }// end constructor
-
-    public static Scanner getKeyBoard()
-    {
-	return Keyboard;
-    }
-
-    public void setAttackBehavior(AttackBehavior attack)
-    {
-	this.attack = attack;
-    }
 
     public AttackBehavior getAttackBehavior()
     {
 	return attack;
     }
 
-    public void setName(String name)
+    public int addHitPoints(int hitPoints)
     {
-	name = readName();
+
+	this.hitPoints = getHitPoints() + addHitPoints(hitPoints);
+	System.out.println(getName() + " HP is now at " + getHitPoints() + "points");
+
+	return this.getHitPoints();
     }
 
-    protected abstract String readName();
-    
-    public String getName()
+    public void subtractHitPoints(int hitPoints)
     {
-	return this.name;
+	if (getHitPoints() < 0)
+	    System.out.println("Error, must have positive number of hit points");
+	else if (getHitPoints() > 0)
+	{
+	    this.hitPoints -= hitPoints;
+
+	    if (this.getHitPoints() < 0)
+		this.hitPoints = 0;
+
+	    System.out.println(getName() + " attacked and did " + hitPoints + " points of damage");
+	    System.out.println(getName() + " now has " + this.getHitPoints() + " hit points remaining. \n");
+
+	} // end else if
+
     }
 
-    public void setHitPoints(int hitPoints)
-    {
-	
-	hitPoints =  getHitPoints() - subtractHitPoints();
-    }
-
-   protected abstract int subtractHitPoints();
-
- 
-    
     public int getAttackSpeed()
     {
 	return attackSpeed;
@@ -66,15 +55,24 @@ public abstract class DungeonCharacter implements iDungeonCharacter
 
     public boolean isAlive()
     {
-	if(getHitPoints() > 0)
-	    return true;
-	return false;
-    }
-      
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-    {
-        getAttackBehavior().attack(opponent,  this);
+	return hitPoints > 0;
+
     }
 
-    
+    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+	getAttackBehavior().attack(opponent, this);
+    }
+
+    public String getName()
+    {
+	return name;
+    }
+
+    public int getHitPoints()
+    {
+
+	return hitPoints;
+    }
+
 }// end class Character

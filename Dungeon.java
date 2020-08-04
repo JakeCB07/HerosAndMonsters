@@ -1,22 +1,20 @@
 
 public class Dungeon
 {
-	
     public static void main(String[] args)
+    {
+	GameManager gameManager = new GameManager();
+	Hero theHero;
+	Monster theMonster;
+
+	do
 	{
+	    theHero = GameManager.chooseHero();
+	    theMonster = GameManager.generateMonster();
+	    gameManager.battle(theHero, theMonster);
 
-    	GameManager gameManager = new GameManager();
-		Hero theHero;
-		Monster theMonster;
+	} while (gameManager.playAgain());
 
-		do
-		{
-		    theHero = gameManager.chooseHero();
-		    theMonster = gameManager.generateMonster();
-			gameManager.battle(theHero, theMonster);
+    }
 
-		} while (gameManager.playAgain());
-
-    }//end main method
-
-}//end Dungeon class
+}

@@ -1,123 +1,123 @@
-import java.util.Scanner;
 
-class Thief extends Hero implements iDungeonCharacter.iHero  {
+public class Thief extends Hero
+{
 
-	private static String name = "Thief";
-	private static int hitPoints = 75;
-	private static int attackSpeed = 6;
-	private static AttackBehavior attack = new Shortbow();
-	private static AttackBehavior specialAttack = new SurpriseAttack();
-	private static double chanceToBlock = .5;
+    public String getName()
+    {
+	return name;
+    }
 
-	
-	
-	  Thief(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock,
-		    AttackBehavior specialAttack)
-	    {
-	      super(name, attackSpeed, attackSpeed, specialAttack, chanceToBlock);
-	  	  name= getName();
-		  hitPoints = getHitPoints();
-		  attack = getAttackBehavior();
-		chanceToBlock = getChanceToBlock();
-		specialAttack = getSpecialAttack();
-		chanceToBlock = getChanceToBlock();
-		specialAttack = getSpecialAttack();
-	    }// end constructor
+    private static String name = "Thief";
+    private static int hitPoints = 75;
+    private static int attackSpeed = 6;
+    private static AttackBehavior attackBehavior = new Shortbow();
+    private static double chanceToBlock = .5;
 
-	
-	private void SurpriseAttack(DungeonCharacter opponent) {
-		double surprise = Math.random();
-		
-		if (surprise <= .4) {
-			System.out.println("Surprise attack was successful!\n" + getName() + " gets an additional turn.");
-			addTurn();
-			getAttackBehavior().attack(opponent, opponent); //TODO both are set as opponenet currently 
-		} 
-		else if (surprise >= .9) {
-			System.out.println("Uh oh! " + opponent.getName() + " saw you and" + " blocked your attack!");
-		} else
-			attack(opponent, opponent);
-		
-	}
-	 public int getTurns()
-	    {
-		
-		return numTurns;
-	    }
-	
-	public void addTurn()
+    private AttackBehavior getSpecialAttack()
+    {
+	return attack;
+    }
+
+    protected Thief()
+    {
+	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+    }
+
+    Thief createThief(String name, double chanceToBlock, AttackBehavior specialAttack)
+    {
+	name = getName();
+	chanceToBlock = getChanceToBlock();
+	specialAttack = getSpecialAttack();
+
+	return new Thief();
+    }// end constructor
+
+    Thief(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock)
+    {
+	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+	name = getName();
+	hitPoints = getHitPoints();
+	attackSpeed = getAttackSpeed();
+	chanceToBlock = getChancetoBlock();
+
+    }
+
+    public void surpriseAttack(DungeonCharacter opponent)
+    {
+	double surprise = Math.random();
+	if (surprise <= .4)
 	{
-	     numTurns = numTurns++;
-	}
+	    System.out.println("Surprise attack was successful!\n" + this.getName() + " gets an additional turn.");
+	    addTurn();
+	    attack(this, opponent);
+	} else if (surprise >= .9)
+	{
+	    System.out.println("Uh oh! " + opponent.getName() + " saw you and" + " blocked your attack!");
+	} else
+	    attack(opponent, this);
 
-	
+    }
 
-	public void battleChoices(DungeonCharacter opponent) {
-		battleChoices(opponent);
-		int choice;
+    public void battleChoices(DungeonCharacter opponent)
+    {
+	super.battleChoices(opponent);
+	int choice;
 
-		Scanner keyBoard = new Scanner(System.in);
-		
-		do {
-			System.out.println("1. Attack Opponent");
-			System.out.println("2. Surprise Attack");
-			System.out.print("Choose an option: ");
-			choice = keyBoard.nextInt();
+	do
+	{
+	    System.out.println("1. Attack Opponent");
+	    System.out.println("2. Surprise Attack");
+	    System.out.print("Choose an option: ");
+	    choice = playerInput.nextInt();
 
-			switch (choice) {
-			case 1:
-				attack(opponent, this);
-				break;
-			case 2:
-				SurpriseAttack(opponent);
-				break;
-			default:
-				System.out.println("invalid choice!");
-			}
-
-			killTurn();
-			if (getTurns() > 0)
-				System.out.println("Number of turns remaining is: " + getTurns());
-
-		} while (getTurns() > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
-
-	}
-
-		    
-	    public AttackBehavior getSpecialAttack()
+	    switch (choice)
 	    {
-		return specialAttack;
-	    }
-	    
-	
-	    @Override
-	    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-	    {
-		 getAttackBehavior().attack(opponent,  this);
-		
-	    }
+	    case 1:
+		getAttackBehavior().attack(opponent, this);
+		break;
+	    case 2:
+		surpriseAttack(opponent);
+		break;
+	    default:
+		System.out.println("invalid choice!");
+	    }// end switch
 
-	    @Override
-	    public static String getName()
-	    {
-		
-		return name;
-	    }
+	    killTurn();
+	    if (getTurns() > 0)
+		System.out.println("Number of turns remaining is: " + getTurns());
 
+	} while (getTurns() > 0);
 
-	 
-	    public void subtactHitPoints(DungeonCharacter opponent)
-	    {
-		return;
-		
-	    }
+    }
 
+    public double getChanceToBlock()
+    {
+	return chanceToBlock;
+    }
 
-	    protected int subtractHitPoints()
-	    {
-		
-		return getHitPoints();
-	    }
+    public AttackBehavior getAttackBehavior()
+    {
+	return attackBehavior;
+    }
 
+    public static void setAttackBehavior(AttackBehavior attackBehavior)
+    {
+	Thief.attackBehavior = attackBehavior;
+    }
 
-	}
+    public int getAttackSpeed()
+    {
+	return attackSpeed;
+    }
+
+    public static void setAttackSpeed(int attackSpeed)
+    {
+	Thief.attackSpeed = attackSpeed;
+    }
+
+    public int getHitPoints()
+    {
+	return hitPoints;
+    }
+
+}
