@@ -1,0 +1,7 @@
+#1 properly utilized inheritance by deleting methods that exist already in the parant class in the sub class
+#2 Improved incapsulation by switching all data to private and using getters and setters
+#3 Created a keyboard Scanner
+#4 deleted comments
+#5 deleted unsused methods
+#6 moved methods to parant class that were being used in muliple sub classes
+#7 renamed methods
