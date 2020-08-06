@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Hero extends DungeonCharacter implements HeroInterface
@@ -5,6 +6,7 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 
     protected Scanner playerInput = new Scanner(System.in);
     protected double chanceToBlock;
+    protected ArrayList<Item> inventory;
     protected int numTurns;
 
     Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attack, double chanceToBlock)
@@ -16,6 +18,7 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 	attack = getAttackBehavior();
 	this.chanceToBlock = getChanceToBlock();
 	readName();
+	this.inventory = new ArrayList();
     }
 
     public void setName(String name)
