@@ -96,4 +96,21 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 	return "Name: " + getName() + "\n Hit Points: " + getHitPoints();
 
     }
+    
+    protected String printInventory(Hero character) {
+    	String retStr = "";
+    	int index = 0;
+    	for(Item item : character.inventory) {
+    		retStr += index + ". " + item.itemName + "\n";
+    	}
+  
+    	return retStr;
+    }
+    
+    protected void useItem(Hero character, int playerInput) {
+    	playerInput -= 1;
+    	Item item = character.inventory.get(playerInput);
+    	item.use(character, playerInput);
+    }
+    
 }// end Hero class
