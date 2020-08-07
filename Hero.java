@@ -8,6 +8,7 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
     protected double chanceToBlock;
     protected ArrayList<Item> inventory;
     protected int numTurns;
+    private Location point;
 
     Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attack, double chanceToBlock)
     {
@@ -19,6 +20,14 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 	this.chanceToBlock = getChanceToBlock();
 	readName();
 	this.inventory = new ArrayList();
+    }
+    
+	public void setPoint(int x, int y) {
+		point=new Location(x,y);
+	}
+	
+    public Location getPoint() {
+    	 return this.point;
     }
 
     public void setName(String name)

@@ -16,7 +16,8 @@ private static Scanner kb = new Scanner(System.in);
 			System.out.println("Choose a hero:\n" +
 					"1. Warrior\n" +
 					"2. Sorceress\n" +
-					"3. Thief");
+					"3. Thief\n" + 
+					"4. Paladin");
 			choice = kb.nextInt();
 			
 			switch (choice)
@@ -27,6 +28,8 @@ private static Scanner kb = new Scanner(System.in);
 			case 2: return theHero = HeroFactory.createSorceress();
 			
 			case 3: return theHero = HeroFactory.createThief();
+			
+			case 4: return theHero = HeroFactory.createPaladin();
 			
 				default: System.out.println("invalid choice, Error, returning Thief");
 					return HeroFactory.createThief();
