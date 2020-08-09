@@ -22,7 +22,7 @@ public class Location {
 	}
 	public void moveNorth() {
 		if(y !=0) {
-		y-=1;
+		this.y-=1;
 		}
 		else {
 			System.out.println("I'm stuck at the top of the map");
@@ -30,7 +30,7 @@ public class Location {
 	}
 	public void moveSouth() {
 		if(y !=4) {
-		y+=1;
+		this.y+=1;
 		}
 		else {
 			System.out.println("I'm at the bottom of the map");
@@ -38,7 +38,7 @@ public class Location {
 	}
 	public void moveEast() {
 		if(x !=4) {
-		x+=1;
+		this.x+=1;
 		}
 		else {
 			System.out.println("I'm as far east as I can go");
@@ -46,7 +46,7 @@ public class Location {
 	}
 	public void moveWest() {
 		if(x !=0) {
-		x-=1;
+		this.x-=1;
 		}
 		else {
 			System.out.println("I'm as far west as I can go");

@@ -6,9 +6,12 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 
     protected Scanner playerInput = new Scanner(System.in);
     protected double chanceToBlock;
-    protected ArrayList<Item> inventory;
     protected int numTurns;
     private Location point;
+    
+    protected int pillarCount;
+    protected int healingPotCount;
+    protected int visionPotCount;
 
     Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attack, double chanceToBlock)
     {
@@ -19,7 +22,9 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 	attack = getAttackBehavior();
 	this.chanceToBlock = getChanceToBlock();
 	readName();
-	this.inventory = new ArrayList();
+	this.pillarCount = 0;
+	this.healingPotCount = 0;
+	this.visionPotCount = 0;
     }
     
 	public void setPoint(int x, int y) {
@@ -107,19 +112,21 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
     }
     
     protected String printInventory(Hero character) {
-    	String retStr = "";
-    	int index = 0;
-    	for(Item item : character.inventory) {
-    		retStr += index + ". " + item.itemName + "\n";
-    	}
+    	String retStr = "1. Pillars: " + this.pillarCount + "\n"
+    	+ "2. Healing Potions: " + this.healingPotCount + "\n" 
+    	+ "3. Vision Potions: " + this.visionPotCount + "\n";
   
     	return retStr;
     }
     
     protected void useItem(Hero character, int playerInput) {
-    	playerInput -= 1;
-    	Item item = character.inventory.get(playerInput);
-    	item.use(character, playerInput);
+    	if(playerInput == 1 && character.healingPotCount > 0) 
+    		Pillar.use(character);
+    	if(playerInput == 2 && character.healingPotCount > 0)
+    		HealingPotion.use(character);
+    	if(playerInput == 3 && character.visionPotCount > 0)
+    		VisionPotion.use(character);
+    	
     }
     
 }// end Hero class
