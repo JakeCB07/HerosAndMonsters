@@ -1,13 +1,16 @@
+import java.util.ArrayList;
 
 public class Dungeon {
 	private Room[][] room;
 	private String wallH=" *-*";
     private String wallV="*| |";
-	
+    protected ArrayList<Item> treasureChests;
+    GameManager master=new GameManager();
 	public Dungeon(int rows, int columns) {
 		rows=5;
 		columns=5;
 		room=new Room[rows][columns];
+	  
 	}
 	public void makeMap() {
 		
@@ -21,6 +24,12 @@ public class Dungeon {
 	                
 	            }
 		 }
+	}
+	public void setCurrentRoomSymbol(Hero hero, char roomSymbol) {
+		room[hero.getPoint().getX()][hero.getPoint().getY()].setRoomSymbol(roomSymbol);
+	}
+	public char getCurrentRoomSymbol(Hero hero) {
+		return room[hero.getPoint().getX()][hero.getPoint().getY()].getRoomSymbol();
 	}
 	public void printLocation(Hero hero) {
 		System.out.println("Our hero is in: " +room[hero.getPoint().getX()][hero.getPoint().getY()].printRoomNumber());

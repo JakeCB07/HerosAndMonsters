@@ -1,7 +1,7 @@
 
 public class Location {
 private int x, y;
-
+protected boolean hasMoved;
 public Location(int x, int y) {
 	this.x=x;
 	this.y=y;
@@ -19,36 +19,45 @@ public void setY(int y) {
 	this.y=y;
 	
 }
-public void moveNorth() {
+public boolean moveNorth() {
+	
 	if(y !=0) {
 	y-=1;
+	return true;
 	}
 	else {
 		System.out.println("I'm stuck at the top of the map");
+		return false;
 	}
 }
-public void moveSouth() {
+public boolean moveSouth() {
 	if(y !=4) {
 	y+=1;
+	return true;
 	}
 	else {
 		System.out.println("I'm at the bottom of the map");
+		return false;
 	}
 }
-public void moveEast() {
+public boolean moveEast() {
 	if(x !=4) {
 	x+=1;
+	return true;
 	}
 	else {
 		System.out.println("I'm as far east as I can go");
+		return false;
 	}
 }
-public void moveWest() {
+public boolean moveWest() {
 	if(x !=0) {
 	x-=1;
+	return true;
 	}
 	else {
 		System.out.println("I'm as far west as I can go");
+		return false;
 	}
 }
 }

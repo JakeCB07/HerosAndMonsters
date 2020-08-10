@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class GameManager {
 private static Scanner kb = new Scanner(System.in);
-	
+	private boolean MonsterIsDead=false;
+	private boolean HeroIsDead=false;
 	public Hero chooseHero()
 	{
 		int choice;
@@ -46,9 +47,15 @@ private static Scanner kb = new Scanner(System.in);
 
 		return (again == 'Y');
 	}
-
+    public boolean getMonsterIsDead() {
+    	return this.MonsterIsDead;
+    }
+    public boolean getHeroIsDead() {
+    	return this.HeroIsDead;
+    }
 	public void battle(Hero theHero, Monster theMonster)
 	{
+		
 		char pause = 'p';
 		System.out.println(theHero.getName() + " battles " +
 							theMonster.getName());
@@ -67,13 +74,18 @@ private static Scanner kb = new Scanner(System.in);
 		
 
 		}
-
-		if (!theMonster.isAlive())
+        
+		if (!theMonster.isAlive()) {
 		    System.out.println(theHero.getName() + " was victorious!");
-		else if (!theHero.isAlive())
+		    MonsterIsDead=true;
+		}
+		else if (!theHero.isAlive()) {
 			System.out.println(theHero.getName() + " was defeated :-(");
-		else
+		    HeroIsDead=true;
+		}
+		else 
 			System.out.println("Quitters never win ;-)");
+		
 
 	}
 }

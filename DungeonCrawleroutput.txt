@@ -1,0 +1,137 @@
+Welcome to my dungeon!!!
+Submit by typing 5
+Our hero is currently: 1,0
+What move should our hero make: 
+ 1: moveNorth
+ 2: moveWest
+ 3: moveEast 
+ 4: moveSouth
+1
+I'm stuck at the top of the map
+Our hero is in: Room: 1,0
+* * *
+| T |
+* - *
+2
+Our hero is in: Room: 0,0
+* * *
+* H |
+* - *
+3
+Our hero is in: Room: 1,0
+* * *
+| T |
+* - *
+4
+Our hero is in: Room: 1,1
+* - *
+| A |
+* - *
+4
+Our hero is in: Room: 1,2
+* - *
+| E |
+* - *
+3
+Our hero is in: Room: 2,2
+* - *
+| M |
+* - *
+0( > < )0
+    >  
+Warrior battles Ogre
+---------------------------------------------
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 2
+Warrior failed to land a crushing blow
+
+Ogre slowly swings a Club at Warrior
+Warrior hit  for <34> points damage.
+Warrior now has 91 hit points remaining.
+
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 2
+Warrior failed to land a crushing blow
+
+Ogre slowly swings a Club at Warrior
+Ogre's attack on Warrior failed!
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Ogre
+Ogre hit  for <47> points damage.
+Ogre now has 153 hit points remaining.
+
+
+Ogre slowly swings a Club at Warrior
+Ogre's attack on Warrior failed!
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Ogre
+Warrior's attack on Ogre failed!
+
+Ogre slowly swings a Club at Warrior
+Ogre's attack on Warrior failed!
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Ogre
+Warrior's attack on Ogre failed!
+
+Ogre slowly swings a Club at Warrior
+Warrior hit  for <32> points damage.
+Warrior now has 59 hit points remaining.
+
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Ogre
+Warrior's attack on Ogre failed!
+
+Ogre slowly swings a Club at Warrior
+Warrior hit  for <34> points damage.
+Warrior now has 25 hit points remaining.
+
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Ogre
+Ogre hit  for <56> points damage.
+Ogre now has 97 hit points remaining.
+
+
+Ogre slowly swings a Club at Warrior
+Ogre's attack on Warrior failed!
+
+Number of turns this round is: 1
+1. Attack Opponent
+2. Crushing Blow on Opponent
+Choose an option: 1
+Warrior swings thier Mighty Sword at Ogre
+Ogre hit  for <55> points damage.
+Ogre now has 42 hit points remaining.
+
+
+Ogre slowly swings a Club at Warrior
+Warrior hit  for <31> points damage.
+Warrior now has 0 hit points remaining.
+
+Warrior has been killed :-(
+
+Warrior was defeated :-(
