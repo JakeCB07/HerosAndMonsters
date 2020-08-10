@@ -1,4 +1,3 @@
-package dungeon;
 
 public abstract class Item {
 	
@@ -10,7 +9,7 @@ public abstract class Item {
 		this.itemName = itemName;
 	}
 	
-	public abstract void use(Hero character, int index);
+	public static void use(Hero character) {};
 	
-	public abstract void addToInventory(Hero character);
+	public static void addToInventory(Hero character) {};
 }

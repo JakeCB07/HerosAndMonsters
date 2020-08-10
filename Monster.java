@@ -1,6 +1,5 @@
-package dungeon;
 
-public abstract class Monster extends DungeonCharacter implements MonsterInterface
+public abstract class Monster implements iDungeonCharacter, MonsterInterface, HealBehavior
 {
 
     protected double chanceToHeal;
@@ -9,8 +8,12 @@ public abstract class Monster extends DungeonCharacter implements MonsterInterfa
 //-----------------------------------------------------------------
     public Monster(String name, int hitPoints, int attackSpeed, AttackBehavior attack, int minHeal, int maxHeal)
     {
-	super(name, hitPoints, attackSpeed, attack);
-	this.attackSpeed = attackSpeed;
+	
+	name = getName();
+	hitPoints = getHitPoints();
+	attackSpeed = getAttackSpeed();
+	attack = getAttackBehavior();
+	
 	this.maxHeal = maxHeal;
 	this.minHeal = minHeal;
 
@@ -21,16 +24,22 @@ public abstract class Monster extends DungeonCharacter implements MonsterInterfa
     {
 	boolean canHeal;
 	int restoredHP;
-	canHeal = (Math.random() <= chanceToHeal) && (hitPoints > 0);
+	canHeal = (Math.random() <= chanceToHeal) && (getHitPoints() > 0);
 
 	if (canHeal)
 	{
 	    restoredHP = ((int) Math.random() * (maxHeal - minHeal + 1) + minHeal);
-	    addHitPoints(restoredHP);
-	    System.out.println(this.name + "healed for " + restoredHP + "health points /n");
+	    this.addHitPoints(restoredHP);
+	    System.out.println(getName() + "healed for " + restoredHP + "health points /n");
 	    System.out.println("Total remaining HP: " + getHitPoints());
 
 	}
+    }
+    
+    public int addHitPoints(int restoredHP)
+    {
+	int healHP = getHitPoints() + restoredHP;
+	return healHP;
     }
 
 //-----------------------------------------------------------------

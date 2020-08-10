@@ -1,4 +1,3 @@
-package dungeon;
 
 class Skeleton extends Monster implements MonsterInterface
 {

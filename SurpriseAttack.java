@@ -1,4 +1,3 @@
-package dungeon;
 
 public class SurpriseAttack implements AttackBehavior
 {

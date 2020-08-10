@@ -1,4 +1,3 @@
-package dungeon;
 
 public class DivineSmite extends Attack {
 
@@ -8,21 +7,12 @@ public class DivineSmite extends Attack {
     private static int maxDamage = 70;
     private HealBehavior healingSmite = new Heal();
     
-
+    DivineSmite()
+    {
+	super(attack, minDamage, maxDamage, chanceToHit);
+    }
     
-	public DivineSmite() {
-		super(attack, minDamage, maxDamage, chanceToHit);
-	}
-    
-    public DivineSmite(String attack, int minDamage, int maxDamage,  double chanceToHit) {
-		super(attack,  minDamage, maxDamage, chanceToHit);
-	}
-
-	
-
-
-
-	@Override
+    @Override
     public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
     {
 	boolean canAttack;
@@ -46,24 +36,4 @@ public class DivineSmite extends Attack {
 	    System.out.println();
 	} // end else
     }
-
-	public String getAttack() {
-	
-		return attack;
-	}
-
-	public int getMinDamage() {
-	
-		return minDamage;
-	}
-
-	public int getMaxDamage() {
-		
-		return maxDamage;
-	}
-
-	public double getChanceToHit() {
-	
-		return chanceToHit;
-	}
 }

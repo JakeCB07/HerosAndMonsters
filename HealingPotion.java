@@ -1,9 +1,8 @@
-package dungeon;
 
 public class HealingPotion extends Item{
-	protected HealBehavior healBehavior;
-	protected int minHeal;
-	protected int maxHeal;
+	protected static HealBehavior healBehavior;
+	protected static int minHeal;
+	protected static int maxHeal;
 	private static String potionName = "Healing Potion";
 	private static String potionDescription = "A Potion that heals 5 to 15 HP when consumed.";
 	
@@ -14,14 +13,14 @@ public class HealingPotion extends Item{
 		this.maxHeal = 15;
 	}
 	
-	public void use(Hero character, int index) {
+	public static void use(Hero character) {
 		healBehavior.heal(character, minHeal, maxHeal);
-		character.inventory.remove(index);
+		character.healingPotCount--;
 		System.out.println(character.name + " used a " + potionName);
 	}
 
-	public void addToInventory(Hero character) {
-		character.inventory.add(new HealingPotion());
+	public static void addToInventory(Hero character) {
+		character.healingPotCount++;
 		System.out.println(character.name + " put the " + potionName + " in thier bag");
 	}
 }

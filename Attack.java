@@ -1,4 +1,3 @@
-package dungeon;
 /*
  *BURTS CONTRIBUTION 
  */
@@ -11,8 +10,6 @@ public abstract class Attack implements AttackBehavior
     protected int maxDamage;
     protected double chanceToHit;
 
-    
-    
     Attack(String attack, int minDamage, int maxDamage, double chanceToHit)
     {
 
@@ -64,27 +61,4 @@ public abstract class Attack implements AttackBehavior
 
     }// end method
 
-	public String getAttack() {
-		
-		return this.attack;
-	}
-	
-	public int getMinDamage()
-	{
-		return this.minDamage;
-	}
-
-	public int getMaxDamage()
-	{
-		return this.maxDamage;
-	}
-	
-	public double getChanceToHit()
-	{
-		return this.chanceToHit;
-	}
-
-	protected abstract int getHitPoints();
-
-	protected abstract int getDamageReceived();
 }

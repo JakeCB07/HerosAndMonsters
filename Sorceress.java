@@ -1,4 +1,3 @@
-package dungeon;
 
 public class Sorceress extends Hero implements HealBehavior, HeroInterface{
    

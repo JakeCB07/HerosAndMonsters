@@ -1,4 +1,3 @@
-package dungeon;
 
 //EDIT 3 Jacob Watkins : 3. Employed the Strategy Pattern again to healing behaviors to improve maintainability
 //	and extendability. This also improved readability and eliminated duplicate code.

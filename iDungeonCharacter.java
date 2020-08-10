@@ -1,4 +1,3 @@
-package dungeon;
 
 
 interface iDungeonCharacter

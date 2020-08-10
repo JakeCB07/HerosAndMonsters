@@ -1,26 +1,30 @@
-package dungeon;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Hero extends DungeonCharacter implements HeroInterface
+public abstract class Hero implements HeroInterface, iDungeonCharacter
 {
 
     protected Scanner playerInput = new Scanner(System.in);
     protected double chanceToBlock;
-    protected ArrayList<Item> inventory;
     protected int numTurns;
     private Location point;
+    
+    protected int pillarCount;
+    protected int healingPotCount;
+    protected int visionPotCount;
 
     Hero(String name, int hitPoints, int attackSpeed, AttackBehavior attack, double chanceToBlock)
     {
-	super(name, hitPoints, attackSpeed, attack);
-	this.name = getName();
-	this.hitPoints = getHitPoints();
-	this.attackSpeed = getAttackSpeed();
+	
+	name = getName();
+	hitPoints = getHitPoints();
+	attackSpeed = getAttackSpeed();
 	attack = getAttackBehavior();
 	this.chanceToBlock = getChanceToBlock();
-	readName();
-	this.inventory = new ArrayList();
+	readName(name);
+	this.pillarCount = 0;
+	this.healingPotCount = 0;
+	this.visionPotCount = 0;
     }
     
 	public void setPoint(int x, int y) {
@@ -33,10 +37,10 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 
     public void setName(String name)
     {
-	name = readName();
+	name = readName(name);
     }
 
-    public String readName()
+    public String readName(String name)
     {
 	System.out.println("Enter character name: ");
 	return name = playerInput.nextLine();
@@ -90,7 +94,7 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
 	    System.out.println(getName() + " BLOCKED the attack!");
 	} else
 	{
-	    super.subtractHitPoints(damageReceived);
+	    subtractHitPoints(damageReceived);
 	}
 
     }// end method
@@ -108,20 +112,27 @@ public abstract class Hero extends DungeonCharacter implements HeroInterface
     }
     
     protected String printInventory(Hero character) {
-    	String retStr = "";
-    	int index = 0;
-    	for(Item item : character.inventory) {
-    		retStr += index + ". " + item.itemName + "\n";
-    	}
+    	String retStr = "1. Pillars: " + this.pillarCount + "\n"
+    	+ "2. Healing Potions: " + this.healingPotCount + "\n" 
+    	+ "3. Vision Potions: " + this.visionPotCount + "\n";
   
     	return retStr;
     }
     
     protected void useItem(Hero character, int playerInput) {
-    	playerInput -= 1;
-    	Item item = character.inventory.get(playerInput);
-    	item.use(character, playerInput);
+    	if(playerInput == 1 && character.healingPotCount > 0) 
+    		Pillar.use(character);
+    	if(playerInput == 2 && character.healingPotCount > 0)
+    		HealingPotion.use(character);
+    	if(playerInput == 3 && character.visionPotCount > 0)
+    		VisionPotion.use(character);
+    	
     }
 
-   
+    public void updateHero()
+    {
+	// TODO Auto-generated method stub
+	
+    }
+    
 }// end Hero class

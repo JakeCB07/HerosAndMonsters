@@ -1,4 +1,3 @@
-package dungeon;
 
 public class Trap extends Attack {
 	
@@ -8,7 +7,7 @@ public class Trap extends Attack {
     private static int maxDamage = 20; 
 	
     
-    public void attack(DungeonCharacter opponent)
+    public static void attack(DungeonCharacter opponent)
     {
 	boolean canAttack;
 	int damage;
@@ -31,7 +30,7 @@ public class Trap extends Attack {
 	} // end else
     }
     
-    private void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
+    private static void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
     {
 	if (opponent.getHitPoints() < 0)
 	    System.out.println("Hitpoint amount must be positive.");

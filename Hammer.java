@@ -1,4 +1,3 @@
-package dungeon;
 
 public class Hammer extends Attack {
 

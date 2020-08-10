@@ -1,4 +1,3 @@
-package dungeon;
 
 public class Gremlin extends Monster implements HealBehavior, MonsterInterface
 {

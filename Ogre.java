@@ -1,4 +1,3 @@
-package dungeon;
 class Ogre extends Monster implements MonsterInterface, HealBehavior
 {
     public String getName()

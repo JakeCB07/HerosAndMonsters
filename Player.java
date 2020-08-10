@@ -1,4 +1,3 @@
-package dungeon;
 
 //Written by Mark Capka 
 //will add on later as we will need to have things like an inventory for our Hero

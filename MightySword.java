@@ -1,4 +1,3 @@
-package dungeon;
 
 public class MightySword extends Attack
 {

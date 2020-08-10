@@ -1,4 +1,3 @@
-package dungeon;
 
 public interface MonsterInterface
 {

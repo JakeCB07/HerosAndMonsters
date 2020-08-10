@@ -1,4 +1,3 @@
-package dungeon;
 
 public class CrushingBlow extends Attack
 {
@@ -14,13 +13,7 @@ public class CrushingBlow extends Attack
 	
     }
 
-   
-	CrushingBlow(String attack, int minDamage, int maxDamage, double chanceToHit) {
-		super(attack, minDamage, maxDamage, chanceToHit);
-	}
-
-
-	public String getAttack()
+    public static String getAttack()
     {
 	return attack;
     }
@@ -30,7 +23,7 @@ public class CrushingBlow extends Attack
 	CrushingBlow.attack = attack;
     }
 
-    public double getChanceToHit()
+    public static double getChanceToHit()
     {
 	return chanceToHit;
     }
@@ -40,7 +33,7 @@ public class CrushingBlow extends Attack
 	CrushingBlow.chanceToHit = chanceToHit;
     }
 
-    public int getMinDamage()
+    public static int getMinDamage()
     {
 	return minDamage;
     }
@@ -50,7 +43,7 @@ public class CrushingBlow extends Attack
 	CrushingBlow.minDamage = minDamage;
     }
 
-    public int getMaxDamage()
+    public static int getMaxDamage()
     {
 	return maxDamage;
     }

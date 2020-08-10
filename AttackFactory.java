@@ -1,4 +1,3 @@
-package dungeon;
 public class AttackFactory
 //MARK CREATED ATTACK FACTORY -> will be more useful once we continue final implementation
 {

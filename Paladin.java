@@ -1,4 +1,3 @@
-package dungeon;
 
 public class Paladin extends Hero{
 

@@ -1,5 +1,4 @@
-package dungeon;
-public abstract class DungeonCharacter
+public abstract class DungeonCharacter implements iDungeonCharacter
 {
 
     protected String name;
@@ -75,9 +74,5 @@ public abstract class DungeonCharacter
 
 	return hitPoints;
     }
-
-
-
-	
 
 }// end class Character

@@ -1,5 +1,4 @@
-package dungeon;
-public class Warrior extends Hero implements HeroInterface
+public class Warrior  implements HeroInterface
 {
 
     private static String name = "Warrior";
@@ -10,7 +9,7 @@ public class Warrior extends Hero implements HeroInterface
     private static double chanceToBlock = .2;
     private static double chanceToHit;
 
-    Warrior createWarrior(String name, int minDamage, int maxDamage, AttackBehavior specialAttack, double chanceToBlock)
+    Warrior createWarrior(String name, double chanceToBlock, AttackBehavior specialAttack)
     {
 
 	name = getName();
@@ -22,7 +21,7 @@ public class Warrior extends Hero implements HeroInterface
 
     protected Warrior()
     {
-	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+	
 	name = getName();
 	hitPoints = getHitPoints();
 	attackSpeed = getAttackSpeed();
@@ -31,18 +30,19 @@ public class Warrior extends Hero implements HeroInterface
 	specialAttack = getSpecialAttack();
     }
 
-    Warrior(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock)
+    Warrior(String name, int hitPoints, int attacKSpeed, AttackBehavior attackBehavior, AttackBehavior specialAttack, double chanceToBlock, double chanceToHit)
     {
-	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
 	name = getName();
 	hitPoints = getHitPoints();
 	attackSpeed = getAttackSpeed();
-	chanceToBlock = getChancetoBlock();
+	attackBehavior = getAttackBehavior();
+	chanceToBlock = getChanceToBlock();
+	specialAttack = getSpecialAttack();
 
+	
     }
-  
-
-	public void CrushingBlow(DungeonCharacter opponent)
+    
+    public void CrushingBlow(DungeonCharacter opponent)
     {
 	double surprise = Math.random();
 	if (surprise <= .4)
@@ -148,6 +148,15 @@ public class Warrior extends Hero implements HeroInterface
 
 	} while (getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
+    }
+
+  
+    public boolean isAlive()
+    {
+	if(!(getHitPoints() <= 0))
+	    return true;
+	
+	return false;
     }
 
 }// end Hero class
