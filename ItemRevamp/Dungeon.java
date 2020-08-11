@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Dungeon {
-	private Room[][] room;
+	private static Room[][] room;
 	private String wallH=" *-*";
     private String wallV="*| |";
     protected ArrayList<Item> treasureChests;
@@ -44,6 +44,41 @@ public class Dungeon {
 		}
 		
 	}
+	}
+	
+	public static String printSoundingArea(Hero hero) {
+		String retStr = "";
+		int heroX = hero.getPoint().getX();
+		int heroY = hero.getPoint().getY();
+		
+		//upper left
+		if(heroX > 0 && heroY >0)
+			retStr += room[heroX -1][heroY-1] + "   ";
+		//above
+		if(heroY >0)
+			retStr += room[heroX][heroY-1] + "   ";
+		//upper right
+		if(heroX < 4 && heroY > 0)
+			retStr += room[heroX+1][heroY-1] + "   \n";
+		//middle left
+		if(heroX > 0)
+			retStr += room[heroX-1][heroY] + "   ";
+		//middle
+		retStr += room[heroX][heroY] + "   ";
+		//middle right
+		if(heroX < 4)
+			retStr += room[heroX+1][heroY] + "   \n";
+		//bottom left
+		if(heroX > 0 && heroY < 4)
+			retStr += room[heroX-1][heroY+1] + "   ";
+		//bottom middle
+		if(heroX < 4)
+			retStr += room[heroX][heroY+1] + "   ";
+		//bottom right
+		if(heroX < 4 && heroY < 4)
+			retStr += room[heroX+1][heroY+1];
+		
+		return retStr;
 	}
 
 	

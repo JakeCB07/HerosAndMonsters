@@ -7,13 +7,12 @@ public class Hero extends DungeonCharacter {
 	private int numTurns;
 	private static Location point;
 	protected double chanceToBlock;
-	protected ArrayList<Item> inventory;
     protected String name;
 	protected Scanner playerInput = new Scanner(System.in);
 	 
-	protected int pillarCount;
-	protected int healingPotCount;
-	protected int visionPotCount;
+	private int pillarCount;
+	private int healingPotCount;
+	private int visionPotCount;
 	    
 	public Hero(String name, int hitPoints, int attackSpeed, double chanceToHit, int damageMin, int damageMax,
 			 int numTurns, double chanceToBlock, AttackBehavior attack) {

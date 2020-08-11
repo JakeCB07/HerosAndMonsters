@@ -21,9 +21,9 @@ public class HealingPotion extends Item{
 		return HealingPotionSymbol;
 	}
 	public static void use(Hero character, int index) {
+		System.out.println(character.name + " used a " + potionName);
 		healBehavior.heal(character, minHeal, maxHeal);
 		character.removeHealingPot(character);
-		System.out.println(character.name + " used a " + potionName);
 	}
 
 	public static void addToInventory(Hero character) {

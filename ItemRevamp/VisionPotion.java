@@ -11,16 +11,16 @@ public class VisionPotion extends Item {
 	}
 
 
-	public static void use(Hero character) {
-		// TODO Auto-generated method stub
-		
+	public static void use(Hero hero) {
+		System.out.println(hero.getName() + " used a " + potionName);
+		Dungeon.printSoundingArea(hero);
+		hero.removeVisionPot(hero);
 	}
 
-	public static void addToInventory(Hero character) {
-		character.visionPotCount++;
-		System.out.println(character.name + " put the " + potionName + " in thier bag");
+	public static void addToInventory(Hero hero) {
+		hero.addVisionPot(hero);
+		System.out.println(hero.name + " put the " + potionName + " in thier bag");
 	}
-	
 	
 	
 }
