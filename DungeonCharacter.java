@@ -1,78 +1,173 @@
-public abstract class DungeonCharacter
+import java.util.Scanner;
+
+public abstract class DungeonCharacter    {
+
+	private String name;
+	private int hitPoints;
+	private int attackSpeed;
+	private double chanceToHit;
+	private int damageMin, damageMax;
+	private double chanceToBlock;
+	private int numTurns;
+	private AttackBehavior attack;
+	private static Scanner Keyboard=new Scanner(System.in);
+	public DungeonCharacter(String name, int hitPoints, int attackSpeed, double chanceToHit, int damageMin, int damageMax, double chanceToBlock, int numTurns, AttackBehavior attack)
 {
 
-    protected String name;
-    protected int hitPoints;
-    protected int attackSpeed;
-    protected AttackBehavior attack;
-
-    DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attack)
-    {
-
-	this.name = name;
-	this.hitPoints = hitPoints;
-	this.attackSpeed = getAttackSpeed();
-	this.attack = getAttackBehavior();
-
-    }// end constructor
-
-    public AttackBehavior getAttackBehavior()
-    {
-	return attack;
-    }
-
-    public int addHitPoints(int hitPoints)
-    {
-
-	this.hitPoints = getHitPoints() + addHitPoints(hitPoints);
-	System.out.println(getName() + " HP is now at " + getHitPoints() + "points");
-
-	return this.getHitPoints();
-    }
-
-    public void subtractHitPoints(int hitPoints)
-    {
-	if (getHitPoints() < 0)
-	    System.out.println("Error, must have positive number of hit points");
-	else if (getHitPoints() > 0)
+setName(name);
+setHitPoints(hitPoints);
+setAttackSpeed(attackSpeed);
+setChanceToHit(chanceToHit);
+setDamageMin(damageMin);
+setDamageMax(damageMax);
+setChanceToBlock(chanceToHit);
+setTurns(numTurns);
+setAttackBehavior(attack);
+}
+	public static Scanner getKeyBoard() {
+		return Keyboard;
+	}
+	public void setAttackBehavior(AttackBehavior attack) {
+		this.attack=attack;
+	}
+	public AttackBehavior getAttackBehavior() {
+		return this.attack;
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public String getName()
 	{
-	    this.hitPoints -= hitPoints;
+		return name;
+	}
 
-	    if (this.getHitPoints() < 0)
-		this.hitPoints = 0;
-
-	    System.out.println(getName() + " attacked and did " + hitPoints + " points of damage");
-	    System.out.println(getName() + " now has " + this.getHitPoints() + " hit points remaining. \n");
-
-	} // end else if
-
+    public void setHitPoints(int hitPoints) {
+    	
+    	
+    	this.hitPoints=hitPoints;
     }
-
-    public int getAttackSpeed()
-    {
-	return attackSpeed;
+	public int getHitPoints()
+	{
+		return hitPoints;
+	}
+    public void setAttackSpeed(int attackSpeed) {
+    	this.attackSpeed=attackSpeed;
     }
+	public int getAttackSpeed()
+	{
+		return attackSpeed;
+	}
+	public void setDamageMin(int damageMin) {
+		this.damageMin=damageMin;
+	}
+	public int getDamageMin() {
+		return this.damageMin;
+	}
+	public void setDamageMax(int damageMax) {
+		this.damageMax=damageMax;
+	}
+	public int getDamageMax() {
+		return this.damageMax;
+	}
+	public void setChanceToHit(double chanceToHit) {
+		this.chanceToHit=chanceToHit;
+	}
+	public double getChanceToHit() {
+		return this.chanceToHit;
+	}
+	public void setChanceToBlock(double chanceToBlock) {
+		this.chanceToBlock=chanceToBlock;
+	}
+	public double getChanceToBlock() {
+		return this.chanceToBlock;
+	}
+	public void killTurn() {
+		this.numTurns--;
+	}
+	public void addTurns() {
+		this.numTurns++;
+	}
+	public void setTurns(int numTurns) {
+		this.numTurns=numTurns;
+	}
+	public int getNumTurns() {
+	
+		return numTurns;
+	}
+	public void addHitPoints(int hitPoints)
+	{
+		if (hitPoints <0)
+			System.out.println("Hitpoint amount must be positive.");
+		else
+		{
+			this.hitPoints += hitPoints;
+	
 
-    public boolean isAlive()
-    {
-	return hitPoints > 0;
+		}
+	}
 
-    }
+	public void subtractHitPoints(int hitPoints)
+	{
+		if (hitPoints <0)
+			System.out.println("Hitpoint amount must be positive.");
+		else if (hitPoints >0)
+		{
+			this.hitPoints -= hitPoints;
+			if (this.hitPoints < 0)
+				this.hitPoints = 0;
+			System.out.println(getName() + " hit " +
+								" for <" + hitPoints + "> points damage.");
+			System.out.println(getName() + " now has " +
+								getHitPoints() + " hit points remaining.");
+			System.out.println();
+		}
 
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-    {
-	getAttackBehavior().attack(opponent, this);
-    }
+		if (this.hitPoints == 0)
+			System.out.println(name + " has been killed :-(");
 
-    public String getName()
-    {
-	return name;
-    }
 
-    public int getHitPoints()
-    {
+	}
+	  public boolean defend()
+	  {
+			return Math.random() <= chanceToBlock;
 
-	return hitPoints;
-    }
+	  }
+	  
+	public boolean isAlive()
+	{
+	  return (hitPoints > 0);
+	}
+	public void setAttack(AttackBehavior attack){
+		this.attack=attack;
+	}
+	public AttackBehavior getAttack() {
+		return this.attack;
+	}
+	public void attack(DungeonCharacter opponent)
+	{
+		
+		boolean canAttack;
+		int damage;
 
-}// end class Character
+		canAttack = Math.random() <= chanceToHit;
+
+		if (canAttack)
+		{
+			damage = (int)(Math.random() * (damageMax - damageMin + 1))
+						+ damageMin ;
+			opponent.subtractHitPoints(damage);
+
+
+
+			System.out.println();
+		}
+		else
+		{
+
+			System.out.println(getName() + "'s attack on " + opponent.getName() +
+								" failed!");
+			System.out.println();
+		}
+
+	}
+}

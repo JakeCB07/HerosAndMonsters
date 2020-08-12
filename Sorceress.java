@@ -1,60 +1,24 @@
 
-public class Sorceress extends Hero implements HealBehavior, HeroInterface{
-   
-    public String getName()
-    {
-	return name;
-    }
-    
-    public final int minHeal = 25;
- 	public final int maxHeal = 50;
+public class Sorceress extends Hero {
+	public final int MIN_ADD = 25;
+	public final int MAX_ADD = 50;
 
- 	private static String name = "Sorceress";
- 	private static int hitPoints = 75;
- 	private static int attackSpeed = 5;
- 	private static AttackBehavior attack = new Firebolt();
- 	private static HealBehavior healSelf =  new Heal();
- 	private static double chanceToBlock = .3;
-	 
-	    
-    protected Sorceress()
+
+    public Sorceress()
 	{
-		super(name, attackSpeed, attackSpeed, attack, chanceToBlock);
-	
-		
-	}
-    Sorceress createSorceress(String name, double chanceToBlock, int heal)
-	{
-		name= getName();
-       	chanceToBlock = getChanceToBlock();
-       	heal = addHitPoints(hitPoints);
-		
-       	return new Sorceress();
- 	 }//end constructor
-   
-    	public Sorceress(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock) 
-    	{
-    	   super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
-        	    name = getName(); 
-        	   hitPoints = getHitPoints(); 
-        	   attackBehavior = getAttackBehavior();
-        	   healSelf = getHeal();
-        	   attackSpeed = getAttackSpeed(); 
-        	   chanceToBlock = getChanceToBlock();
-        	    
-    	}
-    
-    	
-    
+		super("Sorceress", 75, 5, .7, 25, 50, 1, .3, new Firebolt());
+
+
+    }
 	public void increaseHitPoints()
     {
-	    int healPoints;
-	
-		healPoints = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
-		hitPoints = getHitPoints() + healPoints;
-		System.out.println(getName() + " added [" + healPoints + "] points.\n"
+	    int hPoints;
+
+		hPoints = (int)(Math.random() * (MAX_ADD - MIN_ADD + 1)) + MIN_ADD;
+		addHitPoints(hPoints);
+		System.out.println(getName() + " added [" + hPoints + "] points.\n"
 							+ "Total hit points remaining are: "
-							+ this.getHitPoints());
+							+ getHitPoints());
 		 System.out.println();
 
     }
@@ -68,11 +32,11 @@ public class Sorceress extends Hero implements HealBehavior, HeroInterface{
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Increase Hit Points");
 		    System.out.print("Choose an option: ");
-		    choice = playerInput.nextInt();
+		    choice = getKeyBoard().nextInt();
 
 		    switch (choice)
 		    {
-			    case 1: attack(opponent, this);
+			    case 1: getAttackBehavior().attack(opponent, this);
 			        break;
 			    case 2: increaseHitPoints();
 			        break;
@@ -80,81 +44,11 @@ public class Sorceress extends Hero implements HealBehavior, HeroInterface{
 			        System.out.println("invalid choice!");
 		    }
 
-			killTurn(); //decrements the number of turns the character has available 
-		    if (getTurns() > 0)
-			    System.out.println("Number of turns remaining is: " + getTurns());
+			killTurn();
+		    if (getNumTurns() > 0)
+			    System.out.println("Number of turns remaining is: " + getNumTurns());
 
-		} while(getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
-
-    }
-
-
-    public double getChanceToBlock()
-    {
-	
-	return chanceToBlock;
-    }
-
-
-    public AttackBehavior getSpecialAttack()
-    {
-	
-	return null;
-    }
-
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-    {
-	opponent.attack(opponent, attacker);
+		} while(getNumTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
     }
-
-    public static AttackBehavior getAttack()
-    {
-	return attack;
-    }
-
-    public static void setAttack(AttackBehavior attack)
-    {
-	Sorceress.attack = attack;
-    }
-
-    public int getHitPoints()
-    {
-	return hitPoints;
-    }
-
-    public void setHitPoints(int hitPoints)
-    {
-	Sorceress.hitPoints = hitPoints;
-    }
-
-    public int getAttackSpeed()
-    {
-	return attackSpeed;
-    }
-
-    public static void setAttackSpeed(int attackSpeed)
-    {
-	Sorceress.attackSpeed = attackSpeed;
-    }
-
-    @Override
-    public void heal(DungeonCharacter character, int minHeal, int maxHeal)
-    {
-	increaseHitPoints();
-	
-    }
-    public static HealBehavior getHeal()
-    {
-	return healSelf;
-    }
-    public static void setHeal(HealBehavior heal)
-    {
-	Sorceress.healSelf = heal;
-    }
-  
-
-    
-    
- 
 }

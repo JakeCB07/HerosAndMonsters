@@ -1,43 +1,46 @@
 
-public abstract class Monster extends DungeonCharacter implements MonsterInterface
-{
+public class Monster extends DungeonCharacter {
+	private double chanceToHeal;
+	private int minHeal, maxHeal;
+  
+  public Monster(String name, int hitPoints, int attackSpeed,
+				     double chanceToHit, double chanceToHeal,
+					 int damageMin, int damageMax,
+					 int minHeal, int maxHeal, AttackBehavior attack)
+  {
+	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, chanceToHeal, maxHeal, attack);
+	setMinHeal(minHeal);
 
-    protected double chanceToHeal;
-    protected int minHeal, maxHeal;
-
-//-----------------------------------------------------------------
-    public Monster(String name, int hitPoints, int attackSpeed, AttackBehavior attack, int minHeal, int maxHeal)
-    {
-	super(name, hitPoints, attackSpeed, attack);
-	this.attackSpeed = attackSpeed;
-	this.maxHeal = maxHeal;
-	this.minHeal = minHeal;
-
-    }// end monster construcotr
-
-//-----------------------------------------------------------------
-    public void heal()
-    {
+  }
+  private void setMinHeal(int minHeal) {
+	this.minHeal=minHeal;
+	
+ }
+public void heal()
+  {
 	boolean canHeal;
-	int restoredHP;
-	canHeal = (Math.random() <= chanceToHeal) && (hitPoints > 0);
+	int healPoints;
+
+	canHeal = (Math.random() <= chanceToHeal) && (getHitPoints() > 0);
 
 	if (canHeal)
 	{
-	    restoredHP = ((int) Math.random() * (maxHeal - minHeal + 1) + minHeal);
-	    addHitPoints(restoredHP);
-	    System.out.println(this.name + "healed for " + restoredHP + "health points /n");
-	    System.out.println("Total remaining HP: " + getHitPoints());
-
+		healPoints = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
+		addHitPoints(healPoints);
+		System.out.println(getName() + " healed itself for " + healPoints + " points.\n"
+							+ "Total hit points remaining are: " + getHitPoints());
+		System.out.println();
 	}
-    }
 
-//-----------------------------------------------------------------
-    public void subtractHitPoints(DungeonCharacter opponent)
-    {
-	opponent.attack(opponent, this);
-	heal();
 
-    }// end method
+  }
 
-}// end Monster class
+
+ public void subtractHitPoints(int hitPoints)
+ {
+		super.subtractHitPoints(hitPoints);
+		heal();
+
+ }
+
+}

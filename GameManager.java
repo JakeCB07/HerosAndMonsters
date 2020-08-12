@@ -2,57 +2,39 @@ import java.util.Scanner;
 
 public class GameManager {
 private static Scanner kb = new Scanner(System.in);
-	
-
-    static Hero theHero;
-    static Monster theMonster;
-
-	static Hero chooseHero()
+	private boolean MonsterIsDead=false;
+	private boolean HeroIsDead=false;
+	public Hero chooseHero()
 	{
 		int choice;
-		
+		Hero selectedHero;
 
-	
+		do {
 			System.out.println("Choose a hero:\n" +
 					"1. Warrior\n" +
 					"2. Sorceress\n" +
 					"3. Thief");
 			choice = kb.nextInt();
-			
-			switch (choice)
-			{
-			
-			case 1: return theHero = HeroFactory.createWarrior();
-			
-			case 2: return theHero = HeroFactory.createSorceress();
-			
-			case 3: return theHero = HeroFactory.createThief();
-			
-				default: System.out.println("invalid choice, Error, returning Thief");
-					return HeroFactory.createThief();
+
+			selectedHero = HeroFactory.createHero(choice);
+			if(choice < 1 || choice > 3)
+				System.out.println("Invalid selection, please choice the number 1, 2 or 3.");
+		}while(choice < 1 || choice > 3);
 		
-			}
+		return selectedHero;
 	}
 
-	static Monster generateMonster()
+	public Monster generateMonster()
 	{
-		int choice;
-	
-	
-		choice = (int)(Math.random() * 3) + 1;
+		int choice = 0;
+		Monster selectedMonster;
+		do {
+			choice = (int)(Math.random() * 3) + 1;
 			
-		  switch(choice)
-		        {
-		            case 1: return MonsterFactory.createOgre();
-
-		            case 2: return MonsterFactory.createGremlin();
-
-		            case 3: return MonsterFactory.createSkeleton();
-	
-		            default: System.out.println("Error: invalid choice");
-		            	return MonsterFactory.createSkeleton();
-		        
-			}
+			selectedMonster = MonsterFactory.createMonster(choice);
+		}while(choice < 1 || choice > 3);
+		
+		return selectedMonster;
 	}
 
 	public boolean playAgain()
@@ -65,9 +47,15 @@ private static Scanner kb = new Scanner(System.in);
 
 		return (again == 'Y');
 	}
-
+    public boolean getMonsterIsDead() {
+    	return this.MonsterIsDead;
+    }
+    public boolean getHeroIsDead() {
+    	return this.HeroIsDead;
+    }
 	public void battle(Hero theHero, Monster theMonster)
 	{
+		
 		char pause = 'p';
 		System.out.println(theHero.getName() + " battles " +
 							theMonster.getName());
@@ -86,13 +74,18 @@ private static Scanner kb = new Scanner(System.in);
 		
 
 		}
-
-		if (!theMonster.isAlive())
+        
+		if (!theMonster.isAlive()) {
 		    System.out.println(theHero.getName() + " was victorious!");
-		else if (!theHero.isAlive())
+		    MonsterIsDead=true;
+		}
+		else if (!theHero.isAlive()) {
 			System.out.println(theHero.getName() + " was defeated :-(");
-		else
+		    HeroIsDead=true;
+		}
+		else 
 			System.out.println("Quitters never win ;-)");
+		
 
 	}
 }
