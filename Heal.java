@@ -9,8 +9,8 @@ public class Heal implements HealBehavior {
 								+ "Total hit points remaining are: " + character.getHitPoints());
 			System.out.println();
 	  }
-	
-	
+
+
 	private void addHitPoints(DungeonCharacter character, int hitPointsHealed)
 	{
 		if (character.getHitPoints() <=0)

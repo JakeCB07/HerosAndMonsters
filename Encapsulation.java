@@ -1,4 +1,3 @@
-
 public class Encapsulation extends Item {
 	private static String PillarName2="Pillar of Encapsulation";
     private static String PillarDescription2="ONE OF THE 4 PILLARS OF OO!!!";
@@ -12,11 +11,11 @@ public class Encapsulation extends Item {
 	}
 	public void use(Hero character, int index) {
 		
-		System.out.println(character.name + " cannot use " +PillarName2);
+		System.out.println(PillarDescription2);
 	}
 
-	public void addToInventory(Hero character) {
-		character.inventory.add(new HealingPotion());
+	public static void addToInventory(Hero character) {
+		character.addPillar(character);;
 		System.out.println(character.name + " put the " + PillarName2 + " in thier bag");
 	}
 

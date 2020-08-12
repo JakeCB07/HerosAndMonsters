@@ -12,11 +12,11 @@ public class Abstraction extends Item {
 		}
 		public void use(Hero character, int index) {
 			
-			System.out.println(character.name + " cannot use " +PillarName3);
+			System.out.println(PillarDescription3);
 		}
 
-		public void addToInventory(Hero character) {
-			character.inventory.add(new HealingPotion());
+		public static void addToInventory(Hero character) {
+			character.addPillar(character);
 			System.out.println(character.name + " put the " + PillarName3 + " in thier bag");
 		}
 

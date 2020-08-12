@@ -1,6 +1,5 @@
 
 public class Firebolt extends Attack {
- 
 	private static String attack = "shoots a firebolt at";
 	private static double chanceToHit = .7;
     private static int minDamage = 25;
