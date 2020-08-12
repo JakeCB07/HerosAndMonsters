@@ -8,12 +8,15 @@ public class game {
 		Dungeon n=new Dungeon(5,5);
 		n.makeMap();
 		n.lookAtMap();
+		Hero samurai=new Warrior();
+		do {
 		Random rand=new Random();
 		int loc1=rand.nextInt(5);
 		int loc2=rand.nextInt(5);
-        Hero samurai=new Warrior();
+		samurai.setPoint(loc1,loc2);
+		}while(n.getCurrentRoomSymbol(samurai) !='E');
         Trap T=new Trap();
-        samurai.setPoint(loc1,loc2);
+     
         int winToken=0;
         GameManager master=new GameManager();
         System.out.println("Welcome to my dungeon!!!");

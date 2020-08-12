@@ -4,7 +4,6 @@ public class Dungeon {
 	private Room[][] room;
 	private String wallH=" *-*";
     private String wallV="*| |";
-    private int flag1,flag2,flag3,flag4,flag5;
     protected ArrayList<Item> treasureChests;
     protected Inheritance pillar4;
     protected Abstraction pillar3;
@@ -54,7 +53,7 @@ public class Dungeon {
 		 room[loc5][loc6].setRoomSymbol(Inheritance.getInheritanceSymbol());
 		 room[loc7][loc8].setRoomSymbol(Encapsulation.getEncapsulationSymbol());
 		 room[loc9][loc10].setRoomSymbol('X');
-		 System.out.println(loc1+" "+loc2+" "+loc3+" "+loc4+" "+loc5+" "+loc6+" "+loc7+" "+loc8+" \n"+loc9+loc10);
+		 
 		 
 	}
 	public void setCurrentRoomSymbol(Hero hero, char roomSymbol) {
