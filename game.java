@@ -15,6 +15,7 @@ public class game {
 		int loc2=rand.nextInt(5);
 		samurai.setPoint(loc1,loc2);
 		}while(n.getCurrentRoomSymbol(samurai) !='E');
+		n.setCurrentRoomSymbol(samurai, 'N');
         Trap T=new Trap();
      
         int winToken=0;
