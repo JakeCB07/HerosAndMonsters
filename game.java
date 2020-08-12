@@ -54,12 +54,12 @@ public class game {
         		System.out.println("COWARD!!! Link and Kratos wouldn't give up like this");
         	}
         	n.printLocation(samurai);
-//    		if(n.getCurrentRoomSymbol(samurai)=='M') {
-//    			master.battle(samurai, master.generateMonster());
-//    			if(master.getMonsterIsDead()==true) {
-//    		    	n.setCurrentRoomSymbol(samurai,'E');
-//    		    }
-//    		}
+    		if(n.getCurrentRoomSymbol(samurai)=='M') {
+    			master.battle(samurai, master.generateMonster());
+    			if(master.getMonsterIsDead()==true) {
+    		    	n.setCurrentRoomSymbol(samurai,'E');
+    		    }
+    		}
     		 if(n.getCurrentRoomSymbol(samurai)=='H') {
     			HealingPotion.addToInventory(samurai);
     			n.setCurrentRoomSymbol(samurai, 'E');
