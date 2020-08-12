@@ -1,7 +1,8 @@
+package Dungeon;
 
 public interface HeroInterface
 {
-
+    
     abstract String getName();
 
     abstract int getHitPoints();
@@ -9,9 +10,14 @@ public interface HeroInterface
     abstract int getAttackSpeed();
 
     abstract AttackBehavior getAttackBehavior();
-
-    abstract boolean isAlive();
+    
+    abstract AttackBehavior attack(DungeonCharacter opponent, DungeonCharacter attacker);
 
     abstract double getChanceToBlock();
+    
+    abstract void battleChoices(DungeonCharacter opponent, DungeonCharacter attacker);
+    
+    
 
+    boolean isAlive();
 }

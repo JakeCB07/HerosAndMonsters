@@ -1,5 +1,5 @@
-
-public class Gremlin extends Monster implements HealBehavior, MonsterInterface
+package Dungeon;
+public class Gremlin implements MonsterInterface, HealBehavior, iDungeonCharacter
 {
 
     public String getName()
@@ -17,7 +17,6 @@ public class Gremlin extends Monster implements HealBehavior, MonsterInterface
 
     protected Gremlin()
     {
-	super(name, hitPoints, attackSpeed, attackBehavior, minHeal, maxHeal);
 
 	name = getName();
 	hitPoints = getHitPoints();
@@ -32,9 +31,10 @@ public class Gremlin extends Monster implements HealBehavior, MonsterInterface
     public boolean isAlive()
     {
 	if (getHitPoints() > 0)
-	    return true;
+	    return false;
 
-	return false;
+	else
+	    return true;
 
     }
 
@@ -43,9 +43,9 @@ public class Gremlin extends Monster implements HealBehavior, MonsterInterface
 	return Gremlin.hitPoints;
     }
 
-    public void setHitPoints(int hitPoints)
+    public void setHitPoints(int damageReceived)
     {
-	Gremlin.hitPoints = hitPoints;
+	Gremlin.hitPoints = hitPoints - damageReceived;
     }
 
     public int getAttackSpeed()
@@ -75,14 +75,25 @@ public class Gremlin extends Monster implements HealBehavior, MonsterInterface
 
     public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
     {
-	getAttackBehavior().attack(opponent, this);
+	getAttackBehavior().attack(opponent, attacker);
 
     }
 
     @Override
-    public void heal(DungeonCharacter character, int minHeal, int maxHeal)
+    public void heal(DungeonCharacter character, int minHeal, int maxHeal, int maxHitPoints)
     {
 	character.addHitPoints(hitPoints);
+	
+	if(getHitPoints() > maxHitPoints)
+	    setHitPoints(maxHitPoints);
+
+    }
+
+    public int subtractHitPoints(int damageReceived)
+    {
+	setHitPoints(damageReceived);
+
+	return hitPoints;
 
     }
 

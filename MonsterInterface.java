@@ -1,3 +1,4 @@
+package Dungeon;
 
 public interface MonsterInterface
 {
@@ -14,4 +15,6 @@ public interface MonsterInterface
     abstract int getMinHeal();
 
     abstract int getMaxHeal();
+
+   abstract int subtractHitPoints(int damageReceived);
 }

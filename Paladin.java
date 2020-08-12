@@ -1,5 +1,7 @@
+package Dungeon;
+import java.util.Scanner;
 
-public class Paladin extends Hero{
+public class Paladin implements iDungeonCharacter, HeroInterface, HealBehavior{
 
 	 private static String name = "Paladin";
 	    private static int hitPoints = 140;
@@ -8,6 +10,10 @@ public class Paladin extends Hero{
 	    private static AttackBehavior specialAttack = new DivineSmite();
 	    private static double chanceToBlock = .2;
 	    private static double chanceToHit;
+	    
+	    private static final  int maxHitPoints = 75;
+	 	 public static final int minHeal = 25;
+	  	public static final int maxHeal = 50;
 
 	    Paladin createPaladin(String name, double chanceToBlock, AttackBehavior specialAttack)
 	    {
@@ -21,7 +27,7 @@ public class Paladin extends Hero{
 
 	    protected Paladin()
 	    {
-		super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+		
 		name = getName();
 		hitPoints = getHitPoints();
 		attackSpeed = getAttackSpeed();
@@ -30,15 +36,16 @@ public class Paladin extends Hero{
 		specialAttack = getSpecialAttack();
 	    }
 
-	    public void getSpecialAttack(DungeonCharacter opponent)
+	    public void getSpecialAttack(DungeonCharacter opponent, DungeonCharacter attacker)
 	    {
 		specialAttack = new DivineSmite();
 
-		attack(this, opponent);
+		attack(attacker, opponent); //TODO right order?
 	    }
 	    
-	    private void divineSmite(DungeonCharacter opponent) {
-	    	specialAttack.attack(opponent, this);
+	    private void divineSmite(DungeonCharacter opponent, DungeonCharacter attacker) 
+	    {
+	    	getSpecialAttack().attack(opponent, attacker);
 	    }
 
 	    public String getName()
@@ -78,9 +85,11 @@ public class Paladin extends Hero{
 		return chanceToHit;
 	    }
 
-	    public void battleChoices(DungeonCharacter opponent)
+	    public void battleChoices(DungeonCharacter opponent, DungeonCharacter attacker)
 	    {
-		super.battleChoices(opponent);
+		
+		Scanner playerInput = new Scanner(System.in);
+		battleChoices(opponent, attacker);
 		int choice;
 
 		do
@@ -93,20 +102,81 @@ public class Paladin extends Hero{
 		    switch (choice)
 		    {
 		    case 1:
-			attack(opponent, this);
+			getAttackBehavior().attack(opponent, attacker);
 			break;
 		    case 2:
-			divineSmite(opponent);
+			divineSmite(opponent, attacker);
 			break;
 		    default:
 			System.out.println("invalid choice!");
 		    }
 
-		    killTurn(); // decrements the number of turns the character has available
-		    if (getTurns() > 0)
-			System.out.println("Number of turns remaining is: " + getTurns());
+		    Hero.killTurn(); // decrements the number of turns the character has available
+		    if (Hero.getTurns() > 0)
+			System.out.println("Number of turns remaining is: " + Hero.getTurns());
 
-		} while (getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
+		} while (Hero.getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
 	    }
+
+	   
+	    public int subtractHitPoints(DungeonCharacter opponent, DungeonCharacter attacker)
+	    {
+		int current = opponent.getHitPoints();
+		 attacker.getAttackBehavior().attack(opponent, attacker);
+		 
+		 return current = getHitPoints();
+			 
+	    }
+
+	    public boolean isAlive()
+	    {
+		if (getHitPoints() > 0)
+		    return false;
+
+		else
+		    return true;
+
+	    }
+
+	    @Override
+	    public void heal(DungeonCharacter character, int minHeal, int maxHeal, int maxHitPoints)
+	    {
+		if(getHitPoints() > maxHitPoints)
+		    setHitPoints(maxHitPoints);
+		
+		increaseHitPoints();
+		
+	    }
+	    
+	    public void setHitPoints(int hitPoints)
+	    {
+		Paladin.hitPoints = hitPoints;
+	    }
+	    
+	    public void increaseHitPoints()
+	    {
+		    int healPoints;
+		
+			healPoints = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
+			hitPoints = getHitPoints() + healPoints;
+			System.out.println(getName() + " added [" + healPoints + "] points.\n"
+								+ "Total hit points remaining are: "
+								+ this.getHitPoints());
+			 System.out.println();
+
+	    }
+	    
+	    @Override
+	    public AttackBehavior attack(DungeonCharacter opponent, DungeonCharacter attacker)
+	    {
+		
+		return attack(opponent, attacker);
+	    }
+
+	    public static int getMaxhitpoints()
+	    {
+		return maxHitPoints;
+	    }
+	  
 }

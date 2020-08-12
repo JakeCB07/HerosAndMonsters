@@ -1,16 +1,19 @@
+package Dungeon;
 public abstract class DungeonCharacter implements iDungeonCharacter
 {
 
+   
     protected String name;
     protected int hitPoints;
     protected int attackSpeed;
     protected AttackBehavior attack;
+  
 
     DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attack)
     {
 
-	this.name = name;
-	this.hitPoints = hitPoints;
+	this.name = getName();
+	this.hitPoints = getHitPoints();
 	this.attackSpeed = getAttackSpeed();
 	this.attack = getAttackBehavior();
 
@@ -55,6 +58,7 @@ public abstract class DungeonCharacter implements iDungeonCharacter
 
     public boolean isAlive()
     {
+	int hitPoints = getHitPoints();
 	return hitPoints > 0;
 
     }
@@ -74,5 +78,17 @@ public abstract class DungeonCharacter implements iDungeonCharacter
 
 	return hitPoints;
     }
+
+    public void setHitPoints(int hitPoints)
+    {
+	this.hitPoints = hitPoints;
+	
+    }
+
+    abstract AttackBehavior getAttackBehavior(DungeonCharacter opponent, DungeonCharacter attacker);
+
+    protected abstract void battleChoices(DungeonCharacter theMonster);
+  
+   
 
 }// end class Character

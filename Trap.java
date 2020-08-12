@@ -1,5 +1,6 @@
+package Dungeon;
 
-public class Trap extends Attack {
+public class Trap implements AttackBehavior {
 	
 	private static String attack = "has encountered a pitfall trap.";
 	private static double chanceToHit = .5;
@@ -50,8 +51,41 @@ public class Trap extends Attack {
     }// end method
     
 	Trap() {
-		super(attack, minDamage, maxDamage, chanceToHit);
-		// TODO Auto-generated constructor stub
+	    attack = getAttack();
+	    minDamage = getMinDamage();
+	    maxDamage = getMaxDamage();
+	    chanceToHit = getChanceToHit();
+	    
+	
 	}
+
+	private int getMaxDamage()
+	{
+	    return maxDamage;
+	}
+
+	private double getChanceToHit()
+	{
+	   return chanceToHit;
+	}
+
+	private int getMinDamage()
+	{
+	   return minDamage;
+	}
+
+	public String getAttack()
+	{
+	   
+	    return attack;
+	}
+
+	
+	public void attack(DungeonCharacter attacker, DungeonCharacter opponent)
+	{
+	   opponent.attack(opponent, attacker);
+	}
+
+	
 
 }

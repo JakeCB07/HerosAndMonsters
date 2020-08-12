@@ -1,3 +1,4 @@
+package Dungeon;
 /*
  *BURTS CONTRIBUTION 
  */
@@ -46,11 +47,12 @@ public abstract class Attack implements AttackBehavior
     {
 	if (opponent.getHitPoints() < 0)
 	    System.out.println("Hitpoint amount must be positive.");
+	
 	else if (opponent.getHitPoints() > 0)
 	{
 	    opponent.subtractHitPoints(opponent.getHitPoints() - damageRecieved);
 	    if (opponent.getHitPoints() < 0)
-		opponent.subtractHitPoints(0);
+		opponent.setHitPoints(0);
 	    System.out.println(opponent.getName() + " hit " + " for <" + damageRecieved + "> points damage.");
 	    System.out.println(attacker.getName() + " now has " + attacker.getHitPoints() + " hit points remaining.");
 	    System.out.println();

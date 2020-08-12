@@ -1,4 +1,4 @@
-
+package Dungeon;
 
 interface iDungeonCharacter
 {
@@ -7,21 +7,19 @@ interface iDungeonCharacter
 
     abstract int getHitPoints();
 
-    
-
     abstract int getAttackSpeed();
 
     abstract AttackBehavior getAttackBehavior();
-
-    abstract boolean isAlive();
-
-    abstract void subtactHitPoints(DungeonCharacter opponent); // TODO these two may be the same
 
     interface iMonster
     {
 	abstract void attack(DungeonCharacter opponent, DungeonCharacter attacker);
 
 	abstract double getChanceToHeal();
+
+	abstract boolean isAlive();
+
+	abstract void subtractHitPoints(DungeonCharacter opponent, DungeonCharacter attacker);
 
     }
 
@@ -33,9 +31,10 @@ interface iDungeonCharacter
 
 	String getName();
 
-	
+	abstract boolean isAlive();
 
-   
+	abstract void subtractHitPoints(DungeonCharacter opponent, DungeonCharacter attacker);
+
     }
-    
+
 }

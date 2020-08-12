@@ -1,3 +1,4 @@
+package Dungeon;
 
 public abstract class Monster implements iDungeonCharacter, MonsterInterface, HealBehavior
 {
@@ -43,9 +44,9 @@ public abstract class Monster implements iDungeonCharacter, MonsterInterface, He
     }
 
 //-----------------------------------------------------------------
-    public void subtractHitPoints(DungeonCharacter opponent)
+    public void subtractHitPoints(DungeonCharacter opponent, DungeonCharacter attacker)
     {
-	opponent.attack(opponent, this);
+	getAttackBehavior().attack(opponent, attacker); //TODO make sure calling oK 
 	heal();
 
     }// end method

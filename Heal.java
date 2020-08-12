@@ -1,12 +1,15 @@
+package Dungeon;
 
 //EDIT 3 Jacob Watkins : 3. Employed the Strategy Pattern again to healing behaviors to improve maintainability
 //	and extendability. This also improved readability and eliminated duplicate code.
 
 
 public class Heal implements HealBehavior { 
-	public void heal(DungeonCharacter character, int minHeal, int maxHeal)
+	public void heal(DungeonCharacter character, int minHeal, int maxHeal, int maxHitPoints)
 	  {
-
+	    if(character.getHitPoints() >= maxHitPoints)
+	  		character.setHitPoints(maxHitPoints);
+	    
 			int healPoints = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
 			addHitPoints(character, healPoints);
 			System.out.println(character.getName() + " regenerated " + healPoints + " hit points.\n"
@@ -24,4 +27,6 @@ public class Heal implements HealBehavior {
 			character.addHitPoints((character.getHitPoints()+hitPointsHealed));
 		}
 	}
+    
+	
 }

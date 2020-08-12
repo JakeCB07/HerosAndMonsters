@@ -1,13 +1,18 @@
-public class Warrior  implements HeroInterface
+package Dungeon;
+import java.util.Scanner;
+
+public class Warrior implements iDungeonCharacter, HeroInterface, HealBehavior
 {
 
     private static String name = "Warrior";
-    private static int hitPoints = 125;
+    private int hitPoints = 125;
     private static int attackSpeed = 4;
     private static AttackBehavior attackBehavior = new MightySword();
     private static AttackBehavior specialAttack;
     private static double chanceToBlock = .2;
     private static double chanceToHit;
+    
+    protected Scanner playerInput = new Scanner(System.in);
 
     Warrior createWarrior(String name, double chanceToBlock, AttackBehavior specialAttack)
     {
@@ -19,18 +24,17 @@ public class Warrior  implements HeroInterface
 	return new Warrior();
     }// end constructor
 
-    protected Warrior()
+    Warrior()
     {
 	
 	name = getName();
 	hitPoints = getHitPoints();
 	attackSpeed = getAttackSpeed();
-	attackBehavior = getAttackBehavior();
-	chanceToBlock = getChanceToBlock();
 	specialAttack = getSpecialAttack();
+	
     }
 
-    Warrior(String name, int hitPoints, int attacKSpeed, AttackBehavior attackBehavior, AttackBehavior specialAttack, double chanceToBlock, double chanceToHit)
+    Warrior(String name, int hitPoints, int attacKSpeed, AttackBehavior attackBehavior, AttackBehavior specialAttack, double chanceToBlock)
     {
 	name = getName();
 	hitPoints = getHitPoints();
@@ -42,27 +46,27 @@ public class Warrior  implements HeroInterface
 	
     }
     
-    public void CrushingBlow(DungeonCharacter opponent)
+    public void CrushingBlow(DungeonCharacter opponent, DungeonCharacter attacker)
     {
 	double surprise = Math.random();
 	if (surprise <= .4)
 	{
 	    System.out.println("Surprise attack was successful!\n" + this.getName() + " gets an additional turn.");
-	    addTurn();
-	    attack(opponent, this);
+	    Hero.addTurn();
+	    attack(opponent, attacker);
 	} else if (surprise >= .9)
 	{
 	    System.out.println("Uh oh! " + opponent.getName() + " saw you and" + " blocked your attack!");
 	} else
-	    attack(opponent, this);
+	    attack(opponent, attacker);
 
     }
 
-    public void getSpecialAttack(DungeonCharacter opponent)
+    public void getSpecialAttack(DungeonCharacter opponent, DungeonCharacter attacker)
     {
 	specialAttack = new CrushingBlow();
 
-	attack(this, opponent);
+	getAttackBehavior().attack(opponent, attacker);
     }
 
     public void crushingBlow(DungeonCharacter opponent)
@@ -118,9 +122,9 @@ public class Warrior  implements HeroInterface
 	return chanceToHit;
     }
 
-    public void battleChoices(DungeonCharacter opponent)
+    public void battleChoices(DungeonCharacter opponent, DungeonCharacter attacker)
     {
-	super.battleChoices(opponent);
+	battleChoices(opponent, attacker);
 	int choice;
 
 	do
@@ -133,7 +137,7 @@ public class Warrior  implements HeroInterface
 	    switch (choice)
 	    {
 	    case 1:
-		attack(opponent, this);
+		attack(opponent, attacker);
 		break;
 	    case 2:
 		this.crushingBlow(opponent);
@@ -142,21 +146,54 @@ public class Warrior  implements HeroInterface
 		System.out.println("invalid choice!");
 	    }
 
-	    killTurn(); // decrements the number of turns the character has available
-	    if (getTurns() > 0)
-		System.out.println("Number of turns remaining is: " + getTurns());
+	    Hero.killTurn(); // decrements the number of turns the character has available
+	    if (Hero.getTurns() > 0)
+		System.out.println("Number of turns remaining is: " + Hero.getTurns());
 
-	} while (getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
+	} while (Hero.getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
     }
 
   
     public boolean isAlive()
     {
-	if(!(getHitPoints() <= 0))
-	    return true;
-	
+	if(getHitPoints() > 0)
 	return false;
+	
+	else
+	    return true;
     }
+
+    public int subtractHitPoints(int damageReceived)
+    {
+	setHitPoints(damageReceived);
+	
+	return hitPoints;
+	
+    }
+    
+    private void setHitPoints(int damageReceived)
+    {
+	
+	hitPoints = hitPoints - damageReceived;
+    }
+
+    @Override
+    public AttackBehavior attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+	
+	return getAttackBehavior();
+    }
+
+    @Override
+    public void heal(DungeonCharacter character, int minHeal, int maxHeal, int maxHitPoints)
+    {
+	if(getHitPoints() > maxHitPoints)
+	    setHitPoints(maxHitPoints);
+	
+	
+    }
+
+    
 
 }// end Hero class

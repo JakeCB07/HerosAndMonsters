@@ -1,5 +1,6 @@
+package Dungeon;
 
-class Skeleton extends Monster implements MonsterInterface
+class Skeleton implements MonsterInterface, HealBehavior, iDungeonCharacter
 {
 
     public String getName()
@@ -18,8 +19,6 @@ class Skeleton extends Monster implements MonsterInterface
     protected Skeleton()
     {
 
-	super(name, hitPoints, attackSpeed, attackBehavior, minHeal, maxHeal);
-
 	name = getName();
 	hitPoints = getHitPoints();
 	attackBehavior = getAttackBehavior();
@@ -33,9 +32,10 @@ class Skeleton extends Monster implements MonsterInterface
     public boolean isAlive()
     {
 	if (getHitPoints() > 0)
-	    return true;
+	    return false;
 
-	return false;
+	else
+	    return true;
 
     }
 
@@ -86,4 +86,22 @@ class Skeleton extends Monster implements MonsterInterface
 	return getName();
     }
 
+  
+    @Override
+    public void heal(DungeonCharacter character, int minHeal, int maxHeal, int maxHitPoints)
+    {
+	character.addHitPoints(hitPoints);
+	
+	if(getHitPoints() > maxHitPoints)
+	    setHitPoints(maxHitPoints);
+
+    }
+
+    public int subtractHitPoints(int damageReceived)
+    {
+	setHitPoints(damageReceived);
+
+	return hitPoints;
+
+    }
 }

@@ -1,46 +1,61 @@
+package Dungeon;
+import java.util.Scanner;
 
-public class Sorceress extends Hero implements HealBehavior, HeroInterface{
+public class Sorceress implements HealBehavior, HeroInterface, iDungeonCharacter
+{
    
-    public String getName()
-    {
-	return name;
-    }
-    
-    public final int minHeal = 25;
- 	public final int maxHeal = 50;
 
- 	private static String name = "Sorceress";
+ 	private String name = "Sorceress";
+ 	private static final  int maxHitPoints = 75;
+ 	 public static final int minHeal = 25;
+  	public static final int maxHeal = 50;
  	private static int hitPoints = 75;
  	private static int attackSpeed = 5;
- 	private static AttackBehavior attack = new Firebolt();
+ 	private static AttackBehavior attackBehavior = new Firebolt();
  	private static HealBehavior healSelf =  new Heal();
+ 	private static AttackBehavior specialAttack = (AttackBehavior) healSelf;
+ 	//TODO write an adapter method for HealBehavior to AttackBehavior
+ 	
  	private static double chanceToBlock = .3;
 	 
 	    
     protected Sorceress()
 	{
-		super(name, attackSpeed, attackSpeed, attack, chanceToBlock);
-	
+		
+	name = getName();
+	hitPoints = getHitPoints();
+	attackSpeed = getAttackSpeed();
+	attackBehavior = getAttackBehavior();
+	chanceToBlock = getChanceToBlock();
+	specialAttack = getSpecialAttack();
 		
 	}
+    	
+    
     Sorceress createSorceress(String name, double chanceToBlock, int heal)
 	{
-		name= getName();
+	name= getName();
        	chanceToBlock = getChanceToBlock();
-       	heal = addHitPoints(hitPoints);
+       	heal = addHitPoints(heal);  //TODO verify that this works as intended
 		
-       	return new Sorceress();
+       		return new Sorceress();
  	 }//end constructor
    
-    	public Sorceress(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock) 
+    
+    	private int addHitPoints(int healPoints)
     	{
-    	   super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+		return getHitPoints() + healPoints;
+  	}
+    	
+	public Sorceress(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior) 
+    	{
+    	  
         	    name = getName(); 
         	   hitPoints = getHitPoints(); 
         	   attackBehavior = getAttackBehavior();
         	   healSelf = getHeal();
         	   attackSpeed = getAttackSpeed(); 
-        	   chanceToBlock = getChanceToBlock();
+        	
         	    
     	}
     
@@ -58,21 +73,22 @@ public class Sorceress extends Hero implements HealBehavior, HeroInterface{
 		 System.out.println();
 
     }
-    public void battleChoices(DungeonCharacter opponent)
+    public void battleChoices(DungeonCharacter opponent, DungeonCharacter attacker)
 	{
-		super.battleChoices(opponent);
+		
+		Scanner playerInput = new Scanner(System.in);
 		int choice;
-
+		
 		do
 		{
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Increase Hit Points");
 		    System.out.print("Choose an option: ");
-		    choice = playerInput.nextInt();
-
+		    choice = playerInput.nextInt();			//TODO player input in interface?
+		    
 		    switch (choice)
 		    {
-			    case 1: attack(opponent, this);
+			    case 1: getAttackBehavior().attack(opponent, attacker);
 			        break;
 			    case 2: increaseHitPoints();
 			        break;
@@ -80,11 +96,11 @@ public class Sorceress extends Hero implements HealBehavior, HeroInterface{
 			        System.out.println("invalid choice!");
 		    }
 
-			killTurn(); //decrements the number of turns the character has available 
-		    if (getTurns() > 0)
-			    System.out.println("Number of turns remaining is: " + getTurns());
-
-		} while(getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
+			Hero.killTurn(); //decrements the number of turns the character has available 
+		    if (Hero.getTurns() > 0)
+			    System.out.println("Number of turns remaining is: " + Hero.getTurns());
+		    	playerInput.close();
+		} while(Hero.getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
     }
 
@@ -102,25 +118,20 @@ public class Sorceress extends Hero implements HealBehavior, HeroInterface{
 	return null;
     }
 
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-    {
-	opponent.attack(opponent, attacker);
-
-    }
-
+  
     public static AttackBehavior getAttack()
     {
-	return attack;
+	return attackBehavior;
     }
 
     public static void setAttack(AttackBehavior attack)
     {
-	Sorceress.attack = attack;
+	attack = getAttack();
     }
 
     public int getHitPoints()
     {
-	return hitPoints;
+	return Sorceress.hitPoints;
     }
 
     public void setHitPoints(int hitPoints)
@@ -139,11 +150,15 @@ public class Sorceress extends Hero implements HealBehavior, HeroInterface{
     }
 
     @Override
-    public void heal(DungeonCharacter character, int minHeal, int maxHeal)
+    public void heal(DungeonCharacter character, int minHeal, int maxHeal, int maxHitPoints)
     {
+	if(getHitPoints() > maxHitPoints)
+	    setHitPoints(maxHitPoints);
+	
 	increaseHitPoints();
 	
     }
+    
     public static HealBehavior getHeal()
     {
 	return healSelf;
@@ -152,6 +167,52 @@ public class Sorceress extends Hero implements HealBehavior, HeroInterface{
     {
 	Sorceress.healSelf = heal;
     }
+    
+    public int subtractHitPoints(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+	int current = opponent.getHitPoints();
+	 attacker.getAttackBehavior().attack(opponent, attacker);
+	 
+	 return current = getHitPoints();
+		 
+    }
+    
+    @Override
+    public AttackBehavior getAttackBehavior()
+    {
+	return attackBehavior;
+    }
+   
+ 
+    public boolean isAlive()
+    {
+	if (getHitPoints() > 0)
+	    return false;
+
+	else
+	    return true;
+
+    }
+    
+    @Override
+    public String getName()
+    {
+	return this.name;
+    }
+    public int getMaxHitPoints()
+    {
+	return maxHitPoints;
+    }
+ 
+  
+    @Override
+    public AttackBehavior attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+	
+	return attack(opponent, attacker);
+    }
+  
+ 
   
 
     

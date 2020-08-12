@@ -1,31 +1,55 @@
+package Dungeon;
+import java.util.Scanner;
 
-public class HeroFactory
+public class HeroFactory 
 {
 
   
-   public static Hero createSorceress()
-    {
+   public static iDungeonCharacter createSorceress()
+    {       
+       
 	return new Sorceress();
     }
 
-    public static Hero createThief()
+    public static iDungeonCharacter createThief()
     {
+	
 	return new Thief();
     }
 
-   public static Hero createWarrior()
+   public static iDungeonCharacter createWarrior()
    {
+       
        return new Warrior();
    }
 
-   public static Hero createPaladin() {
+   public static Paladin createPaladin() {
 	   return new Paladin();
    }
-   
-
-
-
-
-   
+ 
+   public static iDungeonCharacter createHero(int choice)
+   {
+       Scanner playerInput = new Scanner(System.in);
+     
+       choice = playerInput.nextInt();
+       
+       do {
+               switch (choice)
+        	{
+        	
+        	case 1: return  HeroFactory.createWarrior();
+        	
+        	case 2: return  HeroFactory.createSorceress();
+        	
+        	case 3: return  HeroFactory.createThief();
+        	
+        		default: System.out.println("invalid choice, Error, returning Thief");
+        			return  HeroFactory.createThief();
+        
+        	}
+	}while(choice < 1 || choice >3);
+       
+    
+   }
 
 }

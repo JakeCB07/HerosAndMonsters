@@ -1,3 +1,4 @@
+package Dungeon;
 
 public class WoodenClub extends Attack {
 	

@@ -1,3 +1,4 @@
+package Dungeon;
 
 public class VisionPotion extends Item {
 	
@@ -18,7 +19,7 @@ public class VisionPotion extends Item {
 
 	public static void addToInventory(Hero character) {
 		character.visionPotCount++;
-		System.out.println(character.name + " put the " + potionName + " in thier bag");
+		System.out.println(character.getName() + " put the " + potionName + " in thier bag");
 	}
 	
 	

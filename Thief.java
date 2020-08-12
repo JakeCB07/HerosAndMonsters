@@ -1,26 +1,29 @@
+package Dungeon;
+import java.util.Scanner;
 
-public class Thief extends Hero
+public class Thief implements HeroInterface, iDungeonCharacter, HealBehavior
 {
-
-    public String getName()
-    {
-	return name;
-    }
 
     private static String name = "Thief";
     private static int hitPoints = 75;
     private static int attackSpeed = 6;
     private static AttackBehavior attackBehavior = new Shortbow();
+    private static AttackBehavior specialAttack = new SurpriseAttack();
     private static double chanceToBlock = .5;
 
     private AttackBehavior getSpecialAttack()
     {
-	return attack;
+	return specialAttack;
     }
 
     protected Thief()
     {
-	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+	name = getName();
+	hitPoints = getHitPoints();
+	attackSpeed = getAttackSpeed();
+	attackBehavior = getAttackBehavior();
+	chanceToBlock = getChanceToBlock();
+	specialAttack = getSpecialAttack();
     }
 
     Thief createThief(String name, double chanceToBlock, AttackBehavior specialAttack)
@@ -32,35 +35,39 @@ public class Thief extends Hero
 	return new Thief();
     }// end constructor
 
-    Thief(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, double chanceToBlock)
+    Thief(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior, AttackBehavior specialAttack,
+	    double chanceToBlock)
     {
-	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
+
 	name = getName();
 	hitPoints = getHitPoints();
 	attackSpeed = getAttackSpeed();
-	chanceToBlock = getChancetoBlock();
+	specialAttack = getSpecialAttack();
+	chanceToBlock = getChanceToBlock();
 
     }
 
-    public void surpriseAttack(DungeonCharacter opponent)
+    public void surpriseAttack(DungeonCharacter opponent, DungeonCharacter attacker)
     {
 	double surprise = Math.random();
 	if (surprise <= .4)
 	{
 	    System.out.println("Surprise attack was successful!\n" + this.getName() + " gets an additional turn.");
-	    addTurn();
-	    attack(this, opponent);
+	    Hero.addTurn();
+	    attack(opponent, attacker); // TODO correct order?
 	} else if (surprise >= .9)
 	{
 	    System.out.println("Uh oh! " + opponent.getName() + " saw you and" + " blocked your attack!");
 	} else
-	    attack(opponent, this);
+	    attack(opponent, attacker);
 
     }
 
-    public void battleChoices(DungeonCharacter opponent)
+    public void battleChoices(DungeonCharacter opponent, DungeonCharacter attacker)
     {
-	super.battleChoices(opponent);
+	Scanner playerInput = new Scanner(System.in);
+
+	battleChoices(opponent, attacker);
 	int choice;
 
 	do
@@ -73,20 +80,20 @@ public class Thief extends Hero
 	    switch (choice)
 	    {
 	    case 1:
-		getAttackBehavior().attack(opponent, this);
+		getAttackBehavior().attack(opponent, attacker);
 		break;
 	    case 2:
-		surpriseAttack(opponent);
+		surpriseAttack(opponent, attacker);
 		break;
 	    default:
 		System.out.println("invalid choice!");
 	    }// end switch
 
-	    killTurn();
-	    if (getTurns() > 0)
-		System.out.println("Number of turns remaining is: " + getTurns());
+	    Hero.killTurn();
+	    if (Hero.getTurns() > 0)
+		System.out.println("Number of turns remaining is: " + Hero.getTurns());
 
-	} while (getTurns() > 0);
+	} while (Hero.getTurns() > 0);
 
     }
 
@@ -117,7 +124,54 @@ public class Thief extends Hero
 
     public int getHitPoints()
     {
+	return Thief.hitPoints;
+    }
+
+    public String getName()
+    {
+	return Thief.name;
+    }
+
+    @Override
+    public AttackBehavior attack(DungeonCharacter opponent, DungeonCharacter attacker)
+    {
+
+	return Thief.attackBehavior;
+    }
+
+  
+    public int subtractHitPoints(int damageReceived)
+    {
+	setHitPoints(damageReceived);
+	
 	return hitPoints;
+
+    }
+
+    public boolean isAlive()
+    {
+	if (getHitPoints() > 0)
+	    return false;
+
+	else
+	    return true;
+
+    }
+    
+    private void setHitPoints(int damageReceived)
+    {
+	
+	hitPoints = hitPoints - damageReceived;
+    }
+
+    @Override
+    public void heal(DungeonCharacter character, int minHeal, int maxHeal, int maxHitPoints)
+    {
+	character.addHitPoints(hitPoints);
+	
+	if(getHitPoints() > maxHitPoints)
+	    setHitPoints(maxHitPoints);
+	
     }
 
 }
