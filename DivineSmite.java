@@ -26,7 +26,7 @@ public class DivineSmite extends Attack {
 	{
 	    damage = (int) (Math.random() * (maxDamage - minDamage + 1)) + minDamage;
 	    subtractHitPoints(opponent, attacker, damage);
-	    healingSmite.heal(attacker, damage/2, damage/2);
+	    healingSmite.heal(attacker, damage/2, damage/2, opponent.getMaxHitPoints()); //TODO confirm this fourth  parameter. it is for maxHitPoints, however, not sure how it should be applied to smite -- capka
 	    
 	    System.out.println();
 	} // end if can attack
