@@ -3,12 +3,12 @@ public class HeroFactory
 {
 
   
-   public static Sorceress createSorceress()
+   public static Hero createSorceress()
     {
 	return new Sorceress();
     }
 
-    public static Thief createThief()
+    public static Hero createThief()
     {
 	return new Thief();
     }
@@ -18,7 +18,10 @@ public class HeroFactory
        return new Warrior();
    }
 
-
+   public static Hero createPaladin() {
+	   return new Paladin();
+   }
+   
 
 
 
