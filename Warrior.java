@@ -1,141 +1,54 @@
-public class Warrior extends Hero implements HeroInterface
-{
 
-    private static String name = "Warrior";
-    private static int hitPoints = 125;
-    private static int attackSpeed = 4;
-    private static AttackBehavior attackBehavior = new MightySword();
-    private static AttackBehavior specialAttack;
-    private static double chanceToBlock = .2;
-    private static double chanceToHit;
+public class Warrior extends Hero {
 
-    Warrior createWarrior(String name, double chanceToBlock, AttackBehavior specialAttack)
-    {
+	private static String name = "Warrior";
+	private static int hitPoints = 125;
+	private static int attackSpeed = 4;
+	private static AttackBehavior attackBehavior = new MightySword();
+	private AttackBehavior specialAttack = new CrushingBlow();
+	private static double chanceToBlock = .2;
 
-	name = getName();
-	chanceToBlock = getChanceToBlock();
-	specialAttack = getSpecialAttack();
+	Warrior() {
 
-	return new Warrior();
-    }// end constructor
+		super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
 
-    protected Warrior()
-    {
-	super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
-	name = getName();
-	hitPoints = getHitPoints();
-	attackSpeed = getAttackSpeed();
-	attackBehavior = getAttackBehavior();
-	chanceToBlock = getChanceToBlock();
-	specialAttack = getSpecialAttack();
-    }
+	}// end constructor
 
-    public void CrushingBlow(DungeonCharacter opponent)
-    {
-	double surprise = Math.random();
-	if (surprise <= .4)
-	{
-	    System.out.println("Surprise attack was successful!\n" + this.getName() + " gets an additional turn.");
-	    addTurn();
-	    attack(opponent, this);
-	} else if (surprise >= .9)
-	{
-	    System.out.println("Uh oh! " + opponent.getName() + " saw you and" + " blocked your attack!");
-	} else
-	    attack(opponent, this);
+	private void crushingBlow(DungeonCharacter opponent) {
+		specialAttack.attack(opponent, this);
+	}// end crushingBlow method
 
-    }
+	private void attack(DungeonCharacter opponent) {
+		attackBehavior.attack(opponent, this);
+	}// end override of attack method
 
-    public void getSpecialAttack(DungeonCharacter opponent)
-    {
-	specialAttack = new CrushingBlow();
+	public void battleChoices(DungeonCharacter opponent) {
+		int choice;
 
-	attack(this, opponent);
-    }
+		super.battleChoices(opponent);
 
-    public void crushingBlow(DungeonCharacter opponent)
-    {
-	if (Math.random() <= .4)
-	{
-	    int blowPoints = (int) (Math.random() * 76) + 100;
-	    System.out.println(this.getName() + " lands a CRUSHING BLOW for " + blowPoints + " damage!");
-	    opponent.subtractHitPoints(blowPoints);
-	} // end blow succeeded
-	else
-	{
-	    System.out.println(getName() + " failed to land a crushing blow");
-	    System.out.println();
-	} // blow failed
+		do {
+			System.out.println("1. Attack Opponent");
+			System.out.println("2. Crushing Blow on Opponent");
+			System.out.print("Choose an option: ");
+			choice = getKeyBoard().nextInt();
 
-    }// end crushingBlow method
+			switch (choice) {
+			case 1:
+				attack(opponent);
+				break;
+			case 2:
+				crushingBlow(opponent);
+				break;
+			default:
+				System.out.println("invalid choice!");
+			}
 
-    public String getName()
-    {
-	return name;
-    }
+			killTurn();
+			if (getTurns() > 0)
+				System.out.println("Number of turns remaining is: " + getTurns());
 
-    public AttackBehavior getAttackBehavior()
-    {
+		} while (getTurns() > 0 && this.getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
-	return attackBehavior;
-    }
-
-    public AttackBehavior getSpecialAttack()
-    {
-	return specialAttack;
-    }
-
-    public double getChanceToBlock()
-    {
-	return chanceToBlock;
-    }
-
-    public int getHitPoints()
-    {
-	return hitPoints;
-    }
-
-    public int getAttackSpeed()
-    {
-	return attackSpeed;
-
-    }
-
-    public double getChanceToHit()
-    {
-	return chanceToHit;
-    }
-
-    public void battleChoices(DungeonCharacter opponent)
-    {
-	super.battleChoices(opponent);
-	int choice;
-
-	do
-	{
-	    System.out.println("1. Attack Opponent");
-	    System.out.println("2. Special attacK: Crushing Blow");
-	    System.out.print("Choose an option: ");
-	    choice = playerInput.nextInt();
-
-	    switch (choice)
-	    {
-	    case 1:
-		attack(opponent, this);
-		break;
-	    case 2:
-		this.crushingBlow(opponent);
-		break;
-	    default:
-		System.out.println("invalid choice!");
-	    }
-
-	    killTurn(); // decrements the number of turns the character has available
-	    if (getTurns() > 0)
-		System.out.println("Number of turns remaining is: " + getTurns());
-
-	} while (getTurns() > 0 && getHitPoints() > 0 && opponent.getHitPoints() > 0);
-
-    }
-
-}// end Hero class
+	}
+}

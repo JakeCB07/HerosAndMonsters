@@ -1,56 +1,63 @@
 
 public class Location {
+private int x, y;
+protected boolean hasMoved;
+public Location(int x, int y) {
+	this.x=x;
+	this.y=y;
+}
+public int getX() {
+	return this.x;
+}
+public int getY() {
+	return this.y;
+}
+public void setX(int x) {
+	this.x=x;
+}
+public void setY(int y) {
+	this.y=y;
 	
-	private int x, y;
-
-	public Location(int x, int y) {
-		this.x=x;
-		this.y=y;
+}
+public boolean moveNorth() {
+	
+	if(y !=0) {
+	y-=1;
+	return true;
 	}
-	public int getX() {
-		return this.x;
+	else {
+		System.out.println("I'm stuck at the top of the map");
+		return false;
 	}
-	public int getY() {
-		return this.y;
+}
+public boolean moveSouth() {
+	if(y !=4) {
+	y+=1;
+	return true;
 	}
-	public void setX(int x) {
-		this.x=x;
+	else {
+		System.out.println("I'm at the bottom of the map");
+		return false;
 	}
-	public void setY(int y) {
-		this.y=y;
-		
+}
+public boolean moveEast() {
+	if(x !=4) {
+	x+=1;
+	return true;
 	}
-	public void moveNorth() {
-		if(y !=0) {
-		this.y-=1;
-		}
-		else {
-			System.out.println("I'm stuck at the top of the map");
-		}
+	else {
+		System.out.println("I'm as far east as I can go");
+		return false;
 	}
-	public void moveSouth() {
-		if(y !=4) {
-		this.y+=1;
-		}
-		else {
-			System.out.println("I'm at the bottom of the map");
-		}
+}
+public boolean moveWest() {
+	if(x !=0) {
+	x-=1;
+	return true;
 	}
-	public void moveEast() {
-		if(x !=4) {
-		this.x+=1;
-		}
-		else {
-			System.out.println("I'm as far east as I can go");
-		}
+	else {
+		System.out.println("I'm as far west as I can go");
+		return false;
 	}
-	public void moveWest() {
-		if(x !=0) {
-		this.x-=1;
-		}
-		else {
-			System.out.println("I'm as far west as I can go");
-		}
-	}
-
+}
 }

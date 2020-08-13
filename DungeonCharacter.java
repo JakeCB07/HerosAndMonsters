@@ -1,78 +1,60 @@
-public abstract class DungeonCharacter
-{
+import java.util.Scanner;
 
-    protected String name;
-    protected int hitPoints;
-    protected int attackSpeed;
-    protected AttackBehavior attack;
+public abstract class DungeonCharacter {
 
-    DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attack)
-    {
+	private String name;
+	private int hitPoints;
+	private int attackSpeed;
+	private AttackBehavior attackBehavior;
+	private static Scanner Keyboard = new Scanner(System.in);
 
-	this.name = name;
-	this.hitPoints = hitPoints;
-	this.attackSpeed = getAttackSpeed();
-	this.attack = getAttackBehavior();
+	DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior) {
 
-    }// end constructor
+		setName(name);
+		setHitPoints(hitPoints);
+		setAttackSpeed(attackSpeed);
+		setAttackBehavior(attackBehavior);
+	}
 
-    public AttackBehavior getAttackBehavior()
-    {
-	return attack;
-    }
+	public static Scanner getKeyBoard() {
+		return Keyboard;
+	}
 
-    public int addHitPoints(int hitPoints)
-    {
+	public void setAttackBehavior(AttackBehavior attack) {
+		this.attackBehavior = attack;
+	}
 
-	this.hitPoints = getHitPoints() + addHitPoints(hitPoints);
-	System.out.println(getName() + " HP is now at " + getHitPoints() + "points");
+	public AttackBehavior getAttackBehavior() {
+		return this.attackBehavior;
+	}
 
-	return this.getHitPoints();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void subtractHitPoints(int hitPoints)
-    {
-	if (getHitPoints() < 0)
-	    System.out.println("Error, must have positive number of hit points");
-	else if (getHitPoints() > 0)
-	{
-	    this.hitPoints -= hitPoints;
+	public String getName() {
+		return name;
+	}
 
-	    if (this.getHitPoints() < 0)
-		this.hitPoints = 0;
+	public void setHitPoints(int hitPoints) {
 
-	    System.out.println(getName() + " attacked and did " + hitPoints + " points of damage");
-	    System.out.println(getName() + " now has " + this.getHitPoints() + " hit points remaining. \n");
+		this.hitPoints = hitPoints;
+	}
 
-	} // end else if
+	public int getHitPoints() {
+		return hitPoints;
+	}
 
-    }
+	public void setAttackSpeed(int attackSpeed) {
+		this.attackSpeed = attackSpeed;
+	}
 
-    public int getAttackSpeed()
-    {
-	return attackSpeed;
-    }
+	public int getAttackSpeed() {
+		return attackSpeed;
+	}
 
-    public boolean isAlive()
-    {
-	return hitPoints > 0;
-
-    }
-
-    public void attack(DungeonCharacter opponent, DungeonCharacter attacker)
-    {
-	getAttackBehavior().attack(opponent, this);
-    }
-
-    public String getName()
-    {
-	return name;
-    }
-
-    public int getHitPoints()
-    {
-
-	return hitPoints;
-    }
-
-}// end class Character
+	public boolean isAlive() {
+		return (this.hitPoints > 0);
+	}// end isAlive method
+	
+}

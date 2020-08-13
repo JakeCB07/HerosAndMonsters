@@ -1,67 +1,43 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class GameManager {
-private static Scanner kb = new Scanner(System.in);
-	
+	private static Scanner kb = new Scanner(System.in);
+	// private boolean MonsterIsDead=false;
+	// private boolean HeroIsDead=false;
 
-	private boolean hasWon = false;
-    static Hero theHero;
-    //static Monster theMonster;
-    Dungeon dungeon;
-    
-	static Hero chooseHero()
-	{
+	private Dungeon dungeon = new Dungeon(5, 5);
+	private Trap trap = new Trap();
+
+	public static Hero chooseHero() {
 		int choice;
-		
+		Hero selectedHero;
 
-	
-			System.out.println("Choose a hero:\n" +
-					"1. Warrior\n" +
-					"2. Sorceress\n" +
-					"3. Thief\n" + 
-					"4. Paladin");
+		do {
+			System.out.println("Choose a hero:\n" + "1. Warrior\n" + "2. Sorceress\n" + "3. Thief");
 			choice = kb.nextInt();
-			
-			switch (choice)
-			{
-			
-			case 1: return theHero = HeroFactory.createWarrior();
-			
-			case 2: return theHero = HeroFactory.createSorceress();
-			
-			case 3: return theHero = HeroFactory.createThief();
-			
-			case 4: return theHero = HeroFactory.createPaladin();
-			
-				default: System.out.println("invalid choice, Error, returning Thief");
-					return HeroFactory.createThief();
-		
-			}
+
+			selectedHero = HeroFactory.createHero(choice);
+			if (choice < 1 || choice > 3)
+				System.out.println("Invalid selection, please choice the number 1, 2 or 3.");
+		} while (choice < 1 || choice > 3);
+
+		return selectedHero;
 	}
 
-	static Monster generateMonster()
-	{
-		int choice;
-	
-	
-		choice = (int)(Math.random() * 3) + 1;
-			
-		  switch(choice)
-		        {
-		            case 1: return MonsterFactory.createOgre();
+	public Monster generateMonster() {
+		int choice = 0;
+		Monster selectedMonster;
+		do {
+			choice = (int) (Math.random() * 3) + 1;
 
-		            case 2: return MonsterFactory.createGremlin();
+			selectedMonster = MonsterFactory.createMonster(choice);
+		} while (choice < 1 || choice > 3);
 
-		            case 3: return MonsterFactory.createSkeleton();
-	
-		            default: System.out.println("Error: invalid choice");
-		            	return MonsterFactory.createSkeleton();
-		        
-			}
+		return selectedMonster;
 	}
 
-	public boolean playAgain()
-	{
+	public boolean playAgain() {
 		char again;
 
 		System.out.println("Play again (y/n)?");
@@ -71,36 +47,29 @@ private static Scanner kb = new Scanner(System.in);
 		return (again == 'Y');
 	}
 
-	public void battle(Hero theHero, Monster theMonster)
-	{
+	public void battle(Hero theHero, Monster theMonster) {
+
 		char pause = 'p';
-		System.out.println(theHero.getName() + " battles " +
-							theMonster.getName());
+		System.out.println(theHero.getName() + " battles " + theMonster.getName());
 		System.out.println("---------------------------------------------");
 
-
-		
-		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q'){
+		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q') {
 
 			theHero.battleChoices(theMonster);
-              
 
 			if (theMonster.isAlive())
-			    theMonster.getAttackBehavior().attack(theHero, theMonster);
-
-		
+				theMonster.getAttackBehavior().attack(theHero, theMonster);
 
 		}
 
-		if (!theMonster.isAlive())
-		    System.out.println(theHero.getName() + " was victorious!");
-		else if (!theHero.isAlive())
+		if (!theMonster.isAlive()) {
+			System.out.println(theHero.getName() + " was victorious!");
+		} else if (!theHero.isAlive()) {
 			System.out.println(theHero.getName() + " was defeated :-(");
-		else
+		} else
 			System.out.println("Quitters never win ;-)");
-
 	}
-	
+
 	public void printIntro() {
 		System.out.println("Welcome to Dungeon Adventure!");
 		System.out.println("---------------------------------------------");
@@ -108,105 +77,127 @@ private static Scanner kb = new Scanner(System.in);
 		System.out.println("The goal of the game is to find all 4 pillars of OO. \n"
 				+ "Traverse the dungeon and collect these pillars while defending \n"
 				+ "yourself from any monsters that want to stop you. When all 4 pillars \n"
-				+ "are collected find the room containing the exit and you win!.");
+				+ "are collected find the room containing the exit and you win!");
 		System.out.println();
 		System.out.println("Type the commands N, S, E, and W to move through the dungeon. \n"
-				+ "Press I to access your Inventory and M to check the map. \n\n"
-				+ "Good Luck ! \n");
-		
+				+ "Press I to access your Inventory and M to print the Map Legend. \n\n" + "Good Luck ! \n");
+
 	}
-	
+
 	public void generateDungeon() {
-		dungeon.makeMap();
-		dungeon.fillMap();
+		this.dungeon.makeMap();
 	}
-	
+
 	public boolean checkWin(Hero hero) {
-		if(hero.pillarCount == 4 && dungeon.getSymbol(hero) == 'O') 
-			System.out.println("You Win!");
-		
+		if (dungeon.getCurrentRoomSymbol(hero) == 'O')
+			if (hero.getPillarCount() > 3) {
+				System.out.println("You Win!");
+			} else
+				System.out.println("I must find the remaining " + (4 - hero.getPillarCount()) + " Pillars.");
+
 		return hero.pillarCount > 3;
 	}
-	
+
 	public void checkRoom(Hero hero) {
 		dungeon.printLocation(hero);
-		
+
 		checkForTraps(hero);
-		Monster monster = getMonster(hero);
-		if(monster != null)
-			battle(hero, monster);
+		checkForMonsters(hero);
 		checkForItems(hero);
-		if(dungeon.getSymbol(hero) == 'I' || dungeon.getSymbol(hero) == 'O')
-			dungeon.printLocation(hero);
-		else
-			dungeon.getRoom(hero).setContents('E');
-		
-		System.out.println("Command? \n");
-		char input = kb.next().charAt(0);
-		
-		playerController(input, hero);
-	}
-	
-	private Monster getMonster(Hero hero) {
-		for(Object content: dungeon.getRoom(hero).roomContents) {
-			if(content instanceof Monster)
-				return (Monster) content;
-		}
-		
-		return null;
-	}
-	
-	private void checkForTraps(Hero hero) {
-		for(Object content: dungeon.getRoom(hero).roomContents) {
-			if(content instanceof Trap)
-				Trap.attack(hero);
+
+		if (hero.isAlive()) {
+			printControls();
+			System.out.println("Command? ");
+			char input = kb.next().charAt(0);
+			playerController(input, hero);
 		}
 	}
-	
-	private void checkForItems(Hero hero) {
-		for(Object content: dungeon.getRoom(hero).roomContents) {
-			if(content instanceof Item)
-				Item.addToInventory(hero);
-		}
-	}
-	
-	private void playerController(char input, Hero hero) {
-		
-		if(input == 'I') {
-			hero.printInventory(hero);
-			char c = kb.next().charAt(0);
-			if(c > 48 && c < 52) {
-				int num = Character.getNumericValue(c);
-				hero.useItem(hero, c);
+
+	private void checkForMonsters(Hero hero) {
+		if (dungeon.getCurrentRoomSymbol(hero) == 'M') {
+			Monster monster = generateMonster();
+			battle(hero, monster);
+			if (!monster.isAlive()) {
+				dungeon.setCurrentRoomSymbol(hero, 'E');
 			}
 		}
-		
-		if(input == 'M')
-			dungeon.lookAtMap();
-		
-		if(input == 'N') {
+	}
+
+	private void checkForTraps(Hero hero) {
+		if (dungeon.getCurrentRoomSymbol(hero) == 'T') {
+			trap.attack(hero);
+		}
+	}
+
+	private void checkForItems(Hero hero) {
+		if (dungeon.getCurrentRoomSymbol(hero) == 'H')
+			HealingPotion.addToInventory(hero);
+		if (dungeon.getCurrentRoomSymbol(hero) == 'V')
+			VisionPotion.addToInventory(hero);
+		if (dungeon.getCurrentRoomSymbol(hero) == 'A')
+			Abstraction.addToInventory(hero);
+		if (dungeon.getCurrentRoomSymbol(hero) == 'P')
+			Polymorphism.addToInventory(hero);
+		if (dungeon.getCurrentRoomSymbol(hero) == 'e')
+			Encapsulation.addToInventory(hero);
+		if (dungeon.getCurrentRoomSymbol(hero) == 'I')
+			Inheritance.addToInventory(hero);
+
+		if (dungeon.getCurrentRoomSymbol(hero) != 'O' && dungeon.getCurrentRoomSymbol(hero) != 'N')
+			dungeon.setCurrentRoomSymbol(hero, 'E');
+	}
+
+	private void playerController(char input, Hero hero) {
+		input = Character.toUpperCase(input);
+
+		if (input == 'I') {
+			System.out.println(hero.printInventory(hero));
+			hero.useItem(hero);
+		}
+
+		// cheat codes
+		if (input == 'L')
+			VisionPotion.use(hero);
+
+		if (input == 'M')
+			printLegend();
+		if (input == 'N') {
 			hero.getPoint().moveNorth();
 		}
-		if(input == 'S') {
+		if (input == 'S') {
 			hero.getPoint().moveSouth();
 		}
-		if(input == 'W') {
+		if (input == 'W') {
 			hero.getPoint().moveWest();
 		}
-		if(input == 'E') {
+		if (input == 'E') {
 			hero.getPoint().moveEast();
 		}
-			
+
 	}
-	
+
 	public void spawnPlayer(Hero hero) {
-		Room enterance = dungeon.findEnterance();
-		
-		hero.setPoint(enterance.getRoomNumberX(), enterance.getRoomNumberY());
+		do {
+			Random rand = new Random();
+			int loc1 = rand.nextInt(5);
+			int loc2 = rand.nextInt(5);
+			hero.setPoint(loc1, loc2);
+		} while (dungeon.getCurrentRoomSymbol(hero) != 'E');
+		dungeon.setCurrentRoomSymbol(hero, 'N');
 	}
-	
+
+	private void printControls() {
+		System.out.println(" N: move North" + "\n W: move West" + "\n E: move East " + "\n S: move South"
+				+ "\n I: view Inventory\n");
+	}
+
+	private void printLegend() {
+		System.out.println(
+				" H: Healing Potion \n V: Vision Potion \n T: Trap \n " + "M: Monster \n N: Entrance \n O: Exit \n");
+	}
+
 	public boolean gameOver(Hero hero) {
-		
+
 		return !hero.isAlive();
 	}
 }

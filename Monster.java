@@ -1,43 +1,43 @@
 
-public abstract class Monster extends DungeonCharacter implements MonsterInterface
-{
+public class Monster extends DungeonCharacter {
+	
+	private double chanceToHeal;
+	private int minHeal, maxHeal;
+	private HealBehavior healBehavior;
 
-    protected double chanceToHeal;
-    protected int minHeal, maxHeal;
-
-//-----------------------------------------------------------------
-    public Monster(String name, int hitPoints, int attackSpeed, AttackBehavior attack, int minHeal, int maxHeal)
-    {
-	super(name, hitPoints, attackSpeed, attack);
-	this.attackSpeed = attackSpeed;
-	this.maxHeal = maxHeal;
-	this.minHeal = minHeal;
-
-    }// end monster construcotr
-
-//-----------------------------------------------------------------
-    public void heal()
-    {
-	boolean canHeal;
-	int restoredHP;
-	canHeal = (Math.random() <= chanceToHeal) && (hitPoints > 0);
-
-	if (canHeal)
-	{
-	    restoredHP = ((int) Math.random() * (maxHeal - minHeal + 1) + minHeal);
-	    addHitPoints(restoredHP);
-	    System.out.println(this.name + "healed for " + restoredHP + "health points /n");
-	    System.out.println("Total remaining HP: " + getHitPoints());
-
+	public Monster(String name, int hitPoints, int attackSpeed, double chanceToHeal, 
+			AttackBehavior attackBehavior, int minHeal, int maxHeal) {
+		
+		super(name, hitPoints, attackSpeed, attackBehavior);
+		setMinHeal(minHeal);
+		setMaxHeal(maxHeal);
+		setHealBehavior();
 	}
-    }
 
-//-----------------------------------------------------------------
-    public void subtractHitPoints(DungeonCharacter opponent)
-    {
-	opponent.attack(opponent, this);
-	heal();
+	public void heal() {
+		boolean canHeal;
 
-    }// end method
+		canHeal = (Math.random() <= chanceToHeal) && (this.getHitPoints() > 0);
 
-}// end Monster class
+		if (canHeal)
+			healBehavior.heal(this, minHeal, maxHeal);
+	}
+
+	public void subtractHitPoints(DungeonCharacter opponent) {
+		opponent.getAttackBehavior().attack(opponent, this);
+		heal();
+	}
+
+	private void setMinHeal(int minHeal) {
+		this.minHeal = minHeal;
+	}
+
+	private void setMaxHeal(int maxHeal) {
+		this.maxHeal = maxHeal;
+	}
+
+	private void setHealBehavior() {
+		this.healBehavior = new Heal();
+	}
+
+}

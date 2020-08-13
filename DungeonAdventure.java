@@ -16,7 +16,7 @@ public class DungeonAdventure {
 	    do {
 	    	gameManager.checkRoom(theHero);
 	    	
-	    }while(!gameManager.gameOver(theHero) && gameManager.checkWin(theHero));
+	    }while(!gameManager.gameOver(theHero) && !gameManager.checkWin(theHero));
 	} while (gameManager.playAgain());
 
     }

@@ -5,16 +5,18 @@ public class Trap extends Attack {
 	private static double chanceToHit = .5;
     private static int minDamage = 1;
     private static int maxDamage = 20; 
+    private static char TrapSymbol='T';
+    
 	
     
-    public static void attack(DungeonCharacter opponent)
+    public void attack(DungeonCharacter opponent)
     {
 	boolean canAttack;
 	int damage;
 
 	System.out.println(opponent.getName() + " " + attack);
 	canAttack = Math.random() <= chanceToHit;
-
+    
 	if (canAttack)
 	{
 	    damage = (int) (Math.random() * (maxDamage - minDamage + 1)) + minDamage;
@@ -29,8 +31,13 @@ public class Trap extends Attack {
 	    System.out.println();
 	} // end else
     }
+    public static char getTrapSymbol() {
+    	return TrapSymbol;
+    }
     
-    private static void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
+    /*
+    @Override
+    private void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
     {
 	if (opponent.getHitPoints() < 0)
 	    System.out.println("Hitpoint amount must be positive.");
@@ -48,6 +55,7 @@ public class Trap extends Attack {
 	    System.out.println(opponent.getName() + " has been killed :-(");
 
     }// end method
+    */
     
 	Trap() {
 		super(attack, minDamage, maxDamage, chanceToHit);
