@@ -1,67 +1,54 @@
 
 public class Warrior extends Hero {
-	
-	  public Warrior()
-		{
 
-		  
-		  
-			super("Warrior", 125, 4, .8, 35, 60, 1, .2, new MightySword());
+	private static String name = "Warrior";
+	private static int hitPoints = 125;
+	private static int attackSpeed = 4;
+	private static AttackBehavior attackBehavior = new MightySword();
+	private AttackBehavior specialAttack = new CrushingBlow();
+	private static double chanceToBlock = .2;
 
+	Warrior() {
 
-	    }
-	  
-	  
+		super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);
 
-		public void crushingBlow(DungeonCharacter opponent)
-		{
-			if (Math.random() <= .4)
-			{
-				int blowPoints = (int)(Math.random() * 76) + 100;
-				System.out.println(this.getName() + " lands a CRUSHING BLOW for " + blowPoints
-									+ " damage!");
-				opponent.subtractHitPoints(blowPoints);
+	}// end constructor
+
+	private void crushingBlow(DungeonCharacter opponent) {
+		specialAttack.attack(opponent, this);
+	}// end crushingBlow method
+
+	private void attack(DungeonCharacter opponent) {
+		attackBehavior.attack(opponent, this);
+	}// end override of attack method
+
+	public void battleChoices(DungeonCharacter opponent) {
+		int choice;
+
+		super.battleChoices(opponent);
+
+		do {
+			System.out.println("1. Attack Opponent");
+			System.out.println("2. Crushing Blow on Opponent");
+			System.out.print("Choose an option: ");
+			choice = getKeyBoard().nextInt();
+
+			switch (choice) {
+			case 1:
+				attack(opponent);
+				break;
+			case 2:
+				crushingBlow(opponent);
+				break;
+			default:
+				System.out.println("invalid choice!");
 			}
-			else
-			{
-				System.out.println(getName() + " failed to land a crushing blow");
-				System.out.println();
-			}
 
-		}
+			killTurn();
+			if (getTurns() > 0)
+				System.out.println("Number of turns remaining is: " + getTurns());
 
+		} while (getTurns() > 0 && this.getHitPoints() > 0 && opponent.getHitPoints() > 0);
 
-
-
-
-	    public void battleChoices(DungeonCharacter opponent)
-		{
-			int choice;
-
-			super.battleChoices(opponent);
-
-			do
-			{
-			    System.out.println("1. Attack Opponent");
-			    System.out.println("2. Crushing Blow on Opponent");
-			    System.out.print("Choose an option: ");
-			    choice = getKeyBoard().nextInt();
-
-			    switch (choice)
-			    {
-				    case 1: getAttackBehavior().attack(opponent, this );
-				        break;
-				    case 2: crushingBlow(opponent);
-				        break;
-				    default:
-				        System.out.println("invalid choice!");
-			    }
-
-				killTurn();
-				if (getNumTurns() > 0)
-				    System.out.println("Number of turns remaining is: " + getNumTurns());
-
-			} while(getNumTurns() > 0);
-
-	    }
+	}
 }

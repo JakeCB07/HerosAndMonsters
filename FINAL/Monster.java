@@ -1,46 +1,43 @@
 
 public class Monster extends DungeonCharacter {
+	
 	private double chanceToHeal;
 	private int minHeal, maxHeal;
-  
-  public Monster(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, double chanceToHeal,
-					 int damageMin, int damageMax,
-					 int minHeal, int maxHeal, AttackBehavior attack)
-  {
-	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, chanceToHeal, maxHeal, attack);
-	setMinHeal(minHeal);
+	private HealBehavior healBehavior;
 
-  }
-  private void setMinHeal(int minHeal) {
-	this.minHeal=minHeal;
-	
- }
-public void heal()
-  {
-	boolean canHeal;
-	int healPoints;
-
-	canHeal = (Math.random() <= chanceToHeal) && (getHitPoints() > 0);
-
-	if (canHeal)
-	{
-		healPoints = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
-		addHitPoints(healPoints);
-		System.out.println(getName() + " healed itself for " + healPoints + " points.\n"
-							+ "Total hit points remaining are: " + getHitPoints());
-		System.out.println();
+	public Monster(String name, int hitPoints, int attackSpeed, double chanceToHeal, 
+			AttackBehavior attackBehavior, int minHeal, int maxHeal) {
+		
+		super(name, hitPoints, attackSpeed, attackBehavior);
+		setMinHeal(minHeal);
+		setMaxHeal(maxHeal);
+		setHealBehavior();
 	}
 
+	public void heal() {
+		boolean canHeal;
 
-  }
+		canHeal = (Math.random() <= chanceToHeal) && (this.getHitPoints() > 0);
 
+		if (canHeal)
+			healBehavior.heal(this, minHeal, maxHeal);
+	}
 
- public void subtractHitPoints(int hitPoints)
- {
-		super.subtractHitPoints(hitPoints);
+	public void subtractHitPoints(DungeonCharacter opponent) {
+		opponent.getAttackBehavior().attack(opponent, this);
 		heal();
+	}
 
- }
+	private void setMinHeal(int minHeal) {
+		this.minHeal = minHeal;
+	}
+
+	private void setMaxHeal(int maxHeal) {
+		this.maxHeal = maxHeal;
+	}
+
+	private void setHealBehavior() {
+		this.healBehavior = new Heal();
+	}
 
 }

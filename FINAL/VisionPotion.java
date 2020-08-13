@@ -22,6 +22,6 @@ public class VisionPotion extends Item {
 
 	public static void addToInventory(Hero hero) {
 		hero.visionPotCount++;
-		System.out.println(hero.name + " put the " + potionName + " in thier bag");
+		System.out.println(hero.getName() + " put the " + potionName + " in thier bag");
 	}
 }

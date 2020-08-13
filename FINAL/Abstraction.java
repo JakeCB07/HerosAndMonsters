@@ -14,7 +14,7 @@ public class Abstraction extends Item {
 		public static void addToInventory(Hero character) {
 			System.out.println(PillarDescription3);
 			character.addPillar(character);
-			System.out.println(character.name + " put the " + PillarName3 + " in thier bag");
+			System.out.println(character.getName() + " put the " + PillarName3 + " in thier bag");
 		}
 
 }

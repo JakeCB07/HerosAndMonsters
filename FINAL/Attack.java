@@ -40,19 +40,26 @@ public class Attack  implements AttackBehavior {
 		}
 	}
 	
-	public void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
+	protected void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
 	{
 		if (opponent.getHitPoints() <0)
 			System.out.println("Hitpoint amount must be positive.");
 		else if (opponent.getHitPoints() >0)
 		{
-			opponent.subtractHitPoints(damageRecieved);
+			int newTotal = opponent.getHitPoints() - damageRecieved;
+			opponent.setHitPoints(newTotal); 
+			//-= damageRecieved;
 			if (opponent.getHitPoints() < 0)
 				opponent.setHitPoints(0);
-			
-		}
+			System.out.println(opponent.getName() + " hit " +
+								" for <" + damageRecieved + "> points damage.");
+			System.out.println(opponent.getName() + " now has " +
+								opponent.getHitPoints() + " hit points remaining.");
+			System.out.println();
+		}//end else if
 
-		
+		if (opponent.getHitPoints() == 0)
+			System.out.println(opponent.getName() + " has been killed :-(");
 
 	}
 

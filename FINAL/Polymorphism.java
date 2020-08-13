@@ -13,7 +13,7 @@ public class Polymorphism extends Item  {
 	public static void addToInventory(Hero character) {
 		System.out.println(PillarDescription1);
 		character.addPillar(character);
-		System.out.println(character.name + " put the " + PillarName1 + " in thier bag");
+		System.out.println(character.getName() + " put the " + PillarName1 + " in thier bag");
 	}
 
 
