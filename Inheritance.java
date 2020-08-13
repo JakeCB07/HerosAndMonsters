@@ -17,7 +17,7 @@ public class Inheritance extends Item {
 
 	public static void addToInventory(Hero character) {
 		character.addPillar(character);
-		System.out.println(character.name + " put the " + PillarName4 + " in thier bag");
+		System.out.println(character.getName() + " put the " + PillarName4 + " in thier bag");
 	}
 
 }

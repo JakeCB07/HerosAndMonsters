@@ -12,7 +12,7 @@ Room(){
 	roomSymbol.add('E');
 	roomSymbol.add(Trap.getTrapSymbol());
 	roomSymbol.add(potion.getHealingSymbol());
-   
+    roomSymbol.add(VisionPotion.getVisionSymbol());
 	roomSymbol.add('M');
 	this.item=randomRoomSymbol();
 }
@@ -46,7 +46,7 @@ public String printRoomNumber() {
       return "Room: "+getRoomNumberX()+","+getRoomNumberY();
 }
 public char randomRoomSymbol() {
-	int randomCharGenerator=rand.nextInt(4);
+	int randomCharGenerator=rand.nextInt(5);
 	item=roomSymbol.get(randomCharGenerator);
 	return item;
 }

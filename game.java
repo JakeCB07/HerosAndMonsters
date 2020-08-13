@@ -7,7 +7,7 @@ public class game {
 		int choice=0;
 		Dungeon n=new Dungeon(5,5);
 		n.makeMap();
-		n.lookAtMap();
+		
 		Hero samurai=new Warrior();
 		do {
 		Random rand=new Random();
@@ -17,13 +17,13 @@ public class game {
 		}while(n.getCurrentRoomSymbol(samurai) !='E');
 		n.setCurrentRoomSymbol(samurai, 'N');
         Trap T=new Trap();
-     
+        int itemChoice=0;
         int winToken=0;
         GameManager master=new GameManager();
         System.out.println("Welcome to my dungeon!!!");
         System.out.println("Submit by typing 7");
         System.out.println("Our hero is currently: "+samurai.getPoint().getX()+","+samurai.getPoint().getY());
-        System.out.println("What move should our hero make: "+  "\n 1: moveNorth"+"\n 2: moveWest"+"\n 3: moveEast "+"\n 4: moveSouth"+"\n 5: view Inventory");
+        System.out.println("What move should our hero make: "+  "\n 1: moveNorth"+"\n 2: moveWest"+"\n 3: moveEast "+"\n 4: moveSouth"+"\n 5: view Inventory "+"\n 6: Use Items");
         while(choice !=7 && !master.getHeroIsDead() && winToken !=777) {
         	choice=kb.nextInt();
         	if(choice==1) {
@@ -50,9 +50,9 @@ public class game {
         		
         	}
         	else if(choice==6) {
-        		System.out.println("What should the warrior use in his quest for vengence.....I mean to get out of the dungeon "+"\n 1: pillar count "+"\n 2: Healing potion "+"\n Vison potion");
-        		choice=kb.nextInt();
-        		samurai.useItem(samurai, choice);
+        		System.out.println("What should the warrior use in his quest for vengence.....I mean to get out of the dungeon "+"\n 1: pillar count "+"\n 2: Healing potion "+"\n 3: Vison potion");
+        		itemChoice=kb.nextInt();
+        		samurai.useItem(samurai, itemChoice);
         	}
         	else if(choice==7) {
         		System.out.println("COWARD!!! Link and Kratos wouldn't give up like this");
@@ -86,13 +86,20 @@ public class game {
      		}
     		 else if(n.getCurrentRoomSymbol(samurai)=='T') {
     			 System.out.println("Warrior falls into trap");
-    			 T.subtractHitPoints(samurai, choice);
+    			 T.attack(samurai);
+    			 
     		 }
+    		 else if(n.getCurrentRoomSymbol(samurai)=='V') {
+			     System.out.println("Vision potion added to inventory");
+				 VisionPotion.addToInventory(samurai);
+				 n.setCurrentRoomSymbol(samurai,'E');
+			 }
     		 else if(n.getCurrentRoomSymbol(samurai)=='X') {
     			 if(samurai.getPillarCount()==4) {
     				 	System.out.println("YOU'RE WINNER!!!");
     				 	winToken=777;
     			 }
+    	    	
     			 else {
     				 System.out.println("What are you doin go get the other pillars ya crazy kid");
     			 }

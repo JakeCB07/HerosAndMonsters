@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 public class Dungeon {
-	private Room[][] room;
+	private static Room[][] room;
 	private String wallH=" *-*";
     private String wallV="*| |";
     protected ArrayList<Item> treasureChests;
@@ -66,16 +66,61 @@ public class Dungeon {
 		System.out.println("Our hero is in: " +room[hero.getPoint().getX()][hero.getPoint().getY()].printRoomNumber());
 		System.out.println(room[hero.getPoint().getX()][hero.getPoint().getY()]);
 	}
-	public void lookAtMap() {
-		for(int i=0; i<room.length; i++) {
+	
+	private static char[][] getSurroundingArea(Hero hero) {
+		char emptyStr = '*';
+		char[][] area = new char[3][3];
+		int heroX = hero.getPoint().getX();
+		int heroY = hero.getPoint().getY();
 		
-			for(int x=0; x<room[i].length;x++) {
-                 
-				 
+		for(int row = 0; row < area.length; row++) {
+			for(int col = 0; col < area[row].length; col++) {
+				area[row][col] = '*';
+			}
+		}	
+		
+		//upper left
+		if(heroX > 0 && heroY >0)
+			area[0][0] = room[heroX -1][heroY-1].getRoomSymbol();
+		//above
+		if(heroY >0)
+			area[0][1] = room[heroX][heroY-1].getRoomSymbol();
+		//upper right
+		if(heroX < 4 && heroY > 0)
+			area[0][2] = room[heroX+1][heroY-1].getRoomSymbol();
+		//middle left
+		if(heroX > 0)
+			area[1][0] = room[heroX-1][heroY].getRoomSymbol();
+		//middle
+		area[1][1] = room[heroX][heroY].getRoomSymbol();
+		//middle right
+		if(heroX < 4)
+			area[1][2] = room[heroX+1][heroY].getRoomSymbol();
+		//bottom left
+		if(heroX > 0 && heroY < 4)
+			area[2][0] = room[heroX-1][heroY+1].getRoomSymbol();
+		//bottom middle
+		if(heroY < 4)
+			area[2][1] = room[heroX][heroY+1].getRoomSymbol();
+		//bottom right
+		if(heroX < 4 && heroY < 4)
+			area[2][2] += room[heroX+1][heroY+1].getRoomSymbol();
+		
+		return area;
+	}
+	
+	protected static String printSurroundingArea(Hero hero) {
+		String retStr = "";
+		char[][] surroundingArea = getSurroundingArea(hero); 
+		
+		for(int row = 0; row < surroundingArea.length; row++) {
+			for(int col = 0; col < surroundingArea[row].length; col++) {
+					retStr += "[" + surroundingArea[row][col] + "]";
+			}
+			retStr += "\n";
 		}
 		
+		return retStr;
 	}
-	}
-
 	
 }
