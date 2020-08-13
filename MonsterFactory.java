@@ -8,7 +8,10 @@ public static Monster createMonster(int choice) {
 			return new Gremlin();
 		if(choice == 3)
 			return new Skeleton();
-		
+		if(choice==4)
+			return new EvilTexasGoblin();
+		if(choice==5)
+			return new blueBerryDragon();
 		return null;
 	}
 }

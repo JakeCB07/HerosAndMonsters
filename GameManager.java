@@ -29,10 +29,10 @@ private static Scanner kb = new Scanner(System.in);
 		int choice = 0;
 		Monster selectedMonster;
 		do {
-			choice = (int)(Math.random() * 3) + 1;
+			choice = (int)(Math.random() * 5) + 1;
 			
 			selectedMonster = MonsterFactory.createMonster(choice);
-		}while(choice < 1 || choice > 3);
+		}while(choice < 1 || choice > 5);
 		
 		return selectedMonster;
 	}
