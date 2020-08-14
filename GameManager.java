@@ -3,24 +3,24 @@ import java.util.Scanner;
 
 public class GameManager {
 	private static Scanner kb = new Scanner(System.in);
-	// private boolean MonsterIsDead=false;
-	// private boolean HeroIsDead=false;
+	private boolean win = false;
 
 	private Dungeon dungeon = new Dungeon(5, 5);
 	private Trap trap = new Trap();
 
 	public static Hero chooseHero() {
-		int choice;
+		char choice;
 		Hero selectedHero;
 
 		do {
-			System.out.println("Choose a hero:\n" + "1. Warrior\n" + "2. Sorceress\n" + "3. Thief");
-			choice = kb.nextInt();
+			System.out.println("Choose a hero:\n" + "1. Warrior\n" + "2. Sorceress\n" + "3. Thief\n"
+		+ "4. Paladin\n" + "5. Frost Mage");
+			choice = kb.next().charAt(0);
 
 			selectedHero = HeroFactory.createHero(choice);
-			if (choice < 1 || choice > 3)
-				System.out.println("Invalid selection, please choice the number 1, 2 or 3.");
-		} while (choice < 1 || choice > 3);
+			if (selectedHero == null)
+				System.out.println("Invalid selection, please choice the number 1, 2, 3, 4, or 5");
+		} while (selectedHero == null);
 
 		return selectedHero;
 	}
@@ -29,10 +29,10 @@ public class GameManager {
 		int choice = 0;
 		Monster selectedMonster;
 		do {
-			choice = (int) (Math.random() * 3) + 1;
+			choice = (int) (Math.random() * 5) + 1;
 
 			selectedMonster = MonsterFactory.createMonster(choice);
-		} while (choice < 1 || choice > 3);
+		} while (choice < 1 || choice > 5);
 
 		return selectedMonster;
 	}
@@ -74,10 +74,13 @@ public class GameManager {
 		System.out.println("Welcome to Dungeon Adventure!");
 		System.out.println("---------------------------------------------");
 		System.out.println();
-		System.out.println("The goal of the game is to find all 4 pillars of OO. \n"
-				+ "Traverse the dungeon and collect these pillars while defending \n"
-				+ "yourself from any monsters that want to stop you. When all 4 pillars \n"
-				+ "are collected find the room containing the exit and you win!");
+		System.out.println("The Kingdom of Java is in great peril! The 4 Pillars of OO have been stolen!\n"
+				+ "The Mad Wizard Steiner stole the Pillars in order to keep the power of OO all to himself. \n"
+				+ "He has hidden the Pillars away in a dungeon far beneath Castle Java. The dungeon is filled with \n"
+				+ "all sorts of vile monsters and deadly traps in order to guard the Pillars of OO. \n"
+				+ "King Capaul has sent you on a quest to recover the Pillars and restore peace and prosperity \n"
+				+ " to the Kingdom of Java\n"
+				+ "Good Luck!\n");
 		System.out.println();
 		System.out.println("Type the commands N, S, E, and W to move through the dungeon. \n"
 				+ "Press I to access your Inventory and M to print the Map Legend. \n\n" + "Good Luck ! \n");
@@ -85,17 +88,22 @@ public class GameManager {
 	}
 
 	public void generateDungeon() {
+		win = false;
 		this.dungeon.makeMap();
+	}
+	
+	public boolean win() {
+		return win;
 	}
 
 	public boolean checkWin(Hero hero) {
-		if (dungeon.getCurrentRoomSymbol(hero) == 'O')
+		if (dungeon.getCurrentRoomSymbol(hero) == 'X')
 			if (hero.getPillarCount() > 3) {
-				System.out.println("You Win!");
+				win = true;
 			} else
 				System.out.println("I must find the remaining " + (4 - hero.getPillarCount()) + " Pillars.");
 
-		return hero.pillarCount > 3;
+		return win;
 	}
 
 	public void checkRoom(Hero hero) {
@@ -143,22 +151,36 @@ public class GameManager {
 		if (dungeon.getCurrentRoomSymbol(hero) == 'I')
 			Inheritance.addToInventory(hero);
 
-		if (dungeon.getCurrentRoomSymbol(hero) != 'O' && dungeon.getCurrentRoomSymbol(hero) != 'N')
+		if (dungeon.getCurrentRoomSymbol(hero) != 'X' && dungeon.getCurrentRoomSymbol(hero) != 'N')
 			dungeon.setCurrentRoomSymbol(hero, 'E');
 	}
 
 	private void playerController(char input, Hero hero) {
 		input = Character.toUpperCase(input);
 
+		// cheat codes
+		if (input == 'V') {
+			hero.addVisionPot(hero);
+			System.out.println("Cheat Actived: Vision potion added to inventory.");
+		}
+		if(input == 'H') {
+			hero.addHealingPot(hero);
+			System.out.println("Cheat Actived: Healing potion added to inventory.");
+		}
+		if(input == 'P') {
+			hero.addPillar(hero);
+			System.out.println("Cheat Actived: Pillar added to inventory.");
+		}
+		if(input == 'K') {
+			System.out.println("Good bye");
+			hero.setHitPoints(0);
+		}
+		//------------------------------------
+		
 		if (input == 'I') {
 			System.out.println(hero.printInventory(hero));
 			hero.useItem(hero);
 		}
-
-		// cheat codes
-		if (input == 'L')
-			VisionPotion.use(hero);
-
 		if (input == 'M')
 			printLegend();
 		if (input == 'N') {
@@ -194,6 +216,15 @@ public class GameManager {
 	private void printLegend() {
 		System.out.println(
 				" H: Healing Potion \n V: Vision Potion \n T: Trap \n " + "M: Monster \n N: Entrance \n O: Exit \n");
+	}
+	
+	public void printEnding(Hero hero) {
+		System.out.println("The enterance to the dungeon collapses behind you as you make a narrow exit. \n" 
+				+ "As you exit the dungeon you're greeted with the bright light of the sun.\n"
+				+ "You bask in its warmth for a moment, then take a deep breath and \ncontinue on your way to "
+				+ "return the Pillars to thier rightful place.\n\n"
+				+ "The name " + hero.getName() + " shall forever live on in legend as the hero who gathered all 4 Pillars of OO.\n"
+				+ "Restoring balance to the Kingdom of Java.");
 	}
 
 	public boolean gameOver(Hero hero) {

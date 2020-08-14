@@ -47,9 +47,9 @@ public class Hero extends DungeonCharacter {
 	}
 
 	protected String printInventory(Hero character) {
-		String retStr = this.getName() + "\nHit Points: " + this.getHitPoints() + "\n-------------------------\n"
-				+ "1. Pillars: " + this.pillarCount + "\n" + "2. Healing Potions: " + this.healingPotCount + "\n"
-				+ "3. Vision Potions: " + this.visionPotCount + "\n";
+		String retStr = this.getName() + "\nHit Points: " + this.getHitPoints() + "/" + this.getMaxHitPoints()
+				+ "\n-------------------------\n" + "1. Pillars: " + this.pillarCount + "\n" + "2. Healing Potions: "
+				+ this.healingPotCount + "\n" + "3. Vision Potions: " + this.visionPotCount + "\n";
 
 		return retStr;
 	}

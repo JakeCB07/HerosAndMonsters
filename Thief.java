@@ -34,21 +34,22 @@ public class Thief extends Hero {
 		int choice;
 
 		do {
+			do {
 			System.out.println("1. Attack Opponent");
 			System.out.println("2. Surprise Attack");
 			System.out.print("Choose an option: ");
-			choice = getKeyBoard().nextInt();
+			choice = getKeyBoard().next().charAt(0);
 
-			switch (choice) {
-			case 1:
-				attack(opponent);
-				break;
-			case 2:
-				surpriseAttack(opponent);
-				break;
-			default:
-				System.out.println("invalid choice!");
-			}// end switch
+				if(choice == '1')
+					attack(opponent);
+				else if(choice == '2')
+					surpriseAttack(opponent);
+				else {
+					System.out.println("invalid choice!\n");
+					choice = ' ';
+				}
+				
+			}while(choice == ' ');
 
 			killTurn();
 			if (getTurns() > 0)
