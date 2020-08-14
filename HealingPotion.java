@@ -8,7 +8,7 @@ public class HealingPotion extends Item{
 	private static String potionDescription = "A Potion that heals 5 to 15 HP when consumed.";
 	
 	HealingPotion(){
-		super(potionDescription, potionDescription);
+		super(potionDescription, potionDescription, HealingPotionSymbol);
 	}
 	
 	public static  char getHealingSymbol() {

@@ -3,11 +3,11 @@ public class VisionPotion extends Item {
 	private static String description = "A potion that allows you to see the contents of adjacent rooms.";
 	private static String potionName = "Potion of Seeing";
 	
-	private static char VisionPotionSymbol='H';
+	private static char VisionPotionSymbol='V';
 	
 	VisionPotion() {
 		
-		super(description, potionName);
+		super(description, potionName, VisionPotionSymbol);
 	}
 
 	public static  char getHealingSymbol() {
@@ -23,5 +23,9 @@ public class VisionPotion extends Item {
 	public static void addToInventory(Hero hero) {
 		hero.visionPotCount++;
 		System.out.println(hero.getName() + " put the " + potionName + " in thier bag");
+	}
+
+	public static char getVisionSymbol() {
+		return VisionPotionSymbol;
 	}
 }

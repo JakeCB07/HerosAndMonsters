@@ -4,7 +4,7 @@ public class Abstraction extends Item {
 	    private static String PillarDescription3="ONE OF THE 4 PILLARS OF OO!!!";
 		private static char AbstractionSymbol='A';
 		Abstraction() {
-			super(PillarName3, PillarDescription3);
+			super(PillarName3, PillarDescription3, AbstractionSymbol);
 			
 		}
 		public static char getAbstractionSymbol() {

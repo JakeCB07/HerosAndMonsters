@@ -35,28 +35,6 @@ public class Trap extends Attack {
     	return TrapSymbol;
     }
     
-    /*
-    @Override
-    private void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
-    {
-	if (opponent.getHitPoints() < 0)
-	    System.out.println("Hitpoint amount must be positive.");
-	else if (opponent.getHitPoints() > 0)
-	{
-	    opponent.subtractHitPoints(opponent.getHitPoints() - damageRecieved);
-	    if (opponent.getHitPoints() < 0)
-		opponent.subtractHitPoints(0);
-	    System.out.println(opponent.getName() + " hit " + " for <" + damageRecieved + "> points damage.");
-	    System.out.println(opponent.getName() + " now has " + opponent.getHitPoints() + " hit points remaining.");
-	    System.out.println();
-	} // end else if
-
-	if (opponent.getHitPoints() == 0)
-	    System.out.println(opponent.getName() + " has been killed :-(");
-
-    }// end method
-    */
-    
 	Trap() {
 		super(attack, minDamage, maxDamage, chanceToHit);
 		// TODO Auto-generated constructor stub

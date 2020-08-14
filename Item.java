@@ -6,7 +6,7 @@ public abstract class Item {
 	protected String itemName;
 	protected char symbol;
 	
-	Item(String itemDescription, String itemName){
+	Item(String itemDescription, String itemName, char symbol){
 		this.itemDescription = itemDescription;
 		this.itemName = itemName;
 		this.symbol = symbol;

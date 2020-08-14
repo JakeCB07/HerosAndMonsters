@@ -4,7 +4,7 @@ public class Inheritance extends Item {
     private static String PillarDescription4="ONE OF THE 4 PILLARS OF OO!!!";
 	private static char InheritanceSymbol='I';
 	Inheritance() {
-		super(PillarName4, PillarDescription4);
+		super(PillarName4, PillarDescription4, InheritanceSymbol);
 		
 	}
 	public static char getInheritanceSymbol() {

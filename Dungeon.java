@@ -13,7 +13,7 @@ public class Dungeon {
     //GameManager master=new GameManager();
     Random rand,rand1,rand2,rand3;
     int loc1, loc2, loc3, loc4,loc5,loc6,loc7,loc8,loc9,loc10;
-	public Dungeon(int rows, int columns) {
+	Dungeon(int rows, int columns) {
 		rows=5;
 		columns=5;
 		room=new Room[rows][columns];
