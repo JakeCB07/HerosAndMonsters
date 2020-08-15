@@ -160,7 +160,7 @@ public class Dungeon {
 		
 		for (int row = 0; row < retArray.length; row++) {
 			for (int col = 0; col < retArray[row].length; col++) {
-				retStr += "[" + retArray[row][col] + "]";
+				retStr += "[" + retArray[col][row] + "]";
 			}
 			retStr += "\n";
 		}
