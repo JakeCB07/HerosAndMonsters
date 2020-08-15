@@ -12,7 +12,7 @@ class HealingPotionTest
     HealingPotion testPotion;
      
      @Test
-     void testVisionPotion()
+     void testHealingPotion()
      {
  	test = new Warrior();
  	testPotion = new HealingPotion();
@@ -21,34 +21,7 @@ class HealingPotionTest
  	assertEquals('H', testPotion.getPotionSymbol());
 
      }
-
-     @Test
-     void testUse()
-     {
- 	test = new Warrior();
- 	testPotion = new HealingPotion();
-
- 	test.healingPotCount = 1;
- 	testPotion.use(test);
- 	assertEquals(0, test.healingPotCount);
- 	
- 
- 	
- 	
-     }
-
-     @Test
-     void testAddToInventory()
-     {
- 	test = new Warrior();
- 	testPotion = new HealingPotion();
- 	
- 	HealingPotion.addToInventory(test);
- 	assertEquals(1, test.healingPotCount);
- 	
- 	HealingPotion.addToInventory(test);
- 	assertEquals(2, test.healingPotCount);
- 	
-     }
+     
+     
 
 }

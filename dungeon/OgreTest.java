@@ -6,35 +6,18 @@ import org.junit.jupiter.api.Test;
 
 class OgreTest
 {
-
-    @Test
-    void testOgre()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testAttack()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testMonster()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testHeal()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testSubtractHitPoints()
-    {
-	fail("Not yet implemented");
+    Monster test;
+    
+   @Test
+   void ogreTest()
+   {
+	test = new Ogre();
+	assertEquals("Oscar the Ogre", test.getName());
+	assertEquals(200, test.getHitPoints());
+	assertEquals(2, test.getAttackSpeed()); 
+	assertEquals(0.1, test.getChanceToHeal(), 0.1);
+	assertEquals(30, test.getMinHeal());
+	assertEquals(50, test.getMaxHeal());
     }
 
 }

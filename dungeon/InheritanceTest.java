@@ -7,22 +7,17 @@ import org.junit.jupiter.api.Test;
 class InheritanceTest
 {
 
-    @Test
-    void testAddToInventory()
-    {
-	fail("Not yet implemented");
-    }
+        
+        Inheritance testPillar;
 
-    @Test
-    void testInheritance()
-    {
-	fail("Not yet implemented");
-    }
+        @Test
+        void testGetAbstractionSymbol()
+        {
+    	testPillar = new Inheritance();
+    	assertEquals('I', testPillar.getInheritanceSymbol());
+        }
 
-    @Test
-    void testGetInheritanceSymbol()
-    {
-	fail("Not yet implemented");
-    }
+    
+
 
 }

@@ -1,5 +1,6 @@
 package dungeon;
 
+
 public class Sorceress extends Hero {
 	private int minHeal = 25;
 	private int maxHeal = 50;
@@ -7,7 +8,7 @@ public class Sorceress extends Hero {
 	private static String name = "Sorceress";
 	private static int hitPoints = 75;
 	private static int attackSpeed = 5;
-	private static AttackBehavior attackBehavior = new Firebolt();
+	private static AttackBehavior attackBehavior = AttackFactory.FireBoltFactory();
 	private HealBehavior healSelf = new Heal();
 	private static double chanceToBlock = .3;
 
@@ -29,21 +30,22 @@ public class Sorceress extends Hero {
 		int choice;
 
 		do {
+			do {
 			System.out.println("1. Attack Opponent");
-			System.out.println("2. Increase Hit Points");
+			System.out.println("2. Heal Thyself");
 			System.out.print("Choose an option: ");
-			choice = getKeyBoard().nextInt();
+			choice = getKeyBoard().next().charAt(0);
 
-			switch (choice) {
-			case 1:
-				attack(opponent);
-				break;
-			case 2:
-				increaseHitPoints();
-				break;
-			default:
-				System.out.println("invalid choice!");
-			}
+				if(choice == '1')
+					attack(opponent);
+				else if(choice == '2')
+					increaseHitPoints();
+				else {
+					System.out.println("invalid choice!\n");
+					choice = ' ';
+				}
+				
+			}while(choice == ' ');
 
 			killTurn();
 			if (getTurns() > 0)

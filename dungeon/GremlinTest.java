@@ -16,37 +16,10 @@ class GremlinTest
 	assertEquals("Gnarltooth the Gremlin", test.getName());
 	assertEquals(70, test.getHitPoints());
 	assertEquals(5, test.getAttackSpeed()); 
-	assertEquals(.4, test.getChanceToHeal(), 0);
-	assertEquals(new Kris(), test.getAttackBehavior());
+	assertEquals(0.4, test.getChanceToHeal(), 0.4);
 	assertEquals(20, test.getMinHeal());
 	assertEquals(40, test.getMaxHeal());
     }
-
-    @Test
-    void testAttack()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testMonster()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testHeal()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testSubtractHitPoints()
-    {
-	fail("Not yet implemented");
-    }
+   
 
 }
-
-
-

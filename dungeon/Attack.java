@@ -1,13 +1,13 @@
 package dungeon;
 
-public class Attack  implements AttackBehavior {
+public abstract class Attack  implements AttackBehavior {
 	
 	protected String attack;
 	protected int minDamage;
 	protected int maxDamage;
 	protected double chanceToHit;
 	
-	Attack(String attack, int minDamage, int maxDamage, double chanceToHit){
+	protected Attack(String attack, int minDamage, int maxDamage, double chanceToHit){
 		
 		this.attack = attack;
 		this.minDamage = minDamage;
@@ -41,19 +41,19 @@ public class Attack  implements AttackBehavior {
 		}
 	}
 	
-	protected void subtractHitPoints(DungeonCharacter opponent, int damageReceived)
+	protected void subtractHitPoints(DungeonCharacter opponent, int damageRecieved)
 	{
 		if (opponent.getHitPoints() <0)
 			System.out.println("Hitpoint amount must be positive.");
 		else if (opponent.getHitPoints() >0)
 		{
-			int newTotal = opponent.getHitPoints() - damageReceived;
+			int newTotal = opponent.getHitPoints() - damageRecieved;
 			opponent.setHitPoints(newTotal); 
 			//-= damageRecieved;
 			if (opponent.getHitPoints() < 0)
 				opponent.setHitPoints(0);
 			System.out.println(opponent.getName() + " hit " +
-								" for <" + damageReceived + "> points damage.");
+								" for <" + damageRecieved + "> points damage.");
 			System.out.println(opponent.getName() + " now has " +
 								opponent.getHitPoints() + " hit points remaining.");
 			System.out.println();
@@ -64,21 +64,31 @@ public class Attack  implements AttackBehavior {
 
 	}
 
-	 public String getAttack()
-	    {
-		return attack;
-	    }
-	 public double getChanceToHit()
-	    {
-		return chanceToHit;
-	    }
-	 public int getMinDamage()
-	    {
-		return minDamage;
-	    }
-	    public int getMaxDamage()
-	    {
-		return maxDamage;
-	    }
+	public String getAttack()
+	{
+	    
+	    return attack;
+	}
+
+	public int getMinDamage()
+	{
+	
+	    return minDamage;
+	}
+
+	public int getMaxDamage()
+	{
+	   
+	    return maxDamage;
+	}
+
+	public double getChanceToHit()
+	{
+	   
+	    return chanceToHit;
+	}
+
+
+	
 
 }

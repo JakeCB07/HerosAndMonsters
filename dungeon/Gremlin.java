@@ -5,8 +5,8 @@ public class Gremlin extends Monster {
 	private static String name = "Gnarltooth the Gremlin";
 	private static int hitPoints = 70;
 	private static int attackSpeed = 5;
-	private static double chanceToHeal = .4;
-	private static AttackBehavior attackBehavior = new Kris();
+	private static double chanceToHeal =.4;
+	private static AttackBehavior attackBehavior = AttackFactory.KrisFactory();
 	private static int minHeal = 20;
 	private static int maxHeal = 40;
 

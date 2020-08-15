@@ -6,23 +6,47 @@ import org.junit.jupiter.api.Test;
 
 class ThiefTest
 {
-
+    Hero test = new Thief();
+ 
     @Test
-    void testBattleChoices()
+    void testAddHealingPot()
     {
-	fail("Not yet implemented");
+	test.healingPotCount = 3;
+	test.removeHealingPot(test);
+	assertEquals(2, test.getHealingPotCount());
     }
 
     @Test
-    void testThief()
+    void testAddVisionPot()
     {
-	fail("Not yet implemented");
+	test.visionPotCount = 3;
+	test.addVisionPot(test);
+	assertEquals(4, test.getVisionPotCount());
     }
 
     @Test
-    void testSurpriseAttack()
+    void testAddPillar()
     {
-	fail("Not yet implemented");
+	test.pillarCount = 0;
+	test.addPillar(test);
+	assertEquals(1, test.getPillarCount());
     }
 
+    @Test
+    void testRemoveHealingPot()
+    {
+	test.healingPotCount = 3;
+	test.removeHealingPot(test);
+	assertEquals(2, test.getHealingPotCount());
+    }
+
+    @Test
+    void testRemoveVisionPot()
+    {
+	test.visionPotCount = 3;
+	test.removeVisionPot(test);
+	assertEquals(2, test.getVisionPotCount());
+    }
+    
+    
 }
