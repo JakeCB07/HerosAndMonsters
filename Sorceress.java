@@ -1,3 +1,5 @@
+package dungeon;
+
 
 public class Sorceress extends Hero {
 	private int minHeal = 25;
@@ -6,7 +8,7 @@ public class Sorceress extends Hero {
 	private static String name = "Sorceress";
 	private static int hitPoints = 75;
 	private static int attackSpeed = 5;
-	private static AttackBehavior attackBehavior = new Firebolt();
+	private static AttackBehavior attackBehavior = AttackFactory.FireBoltFactory();
 	private HealBehavior healSelf = new Heal();
 	private static double chanceToBlock = .3;
 

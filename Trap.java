@@ -1,3 +1,4 @@
+package dungeon;
 
 public class Trap extends Attack {
 	
@@ -6,17 +7,17 @@ public class Trap extends Attack {
     private static int minDamage = 1;
     private static int maxDamage = 20; 
     private static char TrapSymbol='T';
-    
+
 	
-    
-    public void attack(DungeonCharacter opponent)
-    {
+
+public void attack(DungeonCharacter opponent)
+{
 	boolean canAttack;
 	int damage;
 
 	System.out.println(opponent.getName() + " " + attack);
 	canAttack = Math.random() <= chanceToHit;
-    
+
 	if (canAttack)
 	{
 	    damage = (int) (Math.random() * (maxDamage - minDamage + 1)) + minDamage;
@@ -30,14 +31,37 @@ public class Trap extends Attack {
 	    System.out.println(opponent.getName() + " avoided the trap!");
 	    System.out.println();
 	} // end else
-    }
-    public static char getTrapSymbol() {
-    	return TrapSymbol;
-    }
-    
-	Trap() {
-		super(attack, minDamage, maxDamage, chanceToHit);
-		// TODO Auto-generated constructor stub
-	}
+}
+        public static char getTrapSymbol() {
+        	return TrapSymbol;
+        }
 
+	public Trap() {
+		super(attack, minDamage, maxDamage, chanceToHit);
+		
+	}
+	
+	public String attack()
+	{
+	   return ("has encountered a pitfall trap.");
+	}
+	public int getMinDamage()
+	{
+	   
+	    return minDamage;
+	}
+	public int getMaxDamage()
+	{
+	   
+	    return maxDamage;
+	}
+	
+	public double getChanceToHit()
+	{
+	    return chanceToHit;
+	    
+	}
+	
+	
+	
 }

@@ -1,3 +1,4 @@
+package dungeon;
 
 public class Monster extends DungeonCharacter {
 	
@@ -40,4 +41,26 @@ public class Monster extends DungeonCharacter {
 		this.healBehavior = new Heal();
 	}
 
+	public double getChanceToHeal()
+	{
+	    
+	    return chanceToHeal;
+	}
+
+	public int getMinHeal()
+	{
+	    
+	    return minHeal;
+	}
+	public int getMaxHeal()
+	{
+	    
+	    return maxHeal;
+	}
+	
+	public AttackBehavior getAttackBehavior()
+	{
+	    return attackBehavior;
+	}
+	
 }

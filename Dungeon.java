@@ -1,6 +1,11 @@
+package dungeon;
+
 import java.util.ArrayList;
 import java.util.Random;
+
 public class Dungeon {
+	public static final int WIDTH = 5;
+	public static final int HEIGHT = 5; 
 	private static Room[][] room;
 	private String wallH=" *-*";
     private String wallV="*| |";
@@ -13,7 +18,7 @@ public class Dungeon {
     //GameManager master=new GameManager();
     Random rand,rand1,rand2,rand3;
     int loc1, loc2, loc3, loc4,loc5,loc6,loc7,loc8,loc9,loc10;
-	Dungeon(int rows, int columns) {
+	public Dungeon(int rows, int columns) {
 		rows=5;
 		columns=5;
 		room=new Room[rows][columns];
@@ -23,6 +28,9 @@ public class Dungeon {
 		 this.rand3=new Random();
 		
 	}
+	
+	
+	
 	public void makeMap() {
 		
 		 for (int r = 0; r < room.length ; r++) {
@@ -78,7 +86,7 @@ public class Dungeon {
 	}
 	}
 	
-	private static char[][] getSurroundingArea(Hero hero) {
+	static char[][] getSurroundingArea(Hero hero) {
 		char emptyStr = '*';
 		char[][] area = new char[3][3];
 		int heroX = hero.getPoint().getX();
@@ -133,6 +141,31 @@ public class Dungeon {
 		
 		return retStr;
 	}
+	
+	protected String printDungeon() {
+		String retStr = "";
+		char[][] retArray = new char[7][7];
 
+		for (int row = 0; row < retArray.length; row++) {
+			for (int col = 0; col < retArray[row].length; col++) {
+				retArray[row][col] = '*';
+			}
+		}
+		
+		for(int row = 1; row < retArray.length-1; row++) {
+			for(int col = 1; col < retArray.length-1; col++) {
+				retArray[row][col] = this.room[row-1][col-1].getRoomSymbol();
+			}
+		}
+		
+		for (int row = 0; row < retArray.length; row++) {
+			for (int col = 0; col < retArray[row].length; col++) {
+				retStr += "[" + retArray[row][col] + "]";
+			}
+			retStr += "\n";
+		}
+		
+		return retStr;
+	}
 	
 }

@@ -1,3 +1,4 @@
+package dungeon;
 
 public class Location {
 private int x, y;

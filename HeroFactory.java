@@ -1,3 +1,5 @@
+package dungeon;
+
 
 public class HeroFactory {
 public static Hero createHero(char choice) {

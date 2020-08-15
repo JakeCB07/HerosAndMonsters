@@ -1,3 +1,4 @@
+package dungeon;
 
 
 public abstract class Item {

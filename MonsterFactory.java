@@ -1,3 +1,4 @@
+package dungeon;
 
 public class MonsterFactory {
 public static Monster createMonster(int choice) {

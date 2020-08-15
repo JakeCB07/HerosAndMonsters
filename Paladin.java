@@ -1,12 +1,13 @@
+package dungeon;
 
 public class Paladin extends Hero {
 	private static String name = "Paladin";
 	private static int hitPoints = 140;
 	private static int attackSpeed = 4;
-	private static AttackBehavior attackBehavior = new Hammer();
+	private static AttackBehavior attackBehavior = AttackFactory.HammerFactory();
 	private static AttackBehavior specialAttack = new DivineSmite();
 	private static double chanceToBlock = .2;
-	private static double chanceToHit;
+	
 
 	Paladin() {
 		super(name, hitPoints, attackSpeed, attackBehavior, chanceToBlock);

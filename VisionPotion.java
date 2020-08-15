@@ -1,3 +1,5 @@
+package dungeon;
+
 
 public class VisionPotion extends Item {
 	private static String description = "A potion that allows you to see the contents of adjacent rooms.";
@@ -27,5 +29,22 @@ public class VisionPotion extends Item {
 
 	public static char getVisionSymbol() {
 		return VisionPotionSymbol;
+	}
+
+	public String getPotionName()
+	{
+	 
+	    return potionName;
+	}
+
+	public char getPotionSymbol()
+	{
+	        return VisionPotionSymbol;
+	}
+
+	public String getPotionDescription()
+	{
+	   
+	    return description;
 	}
 }

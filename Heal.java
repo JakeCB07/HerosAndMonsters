@@ -1,3 +1,4 @@
+package dungeon;
 
 public class Heal implements HealBehavior {
 
@@ -26,4 +27,7 @@ public class Heal implements HealBehavior {
 			character.setHitPoints(newTotal);
 		}
 	}
+
+	
+	
 }

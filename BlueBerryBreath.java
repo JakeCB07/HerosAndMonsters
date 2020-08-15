@@ -1,3 +1,4 @@
+package dungeon;
 
 public class BlueBerryBreath extends Attack {
 	
@@ -9,4 +10,7 @@ public class BlueBerryBreath extends Attack {
 	BlueBerryBreath() {
 		super(attack, minDamage, maxDamage, chanceToHit);
 	}
+	
+	
+	
 }

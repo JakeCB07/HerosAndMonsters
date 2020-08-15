@@ -1,3 +1,5 @@
+package dungeon;
+
 
 public class Inheritance extends Item {
     private static String PillarName4="Pillar of INHERITANCE";

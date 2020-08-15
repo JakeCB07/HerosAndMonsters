@@ -1,10 +1,11 @@
+package dungeon;
 
 public class Warrior extends Hero {
 
 	private static String name = "Warrior";
 	private static int hitPoints = 125;
 	private static int attackSpeed = 4;
-	private static AttackBehavior attackBehavior = new MightySword();
+	private static AttackBehavior attackBehavior = AttackFactory.MightySwordFactory();
 	private AttackBehavior specialAttack = new CrushingBlow();
 	private static double chanceToBlock = .2;
 

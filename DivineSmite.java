@@ -1,3 +1,4 @@
+package dungeon;
 
 public class DivineSmite extends Attack {
 
@@ -32,4 +33,34 @@ public class DivineSmite extends Attack {
 			System.out.println();
 		} // end else
 	}
+	
+
+	public String getattack()
+	{
+	    
+	    return attack;
+	}
+		
+	public int getMinDamage()
+	{
+	    
+	    return minDamage;
+	}
+	
+	public int getMaxDamage()
+	{
+	    
+	    return maxDamage;
+	}
+	
+	public double getChanceToHit()
+	{
+	    return chanceToHit;
+	}
+	
+	public HealBehavior getHealingSmite()
+	{
+	    return healingSmite;
+	}
+	
 }

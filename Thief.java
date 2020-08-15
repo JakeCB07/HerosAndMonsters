@@ -1,3 +1,4 @@
+package dungeon;
 
 public class Thief extends Hero {
 

@@ -1,11 +1,12 @@
+package dungeon;
 
 public class EvilTexasGoblin extends Monster {
 	
-	private static String name = "Boby texas goblin";
+	private static String name = "Boby Texas Goblin";
 	private static int hitPoints = 150;
 	private static int attackSpeed = 2;
 	private static double chanceToHeal = .2;
-	private static AttackBehavior attackBehavior = new CowBoyHat();
+	private static AttackBehavior attackBehavior = AttackFactory.CowBoyHatFactory();
 	private static int minHeal = 15;
 	private static int maxHeal = 25;
 	

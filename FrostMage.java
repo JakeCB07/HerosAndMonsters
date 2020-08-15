@@ -1,9 +1,11 @@
+package dungeon;
+import dungeon.Hero;
 
 public class FrostMage extends Hero {
 	private static String name = "Frost Mage";
 	private static int hitPoints = 70;
 	private static int attackSpeed = 5;
-	private static AttackBehavior attackBehavior = new FreezingTouch();
+	private static AttackBehavior attackBehavior = AttackFactory.FreezingTouchFactory();
 	private AttackBehavior specialAttack;
 	private static double chanceToBlock = .1;
 

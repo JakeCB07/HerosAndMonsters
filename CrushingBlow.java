@@ -1,3 +1,4 @@
+package dungeon;
 
 public class CrushingBlow extends Attack{
 	private static String attack = "goes for a Crushing Blow against";
@@ -8,5 +9,29 @@ public class CrushingBlow extends Attack{
 	CrushingBlow() {
 		super(attack, minDamage, maxDamage, chanceToHit);
 	}
+
+	public String getattack()
+	{
+	    
+	    return attack;
+	}
+		
+	public int getMinDamage()
+	{
+	    
+	    return minDamage;
+	}
+	
+	public int getMaxDamage()
+	{
+	    
+	    return maxDamage;
+	}
+	
+	public double getChanceToHit()
+	{
+	    return chanceToHit;
+	}
+	
 	
 }
