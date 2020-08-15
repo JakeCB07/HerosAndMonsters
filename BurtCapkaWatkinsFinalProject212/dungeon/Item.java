@@ -1,5 +1,6 @@
 package dungeon;
 
+
 public abstract class Item {
 	
 	protected String itemDescription;

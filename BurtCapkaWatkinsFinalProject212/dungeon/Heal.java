@@ -27,4 +27,7 @@ public class Heal implements HealBehavior {
 			character.setHitPoints(newTotal);
 		}
 	}
+
+	
+	
 }

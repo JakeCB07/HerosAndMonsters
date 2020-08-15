@@ -7,10 +7,9 @@ public class GameManager {
 	private static Scanner kb = new Scanner(System.in);
 	private boolean win = false;
 
-	private Dungeon dungeon = new Dungeon();
+	private Dungeon dungeon = new Dungeon(5, 5);
 	private Trap trap = new Trap();
-	private int monsterRoster = 5;
-	
+
 	public static Hero chooseHero() {
 		char choice;
 		Hero selectedHero;
@@ -32,10 +31,10 @@ public class GameManager {
 		int choice = 0;
 		Monster selectedMonster;
 		do {
-			choice = (int) (Math.random() * monsterRoster) + 1;
+			choice = (int) (Math.random() * 5) + 1;
 
 			selectedMonster = MonsterFactory.createMonster(choice);
-		} while (choice < 1 || choice > monsterRoster);
+		} while (choice < 1 || choice > 5);
 
 		return selectedMonster;
 	}
@@ -73,22 +72,7 @@ public class GameManager {
 			System.out.println("Quitters never win ;-)");
 	}
 
-	public void printIntro() {
-		System.out.println("Welcome to Dungeon Adventure!");
-		System.out.println("---------------------------------------------");
-		System.out.println();
-		System.out.println("The Kingdom of Java is in great peril! The 4 Pillars of OO have been stolen!\n"
-				+ "The Mad Wizard Steiner stole the Pillars in order to keep the power of OO all to himself. \n"
-				+ "He has hidden the Pillars away in a dungeon far beneath Castle Java. The dungeon is filled with \n"
-				+ "all sorts of vile monsters and deadly traps in order to guard the Pillars of OO. \n"
-				+ "King Capaul has sent you on a quest to recover the Pillars and restore peace and prosperity \n"
-				+ " to the Kingdom of Java\n"
-				+ "Good Luck!\n");
-		System.out.println();
-		System.out.println("Type the commands N, S, E, and W to move through the dungeon. \n"
-				+ "Press I to access your Inventory and L to print the Map Legend. \n\n" + "Good Luck ! \n");
-
-	}
+	
 
 	public void generateDungeon() {
 		win = false;
@@ -217,7 +201,7 @@ public class GameManager {
 
 	private void printControls() {
 		System.out.println(" N: move North" + "\n W: move West" + "\n E: move East " + "\n S: move South"
-				+ "\n I: view Inventory\n");
+				+ "\n I: view Inventory\n + M: map legend\n");
 	}
 
 	private void printLegend() {
@@ -226,7 +210,7 @@ public class GameManager {
 	}
 	
 	public void printEnding(Hero hero) {
-		System.out.println("The enterance to the dungeon collapses behind you as you make a narrow exit. \n" 
+		System.out.println("The entrance to the dungeon collapses behind you as you make a narrow exit. \n" 
 				+ "As you exit the dungeon you're greeted with the bright light of the sun.\n"
 				+ "You bask in its warmth for a moment, then take a deep breath and \ncontinue on your way to "
 				+ "return the Pillars to thier rightful place.\n\n"
@@ -238,9 +222,21 @@ public class GameManager {
 
 		return !hero.isAlive();
 	}
-	
-	public void printMap() {
-		System.out.println("Dungeon: \n");
-		System.out.println(dungeon.printDungeon());
+
+	public void printIntro() {
+		System.out.println("Welcome to Dungeon Adventure!");
+		System.out.println("---------------------------------------------");
+		System.out.println();
+		System.out.println("The Kingdom of Java is in great peril! The 4 Pillars of OO have been stolen!\n"
+				+ "The Mad Wizard Steiner stole the Pillars in order to keep the power of OO all to himself. \n"
+				+ "He has hidden the Pillars away in a dungeon far beneath Castle Java. The dungeon is filled with \n"
+				+ "all sorts of vile monsters and deadly traps in order to guard the Pillars of OO. \n"
+				+ "King Capaul has sent you on a quest to recover the Pillars and restore peace and prosperity \n"
+				+ " to the Kingdom of Java\n"
+				+ "Good Luck!\n");
+		System.out.println();
+		System.out.println("Type the commands N, S, E, and W to move through the dungeon. \n"
+				+ "Press I to access your Inventory and L to print the Map Legend. \n\n" + "Good Luck ! \n");
+
 	}
 }

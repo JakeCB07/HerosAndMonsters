@@ -28,8 +28,22 @@ public class HealingPotion extends Item{
 		System.out.println(character.getName() + " put the " + potionName + " in thier bag");
 		
 	}
-	
 
+	public String getDescription()
+	{
+	    
+	    return potionDescription;
+	}
+	
+	public String getPotionName()
+	{
+	    return potionName;
+	}
+	
+	public char getPotionSymbol()
+	{
+	    return symbol;
+	}
 }
 
 

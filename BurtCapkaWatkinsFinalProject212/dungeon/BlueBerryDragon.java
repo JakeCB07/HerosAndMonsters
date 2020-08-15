@@ -6,7 +6,7 @@ public class BlueBerryDragon extends Monster {
 	private static int hitPoints = 300;
 	private static int attackSpeed = 2;
 	private static double chanceToHeal = .2;
-	private static AttackBehavior attackBehavior = new BlueBerryBreath();
+	private static AttackBehavior attackBehavior = AttackFactory.BlueBerryBreath();
 	private static int minHeal = 20;
 	private static int maxHeal = 55;
 	

@@ -8,10 +8,10 @@ public abstract class DungeonCharacter {
 	private int maxHP;
 	private int hitPoints;
 	private int attackSpeed;
-	private AttackBehavior attackBehavior;
+	protected AttackBehavior attackBehavior;
 	private static Scanner Keyboard = new Scanner(System.in);
 
-	DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior) {
+	protected DungeonCharacter(String name, int hitPoints, int attackSpeed, AttackBehavior attackBehavior) {
 
 		setName(name);
 		setHitPoints(hitPoints);
@@ -37,7 +37,7 @@ public abstract class DungeonCharacter {
 	}
 
 	public AttackBehavior getAttackBehavior() {
-		return this.attackBehavior;
+		return attackBehavior;
 	}
 
 	public void setName(String name) {
@@ -70,3 +70,4 @@ public abstract class DungeonCharacter {
 	}// end isAlive method
 	
 }
+

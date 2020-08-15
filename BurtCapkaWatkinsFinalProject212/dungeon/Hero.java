@@ -1,11 +1,11 @@
 package dungeon;
-
 import java.util.Scanner;
 
-public class Hero extends DungeonCharacter {
+public class Hero extends DungeonCharacter
+{
 
 	private int numTurns;
-	private static Location point;
+	static Location point;
 	protected double chanceToBlock;
 
 	protected Scanner playerInput = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class Hero extends DungeonCharacter {
 		this.setName(newName);
 	}
 
-	private boolean defend() {
+	boolean defend() {
 		return Math.random() <= chanceToBlock;
 	}
 
@@ -47,7 +47,7 @@ public class Hero extends DungeonCharacter {
 
 	}
 
-	protected String printInventory(Hero character) {
+	public String printInventory(Hero character) {
 		String retStr = this.getName() + "\nHit Points: " + this.getHitPoints() + "/" + this.getMaxHitPoints()
 				+ "\n-------------------------\n" + "1. Pillars: " + this.pillarCount + "\n" + "2. Healing Potions: "
 				+ this.healingPotCount + "\n" + "3. Vision Potions: " + this.visionPotCount + "\n";
@@ -55,7 +55,7 @@ public class Hero extends DungeonCharacter {
 		return retStr;
 	}
 
-	protected void useItem(Hero character) {
+	public void useItem(Hero character) {
 		System.out.println("Enter a number to select an item to use or press anything else to go back");
 		char choice = playerInput.next().charAt(0);
 
@@ -71,7 +71,7 @@ public class Hero extends DungeonCharacter {
 		point = new Location(x, y);
 	}
 
-	public static Location getPoint() {
+	public Location getPoint() {
 		return point;
 	}
 
@@ -87,15 +87,15 @@ public class Hero extends DungeonCharacter {
 		return this.numTurns;
 	}
 
-	protected void addHealingPot(Hero hero) {
+	public void addHealingPot(Hero hero) {
 		hero.healingPotCount++;
 	}
 
-	protected void addVisionPot(Hero hero) {
+	public void addVisionPot(Hero hero) {
 		hero.visionPotCount++;
 	}
 
-	protected void addPillar(Hero hero) {
+	public void addPillar(Hero hero) {
 		hero.pillarCount++;
 	}
 
@@ -111,8 +111,37 @@ public class Hero extends DungeonCharacter {
 		hero.pillarCount--;
 	}
 
-	protected int getPillarCount() {
+	public int getPillarCount() {
 		return this.pillarCount;
 	}
 
+	public int getVisionPotCount()
+	{
+	    
+	    return visionPotCount;
+	}
+	public int getHealingPotCount()
+	{
+	    
+	    return healingPotCount;
+	}
+
+	public void updateHero(Hero hero)
+	{
+	   printInventory(hero);
+	    
+	}
+
+	public boolean getsIsAlive()
+	{
+	  
+	    return this.isAlive();
+	}
+
+	
+
+	
+	
+	
+	
 }

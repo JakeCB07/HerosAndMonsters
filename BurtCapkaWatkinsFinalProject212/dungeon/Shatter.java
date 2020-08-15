@@ -1,6 +1,6 @@
 package dungeon;
 
-public class Shatter extends Attack {
+public class Shatter extends Attack  {
 
 	private static String attack = "begins freezing";
 	private static double chanceToHit = .8;

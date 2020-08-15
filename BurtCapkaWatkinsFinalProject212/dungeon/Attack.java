@@ -1,13 +1,13 @@
 package dungeon;
 
-public class Attack  implements AttackBehavior {
+public abstract class Attack  implements AttackBehavior {
 	
 	protected String attack;
 	protected int minDamage;
 	protected int maxDamage;
 	protected double chanceToHit;
 	
-	Attack(String attack, int minDamage, int maxDamage, double chanceToHit){
+	protected Attack(String attack, int minDamage, int maxDamage, double chanceToHit){
 		
 		this.attack = attack;
 		this.minDamage = minDamage;
@@ -63,5 +63,32 @@ public class Attack  implements AttackBehavior {
 			System.out.println(opponent.getName() + " has been killed :-(");
 
 	}
+
+	public String getAttack()
+	{
+	    
+	    return attack;
+	}
+
+	public int getMinDamage()
+	{
+	
+	    return minDamage;
+	}
+
+	public int getMaxDamage()
+	{
+	   
+	    return maxDamage;
+	}
+
+	public double getChanceToHit()
+	{
+	   
+	    return chanceToHit;
+	}
+
+
+	
 
 }
