@@ -7,34 +7,18 @@ import org.junit.jupiter.api.Test;
 class SkeletonTest
 {
 
+ Monster test;
+    
     @Test
-    void testSkeleton()
+    void skeletonTest()
     {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testAttack()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testMonster()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testHeal()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testSubtractHitPoints()
-    {
-	fail("Not yet implemented");
+	test = new Skeleton();
+	assertEquals("Sargath the Skeleton", test.getName());
+	assertEquals(100, test.getHitPoints());
+	assertEquals(3, test.getAttackSpeed()); 
+	assertEquals(0.1, test.getChanceToHeal(), 0.1);
+	assertEquals(30, test.getMinHeal());
+	assertEquals(50, test.getMaxHeal());
     }
 
 }

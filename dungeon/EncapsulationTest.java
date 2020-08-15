@@ -6,35 +6,18 @@ import org.junit.jupiter.api.Test;
 
 class EncapsulationTest
 {
+   
+    Encapsulation testPillar;
+   
 
-    @Test
-    void testAddToInventory()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testEncapsulation()
-    {
-	fail("Not yet implemented");
-    }
-
+    
     @Test
     void testGetEncapsulationSymbol()
     {
-	fail("Not yet implemented");
-    }
+	
+	testPillar = new Encapsulation();
 
-    @Test
-    void testItem()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testUse()
-    {
-	fail("Not yet implemented");
+	assertEquals('e', testPillar.getEncapsulationSymbol());
     }
 
 }

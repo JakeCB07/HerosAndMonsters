@@ -6,23 +6,17 @@ import org.junit.jupiter.api.Test;
 
 class PolymorphismTest
 {
+          
+       Polymorphism testPillar;
 
-    @Test
-    void testAddToInventory()
-    {
-	fail("Not yet implemented");
-    }
+        @Test
+        void testGetAbstractionSymbol()
+        {
+    	testPillar = new Polymorphism();
+    	assertEquals('P', testPillar.getPolymorphismSymbol());
+        }
 
-    @Test
-    void testPolymorphism()
-    {
-	fail("Not yet implemented");
-    }
 
-    @Test
-    void testGetPolymorphismSymbol()
-    {
-	fail("Not yet implemented");
-    }
+
 
 }

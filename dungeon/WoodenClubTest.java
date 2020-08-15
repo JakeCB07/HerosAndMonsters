@@ -21,9 +21,4 @@ class WoodenClubTest
     	}
 
         
-    }
-
-   
-   
-
-
+  }

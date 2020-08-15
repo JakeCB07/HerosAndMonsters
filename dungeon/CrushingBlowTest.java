@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class CrushingBlowTest
 {
-    Attack test;
+    CrushingBlow test;
     @Test
 	void testCrushingBlow() {
 		test = new CrushingBlow();
@@ -15,10 +15,12 @@ class CrushingBlowTest
 		assertEquals("goes for a Crushing Blow against", test.getAttack());
 		assertEquals(100, test.getMinDamage());
 		assertEquals(175, test.getMaxDamage()); 
-		assertEquals(0.4, test.getChanceToHit(), 0);
+		assertEquals(0.4, test.getChanceToHit(), 0.1);
 		
 		
 	}
 
     
 }
+
+

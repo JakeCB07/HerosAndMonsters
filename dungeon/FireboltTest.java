@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class FireboltTest
 {
+
     Attack test;
     @Test
     void testFirebolt()
@@ -14,9 +15,10 @@ class FireboltTest
 	test = new Firebolt();
 		
 		assertEquals("shoots a firebolt at", test.getAttack());
-		assertEquals(25, test.getMinDamage());
-		assertEquals(50, test.getMaxDamage()); 
-		assertEquals(.7, test.getChanceToHit(), 0);
+		assertEquals(30, test.getMinDamage());
+		assertEquals(55, test.getMaxDamage()); 
+		assertEquals(.7, test.getChanceToHit(), 0.1);
 
     }
+
 }

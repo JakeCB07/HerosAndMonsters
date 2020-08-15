@@ -6,7 +6,7 @@ public class Ogre extends Monster {
 	private static int hitPoints = 200;
 	private static int attackSpeed = 2;
 	private static double chanceToHeal = .1;
-	private static AttackBehavior attackBehavior = new WoodenClub();
+	private static AttackBehavior attackBehavior = AttackFactory.WoodenClubFactory();
 	private static int minHeal = 30;
 	private static int maxHeal = 50;
 	

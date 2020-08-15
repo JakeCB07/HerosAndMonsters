@@ -1,21 +1,22 @@
 package dungeon;
 
+
 public class VisionPotion extends Item {
 	private static String description = "A potion that allows you to see the contents of adjacent rooms.";
 	private static String potionName = "Potion of Seeing";
 	
-	private static char potionSymbol='V';
+	private static char VisionPotionSymbol='V';
 	
 	VisionPotion() {
 		
-		super(getDescription(), potionName);
+		super(description, potionName, VisionPotionSymbol);
 	}
 
-	public  char getPotionSymbol() {
-		return potionSymbol;
+	public static  char getHealingSymbol() {
+		return VisionPotionSymbol;
 	}
 
-	public void use(Hero hero) {
+	public static void use(Hero hero) {
 		System.out.println(hero.getName() + " used a " + potionName);
 		System.out.println(Dungeon.printSurroundingArea(hero));
 		hero.removeVisionPot(hero);
@@ -26,17 +27,24 @@ public class VisionPotion extends Item {
 		System.out.println(hero.getName() + " put the " + potionName + " in thier bag");
 	}
 
-	public static  String getDescription()
-	{
-	    return description;
+	public static char getVisionSymbol() {
+		return VisionPotionSymbol;
 	}
 
 	public String getPotionName()
 	{
-	    
+	 
 	    return potionName;
 	}
 
-	
-	
+	public char getPotionSymbol()
+	{
+	        return VisionPotionSymbol;
+	}
+
+	public String getPotionDescription()
+	{
+	   
+	    return description;
+	}
 }

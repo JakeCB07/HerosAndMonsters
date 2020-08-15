@@ -5,7 +5,7 @@ public class Warrior extends Hero {
 	private static String name = "Warrior";
 	private static int hitPoints = 125;
 	private static int attackSpeed = 4;
-	private static AttackBehavior attackBehavior = new MightySword();
+	private static AttackBehavior attackBehavior = AttackFactory.MightySwordFactory();
 	private AttackBehavior specialAttack = new CrushingBlow();
 	private static double chanceToBlock = .2;
 
@@ -29,21 +29,22 @@ public class Warrior extends Hero {
 		super.battleChoices(opponent);
 
 		do {
+			do {
 			System.out.println("1. Attack Opponent");
-			System.out.println("2. Crushing Blow on Opponent");
+			System.out.println("2. Crushing Blow");
 			System.out.print("Choose an option: ");
-			choice = getKeyBoard().nextInt();
+			choice = getKeyBoard().next().charAt(0);
 
-			switch (choice) {
-			case 1:
-				attack(opponent);
-				break;
-			case 2:
-				crushingBlow(opponent);
-				break;
-			default:
-				System.out.println("invalid choice!");
-			}
+				if(choice == '1')
+					attack(opponent);
+				else if(choice == '2')
+					crushingBlow(opponent);
+				else {
+					System.out.println("invalid choice!\n");
+					choice = ' ';
+				}
+				
+			}while(choice == ' ');
 
 			killTurn();
 			if (getTurns() > 0)

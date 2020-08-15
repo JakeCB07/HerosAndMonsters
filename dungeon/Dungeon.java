@@ -1,7 +1,11 @@
 package dungeon;
+
 import java.util.ArrayList;
 import java.util.Random;
+
 public class Dungeon {
+	public static final int WIDTH = 5;
+	public static final int HEIGHT = 5; 
 	private static Room[][] room;
 	private String wallH=" *-*";
     private String wallV="*| |";
@@ -24,6 +28,9 @@ public class Dungeon {
 		 this.rand3=new Random();
 		
 	}
+	
+	
+	
 	public void makeMap() {
 		
 		 for (int r = 0; r < room.length ; r++) {
@@ -134,6 +141,6 @@ public class Dungeon {
 		
 		return retStr;
 	}
-
+	
 	
 }

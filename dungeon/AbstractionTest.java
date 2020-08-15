@@ -7,26 +7,13 @@ import org.junit.jupiter.api.Test;
 class AbstractionTest
 {
    
-    
-    @Test
-    void testAddToInventory()
-    {
-	fail("Not yet implemented");
-    }
-
-    @Test
-    void testAbstraction()
-    {
-	fail("Not yet implemented");
-    }
+    Abstraction testPillar;
 
     @Test
     void testGetAbstractionSymbol()
     {
-	fail("Not yet implemented");
+	testPillar = new Abstraction();
+	assertEquals('A', testPillar.getAbstractionSymbol());
     }
 
-   
-
-   
 }
