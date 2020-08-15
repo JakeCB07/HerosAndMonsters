@@ -1,0 +1,45 @@
+Final Project: Dungeon Adventure:
+****Mark Capka extra credit for Flyweight pattern
+
+
+
+Mark Capka Conbtributions: 
+1. Model-View-Controller 
+2. JUnit testing (all classes)
+3. FlyWeight Pattern (AttackFactory)
+4. Encapsulation fixes (getters and setters)
+5. Attempt at GUI (didn't have time to fully implement and bugtest it thoroughly though so we scrapped and went with 2D console)
+6. General BugFixes
+**see github comments for more 
+**see Capka --
+
+Jacob Burt Contributions:
+1. Employed Strategy Pattern for all original attacks and healing behaviors (AttackBehavior interface and HealingBehavior interface)
+2. Created additional attacks for Paladin and FrostMage heros (FreezingTouch.java, Shatter.java, Hammer.java, DivineSmite.java)
+3. Created Paladin and FrostMage heros
+4. Created Item.java super class as well as HealingPotion.java and VisionPotion.java
+5. Added methods for printing and using inventory in Hero.java (printInventory(), useItem())
+6. Created GameManager.java and all methods not a part of Capauls original program (checkRoom(), playerController(), printIntro(), printEnding(), etc)
+7. Created DungeonAdventure.java
+8. Created Heal.java and Trap.java
+9. Created getSurroundingArea(), printSurroundingArea(), and printMap() functions in Dungeon.java
+10. Created cheats in GameManager()
+11. Created UML diagram
+
+Jacob Watkins Contributions:
+#1 Created location class that controlled movement
+#2 Added room Numbers and room symbols & Most of Dungeon.java
+#3 created room toString
+#4 Created picking up items methods
+#5 randomized item locations
+#6 randomized room symbol location
+#7 made 2 extra monsters.
+#8 made an entry and exit 
+#9 Made Pillar classes (Abstraction.java, Encapsulation.java, Inheritance.java, Polymorphism.java)
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
