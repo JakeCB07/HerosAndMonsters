@@ -1,0 +1,8 @@
+#1 Created location class that controlled movement
+#2 Added room Numbers and room symbols
+#3 created room toString
+#4 Created picking up items methods
+#5 randomized item locations
+#6 randomized room symbol location
+#7 made 2 extra monsters.
+#8 made an entry and exit 
